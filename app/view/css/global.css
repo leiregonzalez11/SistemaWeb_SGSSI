@@ -1,0 +1,17 @@
+/**
+Fuentes
+*/
+@font-face {
+    font-family: 'Quicksand';
+    src:  url('../fonts/Quicksand-VariableFont_wght.ttf') format('truetype'),
+          url('../fonts/static/Quicksand-Medium.ttf') format('truetype'),
+          url('../fonts/static/Quicksand-Light.ttf') format('truetype'),
+          url('../fonts/static/Quicksand-Regular.ttf') format('truetype');
+  }
+
+
+  html,body{
+      font-family: 'Quicksand', 'Segoe UI Semilight' , 'Verdana';
+      padding: 0;
+      margin: 0;
+  }
