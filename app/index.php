@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="view/css/global.css">
+    <link rel="stylesheet" href="view/css/homepage.css">
     <link rel="stylesheet" href="view/css/header.css">
     <link rel="stylesheet" href="view/css/footer.css">
     <script src="view/js/interactivo.js"></script>

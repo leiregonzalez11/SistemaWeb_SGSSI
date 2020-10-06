@@ -1,0 +1,48 @@
+main{
+    /*border: 10px solid navy;*/
+    width: 100%;
+    height: 100%;
+}
+
+#hero_video{
+    /*border: 10px solid orange;*/
+    position: relative;
+}
+
+
+video{
+    /*border: 10px dashed blue;*/
+    width: 100%;
+}
+
+#txtWeb{
+    /*border: 10px solid orangered;*/
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px);
+    margin: auto;
+    display: flex;
+    flex-direction: column ;
+    color: #FFFFFF;
+    
+    background-color: rgba(57, 105, 8, 0.335);
+}
+
+#txtWeb h1{
+    /*border: 10px solid darkcyan;*/
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    margin: auto;
+    
+}
+
+#txtWeb h2{
+    /*border: 10px dashed coral;*/
+    text-align: center;
+    font-size: 30px;
+    margin: auto;
+    width: 100%;
+ }
