@@ -94,3 +94,31 @@ article:nth-child(even){
     background-color: #1c7406;
     color: #FFFFFF;
 }
+
+.descripcion a{
+    text-decoration: none;
+    background-color: #1c7406;
+    color: #FFFFFF;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 5px;
+    padding: 1%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+article:nth-child(even) .descripcion a{
+    background-color: #FFFFFF;
+    color: #1c7406;
+}
+
+.descripcion a:hover{
+    background-color: #FFFFFF;
+    color: #1c7406;
+}
+
+article:nth-child(even) .descripcion a:hover{
+    background-color: #1c7406;
+    color: #FFFFFF;
+}

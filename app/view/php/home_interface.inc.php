@@ -30,7 +30,18 @@
                 </p>
             </div>
             <div class="imagen">
-                <img src="/view/img/promo_2.jpg" alt="Paisaje de montaña"/>
+                <img src="/view/img/promo_2.jpg" alt="Personas practicando rafting"/>
+            </div>
+            
+        </article>
+        <article>
+        <div class="descripcion">
+                <h2>Instalaciones de calidad</h2>
+                <p>Nuestras instalaciones proporcionan al huésped el máximo confort, para que éste se sienta cómodo en todo momento.</p>
+                <a href="">Ver nuestras instalaciones &gt;</a>
+            </div>
+            <div class="imagen">
+                <img src="/view/img/promo_3.jpg" alt="Cabaña en el bosque"/>
             </div>
         </article>
     </section>
