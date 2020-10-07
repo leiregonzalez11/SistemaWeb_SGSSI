@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="view/css/footer.css">
     <script src="view/js/interactivo.js"></script>
     <script src="view/js/validacion_datos.js"></script>
-    <title>Camping SGSSI</title>
+    <title>CAMPING SGSSI</title>
 </head>
 <body>
 <?php
