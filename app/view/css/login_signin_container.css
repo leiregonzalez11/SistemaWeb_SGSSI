@@ -1,0 +1,88 @@
+.overlay{
+    /*border: 10px solid navy;*/
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    backdrop-filter: blur(7px);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(57, 105, 8, 0.75);
+    display: flex;
+    flex-direction: column;
+}
+
+.accion_cierre{
+    /*border: 10px solid orange;*/
+    display: flex;
+    flex-direction: column-reverse;
+    
+}
+
+.cerrar_formulario{
+    /*border: 10px solid khaki;*/
+    font-size: 30px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.contenedor_datos{
+    /*border: 10px solid orangered;*/
+    height: 100%;
+    display: flex;
+}
+
+.contenedor_formulario{
+    overflow-y: scroll;
+
+    /*border: 10px solid rgb(136, 131, 173);*/
+    margin: auto;
+    background-color: #ffffff;
+    height: 70%;
+    width: 30%;
+    padding: 1%;
+    border-radius: 15px;
+}
+
+
+.contenedor_formulario h1{
+    color: #1c7406;
+}
+
+.contenedor_formulario form{
+    /*border: 10px solid darkmagenta;*/
+    display: flex;
+    flex-direction: column;
+    
+}
+
+label{
+    font-size: 25px;
+}
+
+input{
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 20%;
+    font-size: 20px;
+    border-bottom: 2px solid #1c7406;
+}
+
+input:focus{
+    outline: none;
+}
+
+button{
+    border: none;
+    background-color: #1c7406;
+    color: #ffffff;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+
+#goToSignIn, #goToLogin, #tyc{
+    color: #1c7406;
+    cursor: pointer;
+    text-decoration: underline;
+}
