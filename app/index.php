@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="view/css/homepage.css">
     <link rel="stylesheet" href="view/css/header.css">
     <link rel="stylesheet" href="view/css/footer.css">
-    <link rel="stylesheet" href="view/css/login_signin_container.css">
     <script src="view/js/interactivo.js"></script>
     <script src="view/js/validacion_datos.js"></script>
     <title>Camping SGSSI</title>
@@ -17,9 +16,6 @@
 <body>
 <?php
     include("view/php/header.inc.php");
-
-    //Incluir SOLO si el usuario no ha iniciado sesión
-    include("view/php/login_interface.inc.php");
 
     include("view/php/home_interface.inc.php");
 
