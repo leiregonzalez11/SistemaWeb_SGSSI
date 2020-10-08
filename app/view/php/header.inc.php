@@ -21,8 +21,13 @@
                 </ul>
             </li>  
             <li id="Instalaciones"><a href="#">Instalaciones</a></li>   
-            <li id="Galeria"><a href="#">Galeria</a></li>
-            <li id="Quienes Somos"><a href="#">Quienes Somos</a></li>
+            <li id="Galeria"><a href="#">Galería</a></li>
+            <li id="Quienes_Somos"><a href="#">Quiénes Somos</a>
+                <ul>
+                    <li><a href="">Filosofía</a></li>
+                    <li><a href="">Dónde estamos</a></li>
+                </ul>
+            </li>
             <li id="Contacto"><a href="#">Contacto</a></li> 
         </ul>
     </nav>

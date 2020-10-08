@@ -74,18 +74,18 @@ nav a:hover{
     grid-column: 4;
 }
 
-#Alojamiento ul{
+#Alojamiento ul, #Quienes_Somos ul{
     /*border: 10px solid orange;*/
     z-index: 2;
     top:100%;
     position: absolute;
     flex-direction: column;
-    width: auto;
+    width: 20%;
     height: auto;
     display: none;
 }
 
-#Alojamiento:hover ul{
+#Alojamiento:hover ul, #Quienes_Somos:hover ul{
     /*border: 10px solid navy;*/
     display: flex;
 }
