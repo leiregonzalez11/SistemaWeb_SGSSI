@@ -1,4 +1,4 @@
-<div id="login" class="overlay" >
+<div id="loginWin" class="overlay oculto" >
 
     <div class="contenedor_datos">
         
@@ -13,7 +13,7 @@
                 <label for="clv">Contraseña:</label>
                 <input type="password" name="clave" id="clv"/>
                 
-                <button id="btn">Iniciar sesión</button>
+                <button class="btn" if="btn_login">Iniciar sesión</button>
             </form>
             <p>¿No tienes cuenta? <span href="resgister_interface.inc.php" id="goToSignIn">¡Regístrate!</span></p>
         </div>

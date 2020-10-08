@@ -3,10 +3,10 @@
     <nav>
         <ul id="login_nav">
             <li class="datos_identificacion_reg">
-                <a href="/view/php/register_interface.inc.php" id="registro">REGISTRO</a>
+                <a id="registro">REGISTRO</a>
             </li>
             <li class="datos_identificacion_log">
-                <a href="/view/php/login_interface.inc.php" id="login">INICIAR SESIÓN</a>
+                <a id="login">INICIAR SESIÓN</a>
             </li>
         </ul>
         <ul>
