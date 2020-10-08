@@ -17,6 +17,11 @@ nav ul{
     width: 100%;
 }
 
+#menu{
+    position: relative;
+}
+
+
 nav li{
     text-decoration: none;
     list-style: none;
@@ -72,10 +77,8 @@ nav a:hover{
 #Alojamiento ul{
     /*border: 10px solid orange;*/
     z-index: 2;
+    top:100%;
     position: absolute;
-    left: 0;
-    top: 130px;
-    margin: 0;
     flex-direction: column;
     width: auto;
     height: auto;

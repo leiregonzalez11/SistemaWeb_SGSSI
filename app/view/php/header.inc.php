@@ -9,7 +9,7 @@
                 <a id="login">INICIAR SESIÓN</a>
             </li>
         </ul>
-        <ul>
+        <ul id="menu">
             <li id="Alojamiento"><a href="#">Alojamientos</a>
                 <!--SUBMENU PARA TIPOS DE ALOJAMIENTO, PARA EVITAR CREAR OTRA INTERFAZ-->
                 <!--Queda implementar el css para que sea vea bien-->
