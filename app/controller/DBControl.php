@@ -77,8 +77,19 @@ class DBControl{
         }
         mysqli_close ($dbName);
     }
-
+    public function __eliminarUsuario($dni){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons=mysqli_query("SELECT DNI FROM Usuario WHERE DNI='$dni'");
+        $res=mysqli_query($cons);
+        if(mysqli_num_rows ($cons)==1){
+            $borrar="DELETE FROM Usuario WHERE DNI='$dni'"
+            mysqli_query($cambiar);
+        }
+        mysqli_close ($dbName);
+    }
     
+
 }
 
 ?>
