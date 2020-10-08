@@ -14,12 +14,15 @@
                 <label for="dni_reg">DNI:</label>
                 <input type="text" name="dni_reg" id="dni_reg"/>
                 <label for="mail_reg">Correo electrónico:</label>
-                <input type="mail_reg" name="mail_reg" id="mail_reg"/>
+                <input type="mail" name="mail_reg" id="mail_reg"/>
                 <label for="clv_reg">Contraseña:</label>
                 <input type="password" name="clave_reg" id="clv_reg"/>
                 <label for="clv_val">Repetir contraseña:</label>
                 <input type="password" name="clave_val" id="clv_val"/>
-                He leído y acepto los <a id="tyc" href="">Términos y condiciones</a><input type="checkbox" value="acepta_tyc"/>
+                <div id="terminos">
+                <label for="termChk">He leído y acepto los <a id="tyc" href="">Términos y condiciones</a></label><input type="checkbox" id="termChk" value="acepta_tyc"/>
+                </div>
+                
                 <button class="btn" id="btn_reg">Registrarse</button>
             </form>
             <p>¿Ya tienes cuenta? <span href="login_interface.inc.php" id="goToLogin">¡Inicia sesión!</span></p>

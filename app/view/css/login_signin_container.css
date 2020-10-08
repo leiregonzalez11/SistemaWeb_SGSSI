@@ -59,7 +59,7 @@ label{
     font-size: 25px;
 }
 
-input{
+input[type=text], input[type=password], input[type=mail]{
     border: none;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -90,3 +90,9 @@ button{
 .oculto{
     display: none;
 }
+
+#terminos{
+    display: flex;
+}
+
+
