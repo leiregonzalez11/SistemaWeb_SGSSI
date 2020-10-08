@@ -22,7 +22,7 @@ class DBControl{
     public function __iniciarSesion($usuario,$contr){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $consulta ="SELECT DNI FROM Usuario WHERE DNI='$usuario' AND clave='$contr'"
+        $consulta ="SELECT DNI FROM Usuario WHERE DNI='$usuario' AND clave='$contr'";
         $resultado=mysqli_query($consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($dbName);
@@ -37,7 +37,7 @@ class DBControl{
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
         if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI=$usuario"))){
-            $consulta="INSERT INTO Usuario (DNI, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')"
+            $consulta="INSERT INTO Usuario (DNI, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($consulta);
             mysqli_close ($dbName);
             if($res){
@@ -54,7 +54,7 @@ class DBControl{
     public function __verDatos($dni){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons=mysqli_query("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE DNI='$usuario'");
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE DNI='$usuario'";
         $res=mysqli_query($cons);
         mysqli_close ($dbName);
         return $res;
@@ -69,10 +69,10 @@ class DBControl{
     public function __cambiarRol($dni){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons=mysqli_query("SELECT rol FROM Usuario WHERE DNI='$dni'")
+        $cons="SELECT rol FROM Usuario WHERE DNI='$dni'";
         $res=mysqli_query($cons);
         if(mysqli_num_rows ($cons)==1){
-            $cambiar="UPDATE Usuario SET DNI='$dni'"
+            $cambiar="UPDATE Usuario SET DNI='$dni'");
             mysqli_query($cambiar);
         }
         mysqli_close ($dbName);
@@ -80,15 +80,22 @@ class DBControl{
     public function __eliminarUsuario($dni){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons=mysqli_query("SELECT DNI FROM Usuario WHERE DNI='$dni'");
+        $cons="SELECT DNI FROM Usuario WHERE DNI='$dni'";
         $res=mysqli_query($cons);
         if(mysqli_num_rows ($cons)==1){
-            $borrar="DELETE FROM Usuario WHERE DNI='$dni'"
+            $borrar="DELETE FROM Usuario WHERE DNI='$dni'");
             mysqli_query($cambiar);
         }
         mysqli_close ($dbName);
     }
-    
+    public function __VerAlojamiento($IdA){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="SELECT * FROM Usuario WHERE idAlojamiento='$idA'";
+        $res=mysqli_query($cons);
+        mysqli_close ($dbName);
+        return $res;
+    }
 
 }
 
