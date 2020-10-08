@@ -68,3 +68,21 @@ nav a:hover{
 .datos_identificacion_log{
     grid-column: 4;
 }
+
+#Alojamiento ul{
+    /*border: 10px solid orange;*/
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 130px;
+    margin: 0;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    display: none;
+}
+
+#Alojamiento:hover ul{
+    /*border: 10px solid navy;*/
+    display: flex;
+}
