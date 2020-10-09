@@ -121,6 +121,50 @@ class DBControl{
         }
         mysqli_close ($dbName);
     }
+    public function eliminarAlojamiento($idAl){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idAl'";
+        $res=mysqli_query($cons);
+        if(mysqli_num_rows ($res)==1){
+            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='$idAl'");
+            mysqli_query($cambiar);
+        }
+        mysqli_close ($dbName);
+    }
+    public function actualizarDatosAlojamiento($idAl, $descr, $m2, $cap, $tipo){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="UPDATE Alojamiento SET idAlojamiento='$idAl', descripcion='$descr', metrosCuadrados='$m2', capacidad='$cap', tipo='$tipo' WHERE idAlojamiento='$idAl'";
+        mysqli_query($cons);
+        mysqli_close ($dbName);
+    }
+    public function anadirImagen($idAl, $num, $foto){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="INSERT INTO Galeria (idAlojamiento, num, foto) Values ('$idAl','$num','$foto')";
+        $resp=mysqli_query($cons);
+        mysqli_close ($dbName);
+    }
+    public function eliminarImagen($idAl, $num){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
+        $res=mysqli_query($cons);
+        if(mysqli_num_rows ($res)==1){
+            $borrar="DELETE FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'");
+            mysqli_query($cambiar);
+        }
+        mysqli_close ($dbName);
+    }
+    public function actualizarImagen($idAl, $num, $foto){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="UPDATE Galeria SET foto='$foto' WHERE idAlojamiento='$idAl' AND num='$num'";
+        mysqli_query($cons);
+        mysqli_close ($dbName);
+    }
+    
 }
 
 ?>
