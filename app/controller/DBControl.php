@@ -22,7 +22,7 @@ class DBControl{
     public function __iniciarSesion($usuario,$contr){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $consulta ="SELECT DNI FROM Usuario WHERE DNI='$usuario' AND clave='$contr'";
+        $consulta ="SELECT nick FROM Usuario WHERE nick='$usuario' AND clave='$contr'";
         $resultado=mysqli_query($consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($dbName);
@@ -33,11 +33,11 @@ class DBControl{
             return false;
         }
     }
-    public function __registrase($dni, $Nombre, $Apellidos, $telf, $fecha, $email, $clave, $rol){
+    public function __registrase($dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $clave, $rol){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI=$usuario"))){
-            $consulta="INSERT INTO Usuario (DNI, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
+        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='$usuario' or nick='$nick'"))){
+            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($consulta);
             mysqli_close ($dbName);
             if($res){
@@ -51,18 +51,18 @@ class DBControl{
             return false;
         }
     }
-    public function __verDatos($dni){
+    public function __verDatos($usuario){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE DNI='$usuario'";
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$usuario'";
         $res=mysqli_query($cons);
         mysqli_close ($dbName);
         return $res;
     }
-    public function __actualizarDatos($dni, $Nombre, $Apellidos, $telf, $fecha, $email, $clave){
+    public function __actualizarDatos($dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $clave){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave'";
+        $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave'";
         mysqli_query($cons);
         mysqli_close ($dbName);
     }
