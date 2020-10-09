@@ -88,13 +88,13 @@ class DBControl{
         mysqli_select_db($dbName);
         $cons="SELECT DNI FROM Usuario WHERE nick='$nick'";
         $res=mysqli_query($cons);
-        if(mysqli_num_rows ($cons)==1){
+        if(mysqli_num_rows ($res)==1){
             $borrar="DELETE FROM Usuario WHERE nick='$nick'");
             mysqli_query($cambiar);
         }
         mysqli_close ($dbName);
     }
-    public function VerAlojamiento($IdA){
+    public function VerListaAlojamientos($IdA){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
         $cons="SELECT * FROM Usuario WHERE idAlojamiento='$idA'";
@@ -102,7 +102,25 @@ class DBControl{
         mysqli_close ($dbName);
         return $res;
     }
-
+    public function VerAlojamiento($idA){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento '$idA'";
+        $res=mysqli_query($cons);
+        mysqli_close ($dbName);
+        return $res;
+    }
+    public function anadirAlojamiento($idA, $descr, $m2, $cap, $tipo){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idA'";
+        $resp=mysqli_query($cons);
+        if (mysqli_num_rows($resp)){
+            $consulta="INSERT INTO Alojamiento (idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo) Values ('$idA', '$descr', '$m2', '$cap', '$tipo')";
+            mysqli_query($consulta);
+        }
+        mysqli_close ($dbName);
+    }
 }
 
 ?>
