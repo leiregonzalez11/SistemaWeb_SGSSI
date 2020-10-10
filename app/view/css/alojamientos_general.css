@@ -1,0 +1,53 @@
+main{
+    /*border: 10px solid orange;*/
+    display: flex;
+    flex-direction: column;
+}
+
+#tipo_alojamiento{
+    /*border: 10px solid navy;*/
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+#listado_alojamientos{
+    /*border: 10px solid slateblue;*/
+    
+}
+
+#container_foto{
+    /*border: 10px dashed orangered;*/
+    overflow: hidden;
+    position: relative;
+    
+}
+
+#container_foto img{
+    /*border: 10px solid olive;*/
+    bottom: 300%;
+    width: 100%;
+    position: relative;
+}
+
+#container_texto{
+    /*border: 10px dashed red;*/
+    position: absolute;
+    /*background-color: #00000070;*/
+    background-color: #396908be;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    color: #FFFFFF;
+}
+
+#container_texto h1{
+    /*border: 10px solid seagreen;*/
+}
+
+#container_texto p{
+    /*border: 10px solid slateblue;*/
+}
