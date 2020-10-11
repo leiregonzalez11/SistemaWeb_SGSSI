@@ -23,7 +23,6 @@ main{
     /*border: 10px dashed orangered;*/
     overflow: hidden;
     position: relative;
-    
 }
 
 #container_foto img{
@@ -42,6 +41,7 @@ main{
     height: 100%;
     padding: 2%;
     color: #FFFFFF;
+    backdrop-filter: blur(5px);
 }
 
 #container_texto h1{
@@ -50,4 +50,49 @@ main{
 
 #container_texto p{
     /*border: 10px solid slateblue;*/
+}
+
+#listado_alojamientos a{
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #396908;
+    /*border: 10px solid green;*/
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.elem_alojamiento{
+    /*border: 10px solid navy;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.container_foto_listado{
+/*    border: 10px dashed orange;*/
+    width: 20%;
+}
+
+.container_foto_listado img{
+    width: 100%;
+}
+
+.txt_listado{
+    /*border: 10px solid sienna;*/
+    width: 70%;
+    padding: 2%;
+    font-size: 30px;
+}
+
+.accion_listado{
+    /*border: 10px solid darkorchid;*/
+    width: 10%;
+    display: flex;
+}
+
+.accion_listado p{
+    margin: auto;
+    font-size: 80px;
+
 }
