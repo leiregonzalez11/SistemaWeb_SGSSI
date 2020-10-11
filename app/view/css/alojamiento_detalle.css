@@ -1,0 +1,21 @@
+#principal{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.slideshow-container{
+    /*border: 10px solid navy;*/
+    width: 70%;
+}
+
+
+#detalles_alojamiento{
+/*    border: 10px solid green;*/
+    width: 30%;
+    padding: 3%;
+}
+
+#detalles_alojamiento h1{
+    color: #396908;
+}
