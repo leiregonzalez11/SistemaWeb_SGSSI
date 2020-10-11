@@ -1,0 +1,56 @@
+main{
+    padding: 1%;
+}
+
+
+input[type=text], input[type=password], input[type=number]{
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 20%;
+    font-size: 20px;
+    border-bottom: 2px solid #1c7406;
+}
+
+input:focus{
+    outline: none;
+}
+
+button{
+    border: none;
+    background-color: #1c7406;
+    color: #ffffff;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+#principales p, #galeria p, #galeria_borrar p{
+    font-size: 40px;
+}
+
+#contenedor_datos, #contenedor_fotos, #contenedor_fotos_borrar{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#contenedor_fotos_borrar p{
+    text-align: center;
+}
+
+#contenedor_fotos_borrar input{
+    
+    margin: auto;
+}
+
+#contenedor_fotos_borrar img{
+    width: 50%;
+    margin: auto;
+}
+
+#botones{
+    display: flex;
+}
+
+#botones button{
+    width: 100%;
+    margin: 1%;
+}
