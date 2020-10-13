@@ -1,10 +1,23 @@
 <main>
   <h1>Nuestra filosofía</h1>
   <div id="contenedor_texto">
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ligula urna, ullamcorper non turpis a, rutrum vehicula est. Nullam nisl dolor, malesuada vel pellentesque eget, dignissim nec est. Aenean vestibulum nibh eget commodo tempus. Integer eget urna in augue fermentum finibus. Phasellus vestibulum, nisl ut rutrum hendrerit, nisl felis ornare odio, quis lobortis diam arcu a enim. Donec maximus sed lectus ac viverra. Etiam tristique volutpat lectus, a sagittis risus egestas fringilla. Pellentesque bibendum risus in nunc malesuada, sed posuere metus semper. Proin tristique mi vel orci facilisis, eu varius magna ullamcorper. Integer lacinia neque nunc, in maximus lacus fermentum ac. Nam dapibus sagittis nisi eu dictum. Donec ullamcorper ultricies fermentum. </p>
-    <p>Curabitur quis ex maximus, sollicitudin sem in, ultricies nisl. Sed ornare at erat et feugiat. Etiam at dui vitae mauris laoreet accumsan. Nullam ut ante risus. Aliquam vulputate mi massa, sed laoreet justo blandit aliquet. Duis eu molestie dolor, et venenatis ipsum. Duis ac auctor turpis, et luctus ipsum. Aliquam quis blandit leo. Cras sit amet leo ac ligula laoreet dignissim. Ut tempus egestas felis, et tristique sem aliquet ac. Quisque nibh lectus, cursus a tortor ut, posuere mollis dui. Maecenas id consequat justo, sit amet suscipit nisi. Sed auctor sem at porta rutrum. Sed imperdiet elit in tincidunt sollicitudin. Fusce interdum sagittis felis ac faucibus. </p>
-    <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque id eros ac orci volutpat condimentum. Ut nec nunc vitae ex blandit aliquet ac ac quam. Maecenas vestibulum dui eu finibus auctor. Maecenas quis libero feugiat, pulvinar orci vitae, euismod lorem. Donec sit amet leo quis mi placerat volutpat. Ut lobortis ut arcu vel tempor. Etiam bibendum erat eget risus ornare blandit. Fusce maximus elementum tortor sit amet consectetur. Sed iaculis, leo ut vestibulum viverra, massa nulla accumsan dui, nec scelerisque purus nisl eu augue. Quisque eleifend tortor ipsum, vel semper nisi accumsan vitae. Pellentesque eget augue justo. Nunc quis lobortis ipsum. </p>
-    <p> Vivamus vitae nisi tempus, cursus turpis et, mollis lacus. Vestibulum scelerisque arcu id ligula euismod sodales. Proin sodales dapibus venenatis. Aenean lobortis, diam ut varius fermentum, nunc ante fermentum magna, sit amet congue ligula purus eget nulla. Proin rutrum velit ac ligula dapibus sollicitudin. Ut viverra sodales ultricies. Etiam dapibus, ipsum a tempor consequat, diam velit ullamcorper tellus, commodo semper velit odio eget justo. Ut quis diam aliquet, pharetra arcu ut, tristique nisi. Nunc at enim venenatis, aliquet dui quis, faucibus justo. Integer iaculis feugiat massa vitae aliquam. Nunc imperdiet pharetra urna, ut tempor ipsum cursus nec. Vestibulum diam erat, ornare id faucibus nec, vestibulum sit amet nisl. Vestibulum non ornare lorem, eget bibendum mi. Cras magna leo, cursus vitae pharetra eget, luctus at elit. Nullam eget nisl tellus. Cras sagittis eget tellus cursus aliquet. </p>
-    <p> Nulla laoreet mauris sit amet dui malesuada consectetur. In ac suscipit nulla, quis malesuada dui. Suspendisse faucibus quis odio eget semper. Vivamus venenatis, tellus sed maximus scelerisque, eros turpis auctor ipsum, et tristique ligula est eu neque. Integer sollicitudin dapibus lacus ut mattis. Aliquam vitae faucibus nisi. Ut porttitor enim sapien, at vestibulum nulla cursus ac. Vestibulum sit amet dignissim leo. Ut justo turpis, pretium sed nisi nec, pulvinar fringilla libero. Etiam placerat turpis suscipit, ullamcorper ex sit amet, efficitur nunc. </p>
-  </div>
+    <h2>Misión</h2>
+      <p> En nuestro camping sabemos que las vacaciones, en cualquier época del año, son lo más importante para
+          muchos de nuestros clientes. La búsqueda de la diversión y del placer de un buen descanso son unas
+          de las cosas que más buscamos sea cual sea la época del año.
+      </p>
+      <p> Por ello, nuestra misión es facilitar y conseguir que esa búsqueda se haga realidad, mejorando cada año 
+          la estancia de nuestros clientes, la calidad de nuestros productos e instalaciones y la constante 
+          evolución de los procesos de trabajo, siempre con la vocación de servicio como inquietud natural, 
+          estando siempre atentos a los detalles. 
+    <h2>Visión</h2> <!--Texto sacado de https://www.sangulisalou.com/nuestra-empresa/filosofia/-->
+      <p> Somos una referencia en la costa mediterránea. Vivimos a su ritmo y respiramos su brisa. Nuestra 
+          actividad está cien por cien centrada en el turismo familiar y los campistas. Dualidad que nos hace 
+          aprender y ganar una experiencia constante que nos enriquece.
+      </p>
+      <p> Cada temporada crecemos motivados por dos grandes metas: la calidad y el desarrollo sostenible. 
+          Estas metas se transmiten a nuestros clientes, nuestros trabajadores y todas las entidades con las que
+          colaboramos, afianzando nuestra relación como una gran familia.  
+      </p>
+   </div>
 </main>	
