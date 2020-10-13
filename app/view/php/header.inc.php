@@ -21,7 +21,6 @@
                 </ul>
             </li>  
             <li id="Instalaciones"><a href="#">Instalaciones</a></li>   
-            <li id="Galeria"><a href="#">Galería</a></li>
             <li id="Quienes_Somos"><a href="#">Quiénes Somos</a>
                 <ul>
                     <li><a href="">Filosofía</a></li>
