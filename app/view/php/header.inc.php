@@ -11,8 +11,6 @@
         </ul>
         <ul id="menu">
             <li id="Alojamiento"><a href="#">Alojamientos</a>
-                <!--SUBMENU PARA TIPOS DE ALOJAMIENTO, PARA EVITAR CREAR OTRA INTERFAZ-->
-                <!--Queda implementar el css para que sea vea bien-->
                 <ul>
                     <li><a href="">Parcela para Tienda</a></li>
                     <li><a href="">Parcela para Caravana</a></li>
@@ -20,14 +18,15 @@
                     <li><a href="">Bungalows</a></li>
                 </ul>
             </li>  
-            <li id="Instalaciones"><a href="#">Instalaciones</a></li>   
-            <li id="Quienes_Somos"><a href="#">Quiénes Somos</a>
+            <li id="Instalaciones"><a href="/view/php/instalaciones.php">Instalaciones</a></li>   
+            <li id="Quienes_Somos"><a href="#">La Empresa</a>
                 <ul>
-                    <li><a href="">Filosofía</a></li>
-                    <li><a href="">Dónde estamos</a></li>
+                    <li><a href="/view/php/quienessomos.php">Quienes Somos</a></li>
+                    <li><a href="/view/php/filosofia.php">Filosofía</a></li>
+                    <li><a href="/view/php/dondeestamos.php">Dónde estamos</a></li>
                 </ul>
             </li>
-            <li id="Contacto"><a href="#">Contacto</a></li> 
+            <li id="Contacto"><a href="/view/php/formulariocontacto.php">Contacto</a></li> 
         </ul>
     </nav>
 </header>
