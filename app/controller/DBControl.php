@@ -19,10 +19,10 @@ class DBControl{
     /**
      * Añada aquí el resto de las funciones, a conveniencia y según necesidades del software
      */
-    public function iniciarSesion($usuario,$contr){
+    public function iniciarSesion($email,$contr){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $consulta ="SELECT nick FROM Usuario WHERE nick='.$usuario.' AND clave='.$contr.'";
+        $consulta ="SELECT nick FROM Usuario WHERE email='.$email.' AND clave='.$contr.'";
         $resultado=mysqli_query($consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($dbName);
