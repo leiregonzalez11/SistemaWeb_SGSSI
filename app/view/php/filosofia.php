@@ -1,9 +1,11 @@
+
+<title>Filosofia</title>
 <main>
   <h1>Nuestra filosofía</h1>
   <div id="contenedor_texto">
     <h2>Misión</h2>
       <p> En nuestro camping sabemos que las vacaciones, en cualquier época del año, son lo más importante para
-          muchos de nuestros clientes. La búsqueda de la diversión y del placer de un buen descanso son unas
+          muchos de nuestros clientes. La búsqueda de la diversión y el placer de un buen descanso son unas
           de las cosas que más buscamos sea cual sea la época del año.
       </p>
       <p> Por ello, nuestra misión es facilitar y conseguir que esa búsqueda se haga realidad, mejorando cada año 

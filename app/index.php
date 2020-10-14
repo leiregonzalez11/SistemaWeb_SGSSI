@@ -5,6 +5,8 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
+    <link rel="shortcut icon" type="image/png" href="view/img/camping.png"/>
+
     <link rel="stylesheet" href="view/css/global.css">
     <link rel="stylesheet" href="view/css/homepage.css">
     
