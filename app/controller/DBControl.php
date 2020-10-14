@@ -33,10 +33,10 @@ class DBControl{
             return false;
         }
     }
-    public function registrase($dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $clave, $rol){
+    public function registrase(Usuario $usu){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$usuario.' or nick='.$nick.'"))){
+        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$usu.DNI.' or nick='.$nick.'"))){
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($consulta);
             mysqli_close ($dbName);
@@ -115,6 +115,7 @@ class DBControl{
         mysqli_close ($dbName);
         return $res;
     }
+
     public function VerAlojamientosPorTipo($idA, $tipo){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
@@ -123,6 +124,7 @@ class DBControl{
         mysqli_close ($dbName);
         return $res;
     }
+
     public function anadirAlojamiento($idA, $descr, $m2, $cap, $tipo){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
