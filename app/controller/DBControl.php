@@ -2,10 +2,10 @@
 
 class DBControl{
 
-    private $user;
-    private $pwd;
-    private $dbName;
-    private $hostname;
+    private $user="root";
+    private $pwd="";
+    private $dbName="database";
+    private $hostname="localhost";
 
 
     /**
