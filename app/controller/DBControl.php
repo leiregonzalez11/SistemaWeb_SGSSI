@@ -110,12 +110,19 @@ class DBControl{
     public function VerAlojamiento($idA){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento '.$idA.'";
+        $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
         $res=mysqli_query($cons);
         mysqli_close ($dbName);
         return $res;
     }
-
+    public function VerAlojamientosPorTipo($idA, $tipo){
+        mysqli_connect($hostname,$user,$pwd);
+        mysqli_select_db($dbName);
+        $cons="SELECT idAlojamiento descripcion, metrosCuadrados, capacidad FROM Alojamiento WHERE tipo ='.$tipo.'";
+        $res=mysqli_query($cons);
+        mysqli_close ($dbName);
+        return $res;
+    }
     public function anadirAlojamiento($idA, $descr, $m2, $cap, $tipo){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
@@ -140,7 +147,7 @@ class DBControl{
         mysqli_close ($dbName);
     }
 
-    public function actualizarDatosAlojamiento($idAl, $descr, $m2, $cap, $tipo){
+    public function actualizarDatosAlojamiento(Alojamiento $aloj){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
         $cons="UPDATE Alojamiento SET idAlojamiento='$idAl', descripcion='$descr', metrosCuadrados='$m2', capacidad='$cap', tipo='$tipo' WHERE idAlojamiento='$idAl'";
