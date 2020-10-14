@@ -1,4 +1,5 @@
 # Camping SGSSI
+
 Para iniciar el proyecto y trabajar con ello, se requiere tener instalado Docker.
 ## Pasos a seguir durante la instalación
 1. Situarse en la carpeta raíz del proyecto (SGSSI_ProyectoWeb)
@@ -22,3 +23,10 @@ Las pruebas con bases de datos, que requerirán de operaciones con MySQL, se pue
 
 ## Git y MySQL
 El volumen de MySQL genera una carpeta (del mismo nombre) en el directorio raíz del proyecto, dicha carpeta contiene las bases de datos. Se ha programado a través de git evitar subir esta carpeta.
+
+## Realizando pruebas con repositorio de DockerHub
+1. Ejecute el siguiente comando:
+```console
+docker-compose -f docker-compose.test.yml up -d
+```
+Luego acceda a [127.0.0.1](http://127.0.0.1) para comprobar el funcionamiento. Debería aparecer una ventana con información de PHP. Tome en cuenta las instrucciones dadas en el apartado "Visualizar el sitio web", así como desconectar cualquier contenedor en ejecución (primero ejecutando ```docker ps``` para ver el identificador de contenedor -container ID- y luego ejecutando ```docker stop el_id_del_container```) que use el puerto 80 (columna PORTS cuando se listan los contenedores con ```docker ps```, en la parte izquierda de la flecha).
