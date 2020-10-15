@@ -20,7 +20,7 @@ class DBControl{
      * Añada aquí el resto de las funciones, a conveniencia y según necesidades del software
      */
     public function iniciarSesion($email,$contr){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -36,7 +36,7 @@ class DBControl{
         }
     }
     public function registrase(Usuario $usu){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -49,7 +49,7 @@ class DBControl{
         $Nombre=$usu->getEmail();
         $Apellidos=$usu->getRol();
 
-        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$dni.' or nick='.$nick.'"))){
+        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='.$dni.' or nick='.$nick.'"))){
 
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($enlace,$consulta);
@@ -66,7 +66,7 @@ class DBControl{
         }
     }
     public function verDatos($usuario){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -77,7 +77,7 @@ class DBControl{
     }
 
     public function actualizarDatos(Usuario $usu){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -95,7 +95,7 @@ class DBControl{
     }
 
     public function cambiarRol($nick){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -115,7 +115,7 @@ class DBControl{
     }
 
     public function eliminarUsuario($nick){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -129,7 +129,7 @@ class DBControl{
     }
 
     public function VerListaAlojamientos($IdA){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -140,7 +140,7 @@ class DBControl{
     }
 
     public function VerAlojamiento($idA){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -151,7 +151,7 @@ class DBControl{
     }
 
     public function VerAlojamientosPorTipo($idA, $tipo){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -162,7 +162,7 @@ class DBControl{
     }
 
     public function anadirAlojamiento(Alojamiento $aloj){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -181,7 +181,7 @@ class DBControl{
     }
 
     public function eliminarAlojamiento($idAl){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -189,7 +189,7 @@ class DBControl{
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
             $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='.$idAl.'");
-            mysqli_query($enlace,$cambiar);
+            mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
     }
@@ -200,7 +200,7 @@ class DBControl{
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -210,7 +210,7 @@ class DBControl{
     }
 
     public function anadirImagen(Galeria $imag){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -223,7 +223,7 @@ class DBControl{
     }
 
     public function eliminarImagen($idAl, $num){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -237,7 +237,7 @@ class DBControl{
     }
 
     public function actualizarImagen(Galeria $imag){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
