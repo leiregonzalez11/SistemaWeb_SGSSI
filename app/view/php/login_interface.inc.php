@@ -12,8 +12,7 @@
                 <input type="mail" name="mail" id="mail"/>
                 <label for="clv">Contraseña:</label>
                 <input type="password" name="clave" id="clv"/>
-                
-                <button class="btn" if="btn_login">Iniciar sesión</button>
+                <button class="btn" if="btn_login" name="iniciar_sesion">Iniciar sesión</button>
             </form>
             <p>¿No tienes cuenta? <span href="resgister_interface.inc.php" id="goToSignIn">¡Regístrate!</span></p>
         </div>
