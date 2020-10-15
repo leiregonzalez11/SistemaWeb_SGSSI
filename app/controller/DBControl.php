@@ -45,9 +45,11 @@ class DBControl{
         $Nombre=$usu->getNombre();
         $Apellidos=$usu->getApellidos();
         $telf=$usu->getTelefono();
-        $nick=$usu->getFechNac();
-        $Nombre=$usu->getEmail();
-        $Apellidos=$usu->getRol();
+        $fecha=$usu->getFechNac();
+        $email=$usu->getEmail();
+        $rol=$usu->getRol();
+        $nick=$usu->getNick();
+        $clave=$usu->getClave();
 
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='.$dni.' or nick='.$nick.'"))){
 
@@ -82,13 +84,13 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $dni=$usu->getDni();
-        #$nick=$usu->getNick();
+        $nick=$usu->getNick();
         $Nombre=$usu->getNombre();
         $Apellidos=$usu->getApellidos();
         $telf=$usu->getTelefono();
-        $nick=$usu->getFechNac();
-        $Nombre=$usu->getEmail();
-        $Apellidos=$usu->getRol();
+        $fecha=$usu->getFechNac();
+        $email=$usu->getEmail();
+        $clave=$usu->getClave();
         $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE DNI='$dni'";
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
@@ -103,11 +105,11 @@ class DBControl{
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
             if($res=='usuario'){
-                $cambiar="UPDATE Usuario SET rol='$administrador' WHERE nick='.$nick.'");
+                $cambiar="UPDATE Usuario SET rol='administrador' WHERE nick='.$nick.'";
                 mysqli_query($enlace,$cambiar);
             }
             else{
-                $cambiar="UPDATE Usuario SET rol='$usuario' WHERE nick='.$nick.'");
+                $cambiar="UPDATE Usuario SET rol='usuario' WHERE nick='.$nick.'";
                 mysqli_query($enlace,$cambiar);
             }
         }
@@ -122,7 +124,7 @@ class DBControl{
         $cons="SELECT DNI FROM Usuario WHERE nick='.$nick.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Usuario WHERE nick='.$nick.'");
+            $borrar="DELETE FROM Usuario WHERE nick='.$nick.'";
             mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
@@ -188,7 +190,7 @@ class DBControl{
         $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='.$idAl.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='.$idAl.'");
+            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='.$idAl.'";
             mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
@@ -230,7 +232,7 @@ class DBControl{
         $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'");
+            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'";
             mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
