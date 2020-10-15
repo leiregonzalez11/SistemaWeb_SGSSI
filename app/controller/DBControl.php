@@ -20,7 +20,7 @@ class DBControl{
      * Añada aquí el resto de las funciones, a conveniencia y según necesidades del software
      */
     public function iniciarSesion($email,$contr){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -36,20 +36,21 @@ class DBControl{
         }
     }
     public function registrase(Usuario $usu){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $dni=$usu->getDni();
-        #$nick=$usu->getNick();
         $Nombre=$usu->getNombre();
         $Apellidos=$usu->getApellidos();
         $telf=$usu->getTelefono();
-        $nick=$usu->getFechNac();
-        $Nombre=$usu->getEmail();
-        $Apellidos=$usu->getRol();
+        $fecha=$usu->getFechNac();
+        $email=$usu->getEmail();
+        $rol=$usu->getRol();
+        $nick=$usu->getNick();
+        $clave=$usu->getClave();
 
-        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$dni.' or nick='.$nick.'"))){
+        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='.$dni.' or nick='.$nick.'"))){
 
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($enlace,$consulta);
@@ -66,7 +67,7 @@ class DBControl{
         }
     }
     public function verDatos($usuario){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -77,25 +78,25 @@ class DBControl{
     }
 
     public function actualizarDatos(Usuario $usu){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $dni=$usu->getDni();
-        #$nick=$usu->getNick();
+        $nick=$usu->getNick();
         $Nombre=$usu->getNombre();
         $Apellidos=$usu->getApellidos();
         $telf=$usu->getTelefono();
-        $nick=$usu->getFechNac();
-        $Nombre=$usu->getEmail();
-        $Apellidos=$usu->getRol();
+        $fecha=$usu->getFechNac();
+        $email=$usu->getEmail();
+        $clave=$usu->getClave();
         $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE DNI='$dni'";
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
     }
 
     public function cambiarRol($nick){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -103,11 +104,11 @@ class DBControl{
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
             if($res=='usuario'){
-                $cambiar="UPDATE Usuario SET rol='$administrador' WHERE nick='.$nick.'");
+                $cambiar="UPDATE Usuario SET rol='administrador' WHERE nick='.$nick.'";
                 mysqli_query($enlace,$cambiar);
             }
             else{
-                $cambiar="UPDATE Usuario SET rol='$usuario' WHERE nick='.$nick.'");
+                $cambiar="UPDATE Usuario SET rol='usuario' WHERE nick='.$nick.'";
                 mysqli_query($enlace,$cambiar);
             }
         }
@@ -115,21 +116,21 @@ class DBControl{
     }
 
     public function eliminarUsuario($nick){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT DNI FROM Usuario WHERE nick='.$nick.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Usuario WHERE nick='.$nick.'");
+            $borrar="DELETE FROM Usuario WHERE nick='.$nick.'";
             mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
     }
 
     public function VerListaAlojamientos($IdA){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -140,18 +141,19 @@ class DBControl{
     }
 
     public function VerAlojamiento($idA){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
         $res=mysqli_query($enlace,$cons);
+        $buscado=mysqli_fetch_object ($res, 'Alojamiento');
         mysqli_close ($enlace);
-        return $res;
+        return $buscado;
     }
 
     public function VerAlojamientosPorTipo($idA, $tipo){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -162,7 +164,7 @@ class DBControl{
     }
 
     public function anadirAlojamiento(Alojamiento $aloj){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -181,15 +183,15 @@ class DBControl{
     }
 
     public function eliminarAlojamiento($idAl){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='.$idAl.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='.$idAl.'");
-            mysqli_query($enlace,$cambiar);
+            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='.$idAl.'";
+            mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
     }
@@ -200,7 +202,7 @@ class DBControl{
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -210,7 +212,7 @@ class DBControl{
     }
 
     public function anadirImagen(Galeria $imag){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -223,21 +225,21 @@ class DBControl{
     }
 
     public function eliminarImagen($idAl, $num){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'");
+            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'";
             mysqli_query($enlace,$borrar);
         }
         mysqli_close ($enlace);
     }
 
     public function actualizarImagen(Galeria $imag){
-        $enlace=mysqli_connect($hostname,$user,$pwd,$dbName);
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -248,7 +250,15 @@ class DBControl{
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
     }
-    
+    public function VerImagen($idAl, $num){
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        if(!$enlace){
+            die("Fallo de conexion:" . mysqli_connect_error());
+        }
+        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+        $res=mysqli_query($enlace,$cons);
+        return $res;
+    }
 }
 
 ?>
