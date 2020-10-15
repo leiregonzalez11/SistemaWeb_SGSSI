@@ -26,7 +26,7 @@ class Usuario{
      * @param clave Contraseña (en función del contexto, en hash o texto plano)
      * @param rol Rol del usuario (Admin o Cliente)
      */
-    public function __construct($DNI, $nombre, $apellidos, $telefono, $fechNac, $email, $clave, $rol){
+    public function __construct($DNI, $nombre, $apellidos, $telefono, $fechNac, $email, $clave, $rol, $nick){
         $this->DNI=$DNI;
         $this->nombre=$nombre;
         $this->apellidos=$apellidos;
@@ -35,6 +35,7 @@ class Usuario{
         $this->email=$email;
         $this->clave=$clave;
         $this->rol=$rol;
+        $this->nick=$nick; #Por si hace falta
     }
 
     public function getDni(){
@@ -102,6 +103,13 @@ class Usuario{
         $this->rol=$rol;
     }
 
+    public function getNick(){
+        return $this->nick;
+    }
+
+    public function setNick($nick){
+        $this->nick=$nick;
+    }
 }
 
 
