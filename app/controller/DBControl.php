@@ -250,7 +250,19 @@ class DBControl{
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
     }
-
+    public function VerImagen($idAl, $num){
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        if(!$enlace){
+            die("Fallo de conexion:" . mysqli_connect_error());
+        }
+        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+        $res=mysqli_query($enlace,$cons);
+        if(mysqli_num_rows ($res)==1){
+            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'";
+            mysqli_query($enlace,$borrar);
+        }
+        return $res;
+    }
 }
 
 ?>
