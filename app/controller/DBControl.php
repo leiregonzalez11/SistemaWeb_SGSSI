@@ -147,9 +147,9 @@ class DBControl{
         }
         $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
         $res=mysqli_query($enlace,$cons);
-        mysqli_fetch_object ($res, 'Alojamiento');
+        $buscado=mysqli_fetch_object ($res, 'Alojamiento');
         mysqli_close ($enlace);
-        return $res;
+        return $buscado;
     }
 
     public function VerAlojamientosPorTipo($idA, $tipo){
