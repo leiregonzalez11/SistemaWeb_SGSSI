@@ -147,6 +147,7 @@ class DBControl{
         }
         $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
         $res=mysqli_query($enlace,$cons);
+        mysqli_fetch_object ($res, 'Alojamiento');
         mysqli_close ($enlace);
         return $res;
     }
@@ -249,7 +250,7 @@ class DBControl{
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
     }
-    
+
 }
 
 ?>
