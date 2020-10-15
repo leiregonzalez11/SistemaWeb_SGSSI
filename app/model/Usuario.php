@@ -94,6 +94,13 @@ class Usuario{
         $this->clave=$clave;
     }
     
+    public function getRol(){
+        return $this->rol;
+    }
+
+    public function setRol($rol){
+        $this->rol=$rol;
+    }
 
 }
 
