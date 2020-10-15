@@ -1,6 +1,6 @@
 <form action="contacto.php" method="post">
   <div class="elem-group">
-    <label for="name">Esriba aqui su nombre</label>
+    <label for="name">Escriba aqui su nombre</label>
     <input type="text" id="name" name="visitor_name" placeholder="Maripili Gonzalez" pattern=[A-Z\sa-z]{3,20} required>
   </div>
   <div class="elem-group">

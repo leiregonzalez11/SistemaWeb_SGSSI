@@ -8,10 +8,12 @@
             </div>
             <h1>Iniciar sesión</h1>
             <form action="" method="POST">
+                <!--Email-->
                 <label for="mail">Correo electrónico:</label>
-                <input type="mail" name="mail" id="mail"/>
+                <input type="mail" name="mail" id="mail" placeholder="mail@mail.com" required/>
+                <!--Contraseña-->
                 <label for="clv">Contraseña:</label>
-                <input type="password" name="clave" id="clv"/>
+                <input type="password" name="clave" id="clv" required/>
                 <button class="btn" if="btn_login" name="iniciar_sesion">Iniciar sesión</button>
             </form>
             <p>¿No tienes cuenta? <span href="resgister_interface.inc.php" id="goToSignIn">¡Regístrate!</span></p>

@@ -12,8 +12,8 @@ if(isset($_POST['registrarse'])){
     $usuario=new Usuario($_POST['dni_reg'],
                          $_POST['nombre_reg'],
                         $_POST['apellidos_reg'],
-                        null,//FALTA VALOR TELÉFONO
-                        null,//FALTA FECHA NACIMIENTO
+                        $_POST['phone_reg'],
+                        $_POST['fechaNac_reg'],
                         $_POST['mail_reg'],
                         $_POST['clv_reg'],
                         'Cliente');
