@@ -3,9 +3,9 @@
 class DBControl{
 
     private $user="root";
-    private $pwd="test";
+    private $pwd="root";
     private $dbName="database";
-    private $hostname="localhost";
+    private $hostname="db";
 
 
     /**
@@ -153,7 +153,7 @@ class DBControl{
     }
 
     public function VerAlojamientosPorTipo($idA, $tipo){
-        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        $enlace=mysqli_connect($this->hostname,$this->user,$this->pwd,$this->dbName);
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }

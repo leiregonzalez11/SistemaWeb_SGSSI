@@ -2,6 +2,7 @@ main{
     /*border: 10px solid orange;*/
     display: flex;
     flex-direction: column;
+    padding: 0% !important;
 }
 
 #tipo_alojamiento{
@@ -46,6 +47,7 @@ main{
 
 #container_texto h1{
     /*border: 10px solid seagreen;*/
+    color: #FFFFFF;
 }
 
 #container_texto p{

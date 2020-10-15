@@ -4,8 +4,11 @@ session_start();
 include("controller/CSSDisplayController.php");
 include("controller/TitleController.php");
 include("controller/LoginSignInController.php");
-//include("controller/DBControl.php"); 
+include("controller/DBControl.php"); 
+include("controller/AlojamientoController.php");
 include("model/Usuario.php");
+include("model/Alojamiento.php");
+include("model/Galeria.php");
 //ANTES DE NADA VALIDAMOS SI HA INICIADO SESIÓN EL USUARIO, YA QUE
 //EL RESTO DEL SITIO WEB DEPENDE DE ELLO
 if(isset($_POST['registrarse'])){
@@ -16,7 +19,8 @@ if(isset($_POST['registrarse'])){
                         null,//FALTA FECHA NACIMIENTO
                         $_POST['mail_reg'],
                         $_POST['clv_reg'],
-                        'Cliente');
+                        'Cliente',
+                        null);
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $ctrRegistro->efectuarRegistro($usuario);
@@ -31,6 +35,7 @@ if(isset($_POST['registrarse'])){
                         null,
                         $_POST['mail'],
                         $_POST['clave'],
+                        null,
                         null);
     $ctrInicioSesion=new LoginSignInController();
     if($ctrInicioSesion->validarInicioSesion($usuario)){
@@ -88,7 +93,9 @@ if(isset($_GET['vista'])){
         case "contacto":
             include("view/php/contacto.php");
         break;
-        case "alojamientos": //IMPLEMENTAR SUBCLASE
+        case "alojamientos": //DELEGAMOS EN OTRA CLASE
+            $controladorAlojamiento=new AlojamientoController();
+            $controladorAlojamiento->determinarVista();
         break;
         case "editar_cuenta":
             include("view/php/cuenta_usuario.php");
