@@ -19,7 +19,7 @@ class CSSDisplayController{
             echo '<link rel="stylesheet" href="view/css/login_signin_container.css">';
         }
 
-        if(!isset($_GET['vista']) || ($_GET['vista']!="instalaciones" && $_GET['vista']!="filosofia" && $_GET['vista']!="donde_estamos" && $_GET['vista']!="contacto" && $_GET['vista']!="alojamientos")){
+        if(!isset($_GET['vista']) || ($_GET['vista']!="instalaciones" && $_GET['vista']!="editar_cuenta" && $_GET['vista']!="filosofia" && $_GET['vista']!="donde_estamos" && $_GET['vista']!="contacto" && $_GET['vista']!="alojamientos")){
             echo ' <link rel="stylesheet" href="view/css/homepage.css">';
         }
     }

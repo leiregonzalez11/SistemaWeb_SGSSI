@@ -15,7 +15,8 @@ if(isset($_POST['registrarse'])){
                         null,//FALTA VALOR TELÉFONO
                         null,//FALTA FECHA NACIMIENTO
                         $_POST['mail_reg'],
-                        $_POST['clv_reg']);
+                        $_POST['clv_reg'],
+                        'Cliente');
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $ctrRegistro->efectuarRegistro($usuario);
@@ -29,9 +30,10 @@ if(isset($_POST['registrarse'])){
                         null,
                         null,
                         $_POST['mail'],
-                        $_POST['clave']);
+                        $_POST['clave'],
+                        null);
     $ctrInicioSesion=new LoginSignInController();
-    if($ctrInicioSesion->validarInicioSesion()){
+    if($ctrInicioSesion->validarInicioSesion($usuario)){
         $ctrInicioSesion->efectuarInicioSesion($usuario);
     }
 }
@@ -87,6 +89,9 @@ if(isset($_GET['vista'])){
             include("view/php/contacto.php");
         break;
         case "alojamientos": //IMPLEMENTAR SUBCLASE
+        break;
+        case "editar_cuenta":
+            include("view/php/cuenta_usuario.php");
         break;
         default:
             include("view/php/home_interface.inc.php");
