@@ -41,7 +41,6 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $dni=$usu->getDni();
-        #$nick=$usu->getNick();
         $Nombre=$usu->getNombre();
         $Apellidos=$usu->getApellidos();
         $telf=$usu->getTelefono();
