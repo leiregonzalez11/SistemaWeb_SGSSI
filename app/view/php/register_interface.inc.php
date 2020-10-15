@@ -23,7 +23,7 @@
                 <label for="termChk">He leído y acepto los <a id="tyc" href="">Términos y condiciones</a></label><input type="checkbox" id="termChk" value="acepta_tyc"/>
                 </div>
                 
-                <button class="btn" id="btn_reg">Registrarse</button>
+                <button class="btn" id="btn_reg" name="registrarse">Registrarse</button>
             </form>
             <p>¿Ya tienes cuenta? <span href="login_interface.inc.php" id="goToLogin">¡Inicia sesión!</span></p>
         </div>

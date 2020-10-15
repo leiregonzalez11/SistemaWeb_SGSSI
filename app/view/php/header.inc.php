@@ -2,12 +2,23 @@
 <header>
     <nav>
         <ul id="login_nav">
+        <?php
+            if(!$sesioniniciada){
+        ?>
             <li class="datos_identificacion_reg">
                 <a id="registro">REGISTRO</a>
             </li>
             <li class="datos_identificacion_log">
                 <a id="login">INICIAR SESIÓN</a>
             </li>
+            <?php
+            }else{ ?>
+                <li class="datos_identificacion_log">
+                    <a href="index.php?accion=logout">CERRAR SESIÓN</a>
+                </li>
+            <?php
+        }
+        ?>
         </ul>
         <ul id="menu">
             <li id="Alojamiento"><a href="#">Alojamientos</a>
