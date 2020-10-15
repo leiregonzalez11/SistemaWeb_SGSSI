@@ -19,10 +19,10 @@ class DBControl{
     /**
      * Añada aquí el resto de las funciones, a conveniencia y según necesidades del software
      */
-    public function iniciarSesion($usuario,$contr){
+    public function iniciarSesion($email,$contr){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $consulta ="SELECT nick FROM Usuario WHERE nick='.$usuario.' AND clave='.$contr.'";
+        $consulta ="SELECT nick FROM Usuario WHERE email='.$email.' AND clave='.$contr.'";
         $resultado=mysqli_query($consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($dbName);
@@ -37,6 +37,16 @@ class DBControl{
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
         if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$usu.DNI.' or nick='.$nick.'"))){
+
+            $dni=$usu->getDni();
+            $nick=$usu->getNick();
+            $Nombre=$usu->getNombre();
+            $Apellidos=$usu->getApellidos();
+            $telf=$usu->getTelefono();
+            $nick=$usu->getNick();
+            $Nombre=$usu->getNombre();
+            $Apellidos=$usu->getApellidos();
+
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($consulta);
             mysqli_close ($dbName);
