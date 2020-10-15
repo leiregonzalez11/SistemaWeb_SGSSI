@@ -37,6 +37,16 @@ class DBControl{
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
         if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$usu.DNI.' or nick='.$nick.'"))){
+
+            $dni=$usu->getDni();
+            $nick=$usu->getNick();
+            $Nombre=$usu->getNombre();
+            $Apellidos=$usu->getApellidos();
+            $telf=$usu->getTelefono();
+            $nick=$usu->getNick();
+            $Nombre=$usu->getNombre();
+            $Apellidos=$usu->getApellidos();
+
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($consulta);
             mysqli_close ($dbName);
