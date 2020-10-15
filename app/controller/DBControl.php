@@ -257,10 +257,6 @@ class DBControl{
         }
         $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         $res=mysqli_query($enlace,$cons);
-        if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'";
-            mysqli_query($enlace,$borrar);
-        }
         return $res;
     }
 }
