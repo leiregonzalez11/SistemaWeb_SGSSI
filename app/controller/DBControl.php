@@ -36,16 +36,17 @@ class DBControl{
     public function registrase(Usuario $usu){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$usu.DNI.' or nick='.$nick.'"))){
 
-            $dni=$usu->getDni();
-            $nick=$usu->getNick();
-            $Nombre=$usu->getNombre();
-            $Apellidos=$usu->getApellidos();
-            $telf=$usu->getTelefono();
-            $nick=$usu->getNick();
-            $Nombre=$usu->getNombre();
-            $Apellidos=$usu->getApellidos();
+        $dni=$usu->getDni();
+        #$nick=$usu->getNick();
+        $Nombre=$usu->getNombre();
+        $Apellidos=$usu->getApellidos();
+        $telf=$usu->getTelefono();
+        $nick=$usu->getFechNac();
+        $Nombre=$usu->getEmail();
+        $Apellidos=$usu->getRol();
+
+        if (mysqli_num_ros (mysqli_query("SELECT DNI FROM Usuario WHERE DNI='.$dni.' or nick='.$nick.'"))){
 
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($consulta);
@@ -70,9 +71,17 @@ class DBControl{
         return $res;
     }
 
-    public function actualizarDatos($dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $clave){
+    public function actualizarDatos(Usuario $usu){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
+        $dni=$usu->getDni();
+        #$nick=$usu->getNick();
+        $Nombre=$usu->getNombre();
+        $Apellidos=$usu->getApellidos();
+        $telf=$usu->getTelefono();
+        $nick=$usu->getFechNac();
+        $Nombre=$usu->getEmail();
+        $Apellidos=$usu->getRol();
         $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE DNI='$dni'";
         mysqli_query($cons);
         mysqli_close ($dbName);
@@ -111,7 +120,7 @@ class DBControl{
     public function VerListaAlojamientos($IdA){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons="SELECT * FROM Usuario WHERE idAlojamiento='.$idA.'";
+        $cons="SELECT * FROM Usuario WHERE idAlojamiento='.$IdA.'";
         $res=mysqli_query($cons);
         mysqli_close ($dbName);
         return $res;
@@ -135,9 +144,14 @@ class DBControl{
         return $res;
     }
 
-    public function anadirAlojamiento($idA, $descr, $m2, $cap, $tipo){
+    public function anadirAlojamiento(Alojamiento $aloj){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
+        $idA=$aloj->getIdAlojamiento();
+        $descr=$aloj->getDescripcion();
+        $m2=$aloj->getMetrosCuadrados();
+        $cap=$aloj->getCapacidad();
+        $tipo=$aloj->getTipo();
         $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='.$idA.'";
         $resp=mysqli_query($cons);
         if (mysqli_num_rows($resp)){
@@ -160,16 +174,24 @@ class DBControl{
     }
 
     public function actualizarDatosAlojamiento(Alojamiento $aloj){
+        $idAl=$aloj->getIdAlojamiento();
+        $descr=$aloj->getDescripcion();
+        $m2=$aloj->getMetrosCuadrados();
+        $cap=$aloj->getCapacidad();
+        $tipo=$aloj->getTipo();
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
-        $cons="UPDATE Alojamiento SET idAlojamiento='$idAl', descripcion='$descr', metrosCuadrados='$m2', capacidad='$cap', tipo='$tipo' WHERE idAlojamiento='$idAl'";
+        $cons="UPDATE Alojamiento SET descripcion='$descr', metrosCuadrados='$m2', capacidad='$cap', tipo='$tipo' WHERE idAlojamiento='$idAl'";
         mysqli_query($cons);
         mysqli_close ($dbName);
     }
 
-    public function anadirImagen($idAl, $num, $foto){
+    public function anadirImagen(Galeria $imag){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
+        $idAl=$imag->getIdAlojamiento();
+        $num=$imag->getNum();
+        $foto=$imag->getFoto();
         $cons="INSERT INTO Galeria (idAlojamiento, num, foto) Values ('$idAl','$num','$foto')";
         $resp=mysqli_query($cons);
         mysqli_close ($dbName);
@@ -187,9 +209,12 @@ class DBControl{
         mysqli_close ($dbName);
     }
 
-    public function actualizarImagen($idAl, $num, $foto){
+    public function actualizarImagen(Galeria $imag){
         mysqli_connect($hostname,$user,$pwd);
         mysqli_select_db($dbName);
+        $idAl=$imag->getIdAlojamiento();
+        $num=$imag->getNum();
+        $foto=$imag->getFoto();
         $cons="UPDATE Galeria SET foto='$foto' WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         mysqli_query($cons);
         mysqli_close ($dbName);
