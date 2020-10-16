@@ -21,6 +21,7 @@
         ?>
         </ul>
         <ul id="menu">
+            <li id="Inicio"><a href="index.php">Inicio</a></li> 
             <li id="Alojamiento"><a>Alojamientos</a>
                 <ul>
                     <li><a href="index.php?vista=alojamientos&tipo=parcela_tienda">Tiendas</a></li>
@@ -37,7 +38,7 @@
                     <li><a href="index.php?vista=donde_estamos">Dónde estamos</a></li>
                 </ul>
             </li>
-            <li id="Contacto"><a href="index.php?vista=contacto">Contacto</a></li> 
+            <li id="faqs"><a href="index.php?vista=faqs">FAQS</a></li> 
         </ul>
     </nav>
 </header>

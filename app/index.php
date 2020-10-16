@@ -90,8 +90,8 @@ if(isset($_GET['vista'])){
         case "donde_estamos":
             include("view/php/dondeestamos.php");
         break;
-        case "contacto":
-            include("view/php/contacto.php");
+        case "faqs":
+            include("view/php/faqs.php");
         break;
         case "alojamientos": //DELEGAMOS EN OTRA CLASE
             $controladorAlojamiento=new AlojamientoController();
