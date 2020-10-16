@@ -1,6 +1,7 @@
 function validar(){
-    var dni, nombre, apellidos, email, clave, telefono, fechaNac;
+    var dni, nickname, nombre, apellidos, email, clave, telefono, fechaNac;
     dni = document.getElementById("dni_reg").value;
+    nickname = document.getElementById("nickname_reg").value;
     nombre = document.getElementById("nombre_reg").value;
     apellidos = document.getElementById("apellidos_reg").value;
     email = document.getElementById("mail_reg").value;
@@ -9,12 +10,16 @@ function validar(){
     telefono = document.getElementById("phone_reg").value;
     fechaNac = document.getElementById("fechaNac_reg").value;
 
-    if (nombre == ""|| apellidos == "" || dni== "" || email=="" || clave== "" || telefono =="" || fechaNac ==""){
+    if (nombre == ""|| apellidos == "" || dni== "" || email=="" || clave== "" || telefono =="" || fechaNac =="" || nickname==""){
         alert("Todos los campos son obligatorios");
         return false;
     }
     else if (!dniCorrecto()){
         alert("El DNI no es correcto");
+        return false;
+    }
+    else if (nickname.length>30){
+        alert("El nickname es muy largo");
         return false;
     }
     else if (nombre.length>30){
