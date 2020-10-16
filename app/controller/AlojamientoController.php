@@ -38,7 +38,7 @@ class AlojamientoController{
                 switch($rol){
                     case "Cliente":
                         include ("view/php/alojamiento_usuario.php");
-                        //TODO mostrarAlojamientoACliente();
+                        mostrarAlojamientoAUsuario($_GET['id_alojamiento']);
                     break;
                     case "Admin":
                     break;
