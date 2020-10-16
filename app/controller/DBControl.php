@@ -72,10 +72,41 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='.$usuario.'";
+        echo $cons;
         $res=mysqli_query($enlace,$cons);
+        if($res!=false){
+            if($res->num_rows=1){
+                if($row=$res->fetch_assoc()){
+                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row[])
+            }
+        }
         mysqli_close ($enlace);
         return $res;
     }
+
+
+{
+    $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+    if(!$enlace){
+        die("Fallo de conexion:" . mysqli_connect_error());
+    }
+    $cons="SELECT * FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+    echo $cons;
+    $res=mysqli_query($enlace,$cons);
+    if($res!=false){
+        if($res->num_rows=1){
+            if ($row=$res->num_rows = 1){
+                    $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"]);
+            }
+        }
+    }
+    return $imagen;
+}
+
+
+
+
+
 
     public function actualizarDatos(Usuario $usu){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
@@ -272,7 +303,7 @@ class DBControl{
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
-                if ($row=$res->num_rows = 1){
+                if ($row=$res->fetch_assoc()){
                         $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"]);
                 }
             }
