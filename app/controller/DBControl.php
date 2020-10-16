@@ -75,7 +75,7 @@ class DBControl{
         echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
-            if($res->num_rows=1){
+            if($res->num_rows==1){
                 if($row=$res->fetch_assoc()){
                     $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"]);
                 }
