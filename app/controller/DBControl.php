@@ -262,17 +262,33 @@ class DBControl{
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
     }
-    public function VerImagen($idAl){
+    public function VerImagen($idAl, $num){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
-        echo $cons;
         $res=mysqli_query($enlace,$cons);
-        if($res!=)
         return $res;
     }
+    public function VerImagenes($idAl){
+        $imagenes=array();
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        if(!$enlace){
+            die("Fallo de conexion:" . mysqli_connect_error());
+        }
+        $cons="SELECT * FROM Galeria WHERE idAlojamiento='$idAl'";
+        echo $cons;
+        $res=mysqli_query($enlace,$cons);
+        if($res!=false){
+            if($res->num_rows > 0){
+                while($row = $res->fetch_assoc()){
+                    $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"]);
+                    array_push($imagenes,$imagen);
+                }
+            }
+        }
+        return $imagenes;
+    }
 }
-
 ?>
