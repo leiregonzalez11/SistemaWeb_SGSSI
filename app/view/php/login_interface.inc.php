@@ -9,11 +9,11 @@
             <h1>Iniciar sesión</h1>
             <form action="" method="POST">
                 <!--Email-->
-                <label for="mail">Correo electrónico:</label>
-                <input type="mail" name="mail" id="mail" placeholder="mail@mail.com" required/>
+                <label for="nickname">Nickname:</label>
+                <input type="text" name="nickname" id="nickname_inicio" placeholder="Ejemplo: lamari33"/>
                 <!--Contraseña-->
                 <label for="clv">Contraseña:</label>
-                <input type="password" name="clave" id="clv" required/>
+                <input type="password" name="clave" id="clave_inicio" placeholder="Introduzca su contraseña"/>
                 <button class="btn" if="btn_login" name="iniciar_sesion">Iniciar sesión</button>
             </form>
             <p>¿No tienes cuenta? <span href="resgister_interface.inc.php" id="goToSignIn">¡Regístrate!</span></p>
