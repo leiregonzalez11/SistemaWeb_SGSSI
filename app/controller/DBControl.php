@@ -66,6 +66,7 @@ class DBControl{
         }
     }
     public function verDatos($usuario){
+        $usuario=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
@@ -150,6 +151,7 @@ class DBControl{
     }
 
     public function VerAlojamiento($idA){
+        $aloj=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
@@ -281,10 +283,11 @@ class DBControl{
         $idAl=$imag->getIdAlojamiento();
         $num=$imag->getNum();
         $foto=$imag->getFoto();
+        $exten=$imag->getExtension();
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='.$idAl.'AND num='.$num.');");
         $reg=mysqli_num_rows($existe);
         if ($reg==0){
-            $cons="INSERT INTO Galeria (idAlojamiento, num, foto) Values ('$idAl','$num','$foto')";
+            $cons="INSERT INTO Galeria (idAlojamiento, num, foto, extension) Values ('$idAl','$num','$foto', '$exten')";
             mysqli_query($enlace,$cons);
             $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='.$idAl.'AND num='.$num.');");
             $reg=mysqli_num_rows($existe);
@@ -332,13 +335,15 @@ class DBControl{
         $idAl=$imag->getIdAlojamiento();
         $num=$imag->getNum();
         $foto=$imag->getFoto();
-        $cons="UPDATE Galeria SET foto='$foto' WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+        $exten=$imag->getExtension();
+        $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
         return $nu;
     }
     public function VerImagen($idAl, $num){
+        $imagen=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
@@ -349,7 +354,7 @@ class DBControl{
         if($res!=false){
             if($res->num_rows==1){
                 if ($row=$res->fetch_assoc()){
-                        $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"]);
+                        $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["Extension"]);
                 }
             }
         }
@@ -367,7 +372,7 @@ class DBControl{
         if($res!=false){
             if($res->num_rows > 0){
                 while($row = $res->fetch_assoc()){
-                    $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"]);
+                    $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["extension"]);
                     array_push($imagenes,$imagen);
                 }
             }
