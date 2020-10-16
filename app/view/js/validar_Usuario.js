@@ -40,7 +40,7 @@ function validar(){
         alert("Fecha no válida");
         //return false;
     }
-    else if (!isNaN(telefono) || !revisarLongitudTelefono()){
+    else if ((!isNaN(telefono)) || (!revisarLongitudTelefono())){
         alert("El telefono introducido no es válido");
         //return false;
     }
@@ -92,6 +92,7 @@ function dniCorrecto(){
     }
   }
 
+  //Algoritmo obtenido en https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/
   function validarFechaMenorActual(date){
     var x=new Date();
     var fecha = date.split("/");
