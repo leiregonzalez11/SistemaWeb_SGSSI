@@ -4,11 +4,14 @@ session_start();
 include("controller/CSSDisplayController.php");
 include("controller/TitleController.php");
 include("controller/LoginSignInController.php");
+include("controller/CuentaUsuarioController.php");
 include("controller/DBControl.php"); 
 include("controller/AlojamientoController.php");
 include("model/Usuario.php");
 include("model/Alojamiento.php");
 include("model/Galeria.php");
+$_SESSION['sesion_iniciada']=true;
+$_SESSION['usr_rol']="Admin";
 //ANTES DE NADA VALIDAMOS SI HA INICIADO SESIÓN EL USUARIO, YA QUE
 //EL RESTO DEL SITIO WEB DEPENDE DE ELLO
 
@@ -80,8 +83,6 @@ if(!$sesionIniciada){ //Si la sesión no está iniciada, se muestran los formula
 if(isset($_GET['vista'])){
     $vista=$_GET['vista'];
 
-    
-    
     switch($vista){ //Dependiendo del parámetro vista, se mostrará una web distinta
         case "instalaciones":
             include("view/php/instalaciones.php");
@@ -100,6 +101,8 @@ if(isset($_GET['vista'])){
             $controladorAlojamiento->determinarVista();
         break;
         case "editar_cuenta":
+            $cuentaControlador=new CuentaUsuarioController();
+            $cuentaControlador->analizarCambios();
             include("view/php/cuenta_usuario.php");
         break;
         case "quienes_somos":

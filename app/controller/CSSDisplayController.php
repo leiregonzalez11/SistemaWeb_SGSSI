@@ -23,11 +23,11 @@ class CSSDisplayController{
             echo '<link rel="stylesheet" href="view/css/alojamientos_general.css">';
         }
 
-        if(!isset($_GET['vista']) || ($_GET['vista']!="instalaciones" && $_GET['vista']!="editar_cuenta" && $_GET['vista']!="filosofia" && $_GET['vista']!="donde_estamos" && $_GET['vista']!="contacto" && $_GET['vista']!="alojamientos")){
+        if(!isset($_GET['vista']) || ($_GET['vista']!="instalaciones" && $_GET['vista']!="editar_cuenta" && $_GET['vista']!="filosofia" && $_GET['vista']!="donde_estamos" && $_GET['vista']!="contacto" && $_GET['vista']!="alojamientos" && $_GET['vista']!="faqs" && $_GET['vista']!="quienes_somos")){
             echo ' <link rel="stylesheet" href="view/css/homepage.css">';
         }
 
-        if(isset($_GET['vista']) && $_GET['vista']=="alojamientos" && isset($_GET['id_alojamiento'])){
+        if(isset($_GET['vista']) && $_GET['vista']=="alojamientos" && isset($_GET['id_alojamiento'])|| $_GET['vista']=="editar_cuenta"){
             echo '
             <link rel="stylesheet" href="view/css/alojamiento_admin.css">
             <link rel="stylesheet" href="view/css/alojamiento_detalle.css">

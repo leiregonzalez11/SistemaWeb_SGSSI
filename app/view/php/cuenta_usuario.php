@@ -3,6 +3,7 @@
   <div id="principal">
     <form action="" method="POST" enctype="multipart/form-data">
       <div id="principales">
+        <div id="contenedor_datos">
         <label for="nombre_reg">Nombre:</label>
         <input type="text" name="nombre_reg" id="nombre_reg" />
         <label for="apellidos_reg">Apellidos:</label>
@@ -15,6 +16,7 @@
         <input type="password" name="clave_reg" id="clv_reg" />
         <label for="clv_val">Repetir contraseña:</label>
         <input type="password" name="clave_val" id="clv_val" />
+</div>
       </div>
 
       <div id="botones">

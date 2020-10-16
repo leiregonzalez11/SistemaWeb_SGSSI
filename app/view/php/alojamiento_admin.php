@@ -13,7 +13,6 @@ function mostrarAlojamientoAdmin($id)
 
     $imgs = $DB->VerImagenes($id);
     $lnImgs = sizeof($imgs);
-    $tipo = $alojamiento->getTipo();
 
     $selTienda = "";
     $selCaravanaParcela = "";
@@ -64,11 +63,11 @@ function mostrarAlojamientoAdmin($id)
               <option value="bungalow" <?= $selBungalow ?>>Bungalow</option>
             </select>
             <label for="capacidad">Aforo máximo:</label>
-            <input type="number" name="capacidad" id="capacidad" value="<?php if($alojamiento!=NULL) echo $alojamiento->getCapacidad(); ?>" />
+            <input type="number" name="capacidad" id="capacidad" value="<?php if ($alojamiento != NULL) echo $alojamiento->getCapacidad(); ?>" />
             <label for="espacio">Espacio (en metros cuadrados):</label>
-            <input type="text" name="espacio" id="espacio" value="<?php if ($alojamiento!=NULL) echo $alojamiento->getMetrosCuadrados(); ?>" />
+            <input type="text" name="espacio" id="espacio" value="<?php if ($alojamiento != NULL) echo $alojamiento->getMetrosCuadrados(); ?>" />
             <label for="descripcion">Descripción detallada del alojamiento:</label>
-            <textarea name="descripcion" id="descripcion" placeholder="Escriba aquí la descripción..."><?php if ($alojamiento!=NULL) echo $alojamiento->getDescripcion(); ?></textarea>
+            <textarea name="descripcion" id="descripcion" placeholder="Escriba aquí la descripción..."><?php if ($alojamiento != NULL) echo $alojamiento->getDescripcion(); ?></textarea>
           </div>
         </div>
         <div id="galeria">
@@ -85,44 +84,49 @@ function mostrarAlojamientoAdmin($id)
           </div>
         </div>
         <?php
-        if($alojamiento==null){ //INPUT PARA DISCRIMINAR EDICIÓN Y CREACIÓN
-          ?>
-          <input type="hidden" name="nuevo" value="nuevo"/>
-          <?php
+        if ($alojamiento == null) { //INPUT PARA DISCRIMINAR EDICIÓN Y CREACIÓN
+        ?>
+          <input type="hidden" name="nuevo" value="nuevo" />
+        <?php
         }
 
 
-        if($alojamiento!=null){
+        if ($alojamiento != null) {
         ?>
-        <div id="galeria_borrar">
-          <p>Eliminar fotos de galería</p>
-          <div id="contenedor_fotos_borrar">
-            <p>Imagen</p>
-            <p>Seleccionado para borrar</p>
+          <div id="galeria_borrar">
+            <p>Eliminar fotos de galería</p>
+            <div id="contenedor_fotos_borrar">
+              <p>Imagen</p>
+              <p>Seleccionado para borrar</p>
+              <?php
+              for ($i = 0; $i < $lnImgs; $i++) {
+              ?>
+                <img src="/view/img/web_app/<?= $imgs[$i]->getIdAlojamiento() ?>_<?= $imgs[$i]->getNum() ?>.<?= $imgs[$i]->getExtension() ?>" /><input type="checkbox" name="borrar_<?= ($i + 1) ?>" />
+              <?php
+              }
+              ?>
+
+            </div>
+          <?php
+        }
+          ?>
+          </div>
+          <div id="botones">
             <?php
-            for ($i = 0; $i < $lnImgs; $i++) {
+            if ($alojamiento != null) {
             ?>
-              <img src="/view/img/web_app/<?= $imgs[$i]->getIdAlojamiento() ?>_<?= $imgs[$i]->getNum() ?>.<?= $imgs[$i]->getExtension() ?>" /><input type="checkbox" name="borrar_<?= ($i + 1) ?>" />
+              <button id="borrar" name="borrar" onclick="return confirm('¿Seguro que quieres eliminar el alojamiento?');">Eliminar alojamiento</button>
+              <button id="actualizar" name="actualizar">Actualizar</button>
             <?php
+            } else {
+            ?>
+              <button id="nuevo" name="nuevo_alojamiento">Crear</button>
+
+            <?php
+
             }
             ?>
-
           </div>
-          <?php
-        }
-          ?>
-        </div>
-        <div id="botones">
-          <?php
-if($alojamiento!=null){
-          ?>
-          <button id="borrar" name="borrar" onclick="return confirm('¿Seguro que quieres eliminar el alojamiento?');">Eliminar alojamiento</button>
-          
-          <?php
-}
-          ?>
-          <button id="actualizar" name="actualizar">Actualizar</button>
-        </div>
       </form>
     </div>
   </main>

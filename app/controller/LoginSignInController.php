@@ -31,7 +31,9 @@ class LoginSignInController{
     }
 
     public function efectuarInicioSesion($pUsuario){
-        
+        $_SESSION['sesion_iniciada']=true;
+        $_SESSION['id_usr']=$pUsuario->getDni();
+        $_SESSION['rol_usr']=$pUsuario->getRol();
     }
 }
 ?>

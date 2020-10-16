@@ -1,9 +1,17 @@
+<?php
 
+$sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada']==true);
+$rol="";
+    if(isset($_SESSION['usr_rol'])){
+        $rol=$_SESSION['usr_rol'];
+    }
+
+?>
 <header>
     <nav>
         <ul id="login_nav">
         <?php
-            if(!$sesioniniciada){
+            if(!$sesionIniciada){
         ?>
             <li class="datos_identificacion_reg">
                 <a id="registro">REGISTRO</a>
@@ -13,6 +21,20 @@
             </li>
             <?php
             }else{ ?>
+
+                <?php
+                    if($rol=="Admin"){
+                ?>
+            <li class="nuevo_alojamiento">
+                <a href="index.php?vista=alojamientos&id_alojamiento=nuevo">NUEVO ALOJAMIENTO</a>
+            </li>
+
+<?php
+                    }
+?>
+                <li class="datos_identificacion_reg">
+                    <a href="index.php?vista=editar_cuenta">EDITAR CUENTA</a>
+                </li>
                 <li class="datos_identificacion_log">
                     <a href="index.php?accion=logout">CERRAR SESIÓN</a>
                 </li>

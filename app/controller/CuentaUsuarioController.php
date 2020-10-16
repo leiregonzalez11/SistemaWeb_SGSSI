@@ -12,6 +12,9 @@ class CuentaUsuarioController{
         
     }
 
+    public function analizarCambios(){
+        
+    }
 }
 
 
