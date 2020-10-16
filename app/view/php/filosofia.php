@@ -13,8 +13,8 @@
           evolución de los procesos de trabajo, siempre con la vocación de servicio como inquietud natural, 
           estando siempre atentos a los detalles. 
     <h2>Visión</h2> <!--Texto sacado de https://www.sangulisalou.com/nuestra-empresa/filosofia/-->
-      <p> Somos una referencia en la costa mediterránea. Vivimos a su ritmo y respiramos su brisa. Nuestra 
-          actividad está cien por cien centrada en el turismo familiar y los campistas. Dualidad que nos hace 
+      <p> Somos una referencia en la costa cantábrica. Vivimos a su ritmo y respiramos su brisa. Nuestra 
+          actividad está cien por cien centrada en el turismo familiar y los campistas, dualidad que nos hace 
           aprender y ganar una experiencia constante que nos enriquece.
       </p>
       <p> Cada temporada crecemos motivados por dos grandes metas: la calidad y el desarrollo sostenible. 
