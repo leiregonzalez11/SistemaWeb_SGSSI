@@ -61,7 +61,7 @@ $sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_inicia
     ?>
 
     <script src="view/js/interactivo.js" async></script>
-    <script src="view/js/validacion_datos.js" async></script>
+    <script src="view/js/validar_Usuario.js" async></script>
     <?php
         $controladorTitulo=new TitleController();
         $controladorTitulo->generarTitulo();
