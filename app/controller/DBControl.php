@@ -98,6 +98,7 @@ class DBControl{
         $fecha=$usu->getFechNac();
         $email=$usu->getEmail();
         $clave=$usu->getClave();
+        
         $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE DNI='$dni'";
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
@@ -145,7 +146,6 @@ class DBControl{
         $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
         echo $cons;
         $res=mysqli_query($enlace,$cons);
-        $buscado=mysqli_fetch_object ($res, 'Alojamiento');
         if($res!=false){
             if($res->num_rows==1){
                 if($row=$res->fetch_assoc()){
@@ -154,7 +154,7 @@ class DBControl{
             }
         }
         mysqli_close ($enlace);
-        return $buscado;
+        return $aloj;
     }
 
     public function VerAlojamientosPorTipo($idA, $tipo){
