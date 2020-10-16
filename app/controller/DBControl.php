@@ -71,7 +71,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='.$usuario.'";
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$usuario'";
         echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
@@ -115,11 +115,11 @@ class DBControl{
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
             if($res=='usuario'){
-                $cambiar="UPDATE Usuario SET rol='administrador' WHERE nick='.$nick.'";
+                $cambiar="UPDATE Usuario SET rol='administrador' WHERE nick='$nick'";
                 mysqli_query($enlace,$cambiar);
             }
             else{
-                $cambiar="UPDATE Usuario SET rol='usuario' WHERE nick='.$nick.'";
+                $cambiar="UPDATE Usuario SET rol='usuario' WHERE nick='$nick'";
                 mysqli_query($enlace,$cambiar);
             }
         }
@@ -139,7 +139,7 @@ class DBControl{
             $borrar="DELETE FROM Usuario WHERE nick='.$nick.'";
             mysqli_query($enlace,$borrar);
         }
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Usuario WHERE nick='.$nick.');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Usuario WHERE nick='$nick');");
         $reg=mysqli_num_rows($existe);
         mysqli_close ($enlace);
         if($reg==0){
@@ -156,7 +156,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
+        $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='$idA'";
         echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
@@ -203,16 +203,16 @@ class DBControl{
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='.$idA.');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
         $reg=mysqli_num_rows($existe);
         if($reg==0){
-            $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='.$idA.'";
+            $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idA'";
             $resp=mysqli_query($enlace,$cons);
             if (mysqli_num_rows($resp)){
                 $consulta="INSERT INTO Alojamiento (idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo) Values ('$idA', '$descr', '$m2', '$cap', '$tipo')";
                 mysqli_query($enlace,$consulta);
             }
-            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='.$idA.');");
+            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
             $reg=mysqli_num_rows($existe);
             mysqli_close ($enlace);
             if($reg==1){
@@ -233,13 +233,13 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='.$idAl.'";
+        $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idAl'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='.$idAl.'";
+            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='$idAl'";
             mysqli_query($enlace,$borrar);
         }
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='.$idAl.');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idAl');");
         $reg=mysqli_num_rows($existe);
         mysqli_close ($enlace);
         if($reg==0){
