@@ -1,3 +1,9 @@
+
+<?php
+public function mostrarAlojamientoAUsuario($id){
+
+
+?>
 <main>
   <div id="principal">
     <!-- Slideshow container -->
@@ -35,3 +41,7 @@
     </div>
   </div>
 </main>	
+
+<?php
+}
+?>

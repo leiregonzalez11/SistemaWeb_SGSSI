@@ -30,7 +30,23 @@ class AlojamientoController{
                 //header("Location: index.php?vista=alojamientos&tipo=parcela_tienda");
             }
         }else{
+            $_SESSION['rol_usr']="Cliente";//TEST
             //JUZGAMOS, ADMIN O USUARIO NORMAL (CON SESIÓN INICIADA!)
+            if(isset($_SESSION['rol_usr'])){
+                $rol=$_SESSION['rol_usr'];
+                
+                switch($rol){
+                    case "Cliente":
+                        include ("view/php/alojamiento_usuario.php");
+                        //TODO mostrarAlojamientoACliente();
+                    break;
+                    case "Admin":
+                    break;
+                }
+            }else{
+                echo "<h1>Acceso no autorizado</h1>";
+                echo "<p>Debes iniciar sesión para visualizar este sitio web</p>";
+            }
         }
     }
 

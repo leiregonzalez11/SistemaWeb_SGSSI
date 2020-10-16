@@ -26,6 +26,14 @@ class CSSDisplayController{
         if(!isset($_GET['vista']) || ($_GET['vista']!="instalaciones" && $_GET['vista']!="editar_cuenta" && $_GET['vista']!="filosofia" && $_GET['vista']!="donde_estamos" && $_GET['vista']!="contacto" && $_GET['vista']!="alojamientos")){
             echo ' <link rel="stylesheet" href="view/css/homepage.css">';
         }
+
+        if(isset($_GET['vista']) && $_GET['vista']=="alojamientos" && isset($_GET['id_alojamiento'])){
+            echo '
+            <link rel="stylesheet" href="view/css/alojamiento_admin.css">
+            <link rel="stylesheet" href="view/css/alojamiento_detalle.css">
+            <link rel="stylesheet" href="view/css/carrusel.css">
+            <script src="view/js/carrusel.js" async></script>';
+        }
     }
 }
 

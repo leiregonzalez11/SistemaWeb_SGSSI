@@ -154,13 +154,25 @@ class DBControl{
 
     public function VerAlojamientosPorTipo($idA, $tipo){
         $enlace=mysqli_connect($this->hostname,$this->user,$this->pwd,$this->dbName);
+        $alojamientos=array();
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT idAlojamiento descripcion, metrosCuadrados, capacidad FROM Alojamiento WHERE tipo ='.$tipo.'";
+        $cons="SELECT idAlojamiento, descripcion, metrosCuadrados, capacidad FROM Alojamiento WHERE tipo ='$tipo'";
+        echo $cons;
         $res=mysqli_query($enlace,$cons);
+        if($res!=false){
+            if ($res->num_rows > 0) {
+                // output data of each row
+                while($row = $res->fetch_assoc()) {
+                    $aloj = new Alojamiento($row["idAlojamiento"],$row["descripcion"], $row["metrosCuadrados"], $row["capacidad"], $tipo);
+                    array_push($alojamientos, $aloj);
+                }
+            }
+
+        }
         mysqli_close ($enlace);
-        return $res;
+        return $alojamientos;
     }
 
     public function anadirAlojamiento(Alojamiento $aloj){
