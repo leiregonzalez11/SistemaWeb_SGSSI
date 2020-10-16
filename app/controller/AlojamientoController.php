@@ -51,6 +51,11 @@ class AlojamientoController{
         }
     }
 
+
+    public function crearAlojamiento(){
+        
+    }
+
 }
 
 
