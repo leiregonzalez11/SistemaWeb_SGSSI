@@ -2,9 +2,9 @@
   <h1>¿Quienes somos?</h1>
   <div id="contenedor_texto">
      <p> 
-       Somos un equipo de personas que quieren ofrecer la posibilidad de descanso y relax a todos sus clientes.
-       También queremos ofrecer el que tanto niños como adultos tengan una estancia satisfactoria y llena de 
-       entretenimiento.
+       Somos un grupo hostelero con más de una década de experiencia que quiere ofrecer la posibilidad de descanso 
+       y relax a todos sus clientes. También queremos ofrecer el que tanto niños como adultos tengan una estancia 
+       satisfactoria y llena de entretenimiento.
      </p>
      <p>
        Nuestro equipo se compone de personas que siempre están a disposición de los clientes y dispuestos a 
