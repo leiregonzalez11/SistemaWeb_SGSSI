@@ -30,7 +30,6 @@ class AlojamientoController{
                 //header("Location: index.php?vista=alojamientos&tipo=parcela_tienda");
             }
         }else{
-            $_SESSION['rol_usr']="Cliente";//TEST
             //JUZGAMOS, ADMIN O USUARIO NORMAL (CON SESIÓN INICIADA!)
             if(isset($_SESSION['rol_usr'])){
                 $rol=$_SESSION['rol_usr'];
@@ -41,11 +40,13 @@ class AlojamientoController{
                         mostrarAlojamientoAUsuario($_GET['id_alojamiento']);
                     break;
                     case "Admin":
+                        include("view/php/alojamiento_admin.php");
+                        mostrarAlojamientoAdmin($_GET['id_alojamiento']);
                     break;
                 }
             }else{
-                echo "<h1>Acceso no autorizado</h1>";
-                echo "<p>Debes iniciar sesión para visualizar este sitio web</p>";
+                echo "<main><h1>Acceso no autorizado</h1>";
+                echo "<p>Debes iniciar sesión para visualizar este sitio web</p></main>";
             }
         }
     }

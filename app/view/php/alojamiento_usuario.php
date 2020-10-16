@@ -1,7 +1,6 @@
 <?php
 function mostrarAlojamientoAUsuario($id)
 {
-  echo "ID:".$id."<br>";
   $DB = new DBControl();
   $alojamiento = $DB->VerAlojamiento($id);
 
