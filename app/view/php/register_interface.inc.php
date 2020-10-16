@@ -6,7 +6,7 @@
                 <a class="cerrar_formulario" id="cerrar_formulario_registro">&times;</a>
             </div>
             <h1>Registrarse</h1>
-            <form id="formulario_registro" action="view/php/registro.php" method="POST" class="form-register" >
+            <form id="formulario_registro" name="registro_usuarios" action="index.php" method="POST" class="form-register" >
                 <!--Nickname-->
                 <label for="nickname_reg">Nickname:</label>
                 <input type="text" id="nickname_reg" name="nickname_reg" placeholder="Ejemplo: lamari33" pattern=[A-Z\sa-z]{3,20}>                
@@ -38,7 +38,6 @@
                 <label for="termChk">He leído y acepto los <a id="tyc" href="">Términos y condiciones</a></label><input type="checkbox" id="termChk" value="acepta_tyc"/>
                 </div>
                 <input type="button" class="btn" id="btn_reg" name="registrarse" onclick="validar()" value="Registrarse">    
-                
             </form>
             
             <p>¿Ya tienes cuenta? <span href="login_interface.inc.php" id="goToLogin">¡Inicia sesión!</span></p>
