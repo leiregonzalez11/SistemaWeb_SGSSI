@@ -137,18 +137,6 @@ class DBControl{
         mysqli_close ($enlace);
     }
 
-    public function VerListaAlojamientos($IdA){
-        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
-        if(!$enlace){
-            die("Fallo de conexion:" . mysqli_connect_error());
-        }
-        $cons="SELECT * FROM Usuario WHERE idAlojamiento='.$IdA.'";
-        $res=mysqli_query($enlace,$cons);
-        
-        mysqli_close ($enlace);
-        return $res;
-    }
-
     public function VerAlojamiento($idA){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
@@ -161,7 +149,7 @@ class DBControl{
         if($res!=false){
             if($res->num_rows==1){
                 if($row=$res->fetch_assoc()){
-                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"]);
+                    $aloj=new Alojamiento($row["idAlojamiento"],$row["descripcion"], $row["metrosCuadrados"], $row["capacidad"], $row["tipo"]);
                 }
             }
         }
