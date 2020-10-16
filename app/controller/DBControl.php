@@ -98,7 +98,7 @@ class DBControl{
         $fecha=$usu->getFechNac();
         $email=$usu->getEmail();
         $clave=$usu->getClave();
-        
+
         $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE DNI='$dni'";
         mysqli_query($enlace,$cons);
         mysqli_close ($enlace);
@@ -265,7 +265,14 @@ class DBControl{
         $foto=$imag->getFoto();
         $cons="UPDATE Galeria SET foto='$foto' WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         mysqli_query($enlace,$cons);
+        $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
+        if($nu!=1){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     public function VerImagen($idAl, $num){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
