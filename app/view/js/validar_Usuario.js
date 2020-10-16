@@ -36,7 +36,7 @@ function validar(){
         alert("El correo electronico introducido no es válido");
         //return false;
     }
-    else if (!fechaValida()){
+    else if (!validarFechaMenorActual(fechaNac)){
         alert("Fecha no válida");
         //return false;
     }
@@ -44,7 +44,7 @@ function validar(){
         alert("El telefono introducido no es válido");
         //return false;
     }
-    else if (clave != clave2){
+    else if (!validar_password(clave,clave2)){
         alert("Las claves no coinciden");
         //return false;
     }
@@ -92,7 +92,19 @@ function dniCorrecto(){
     }
   }
 
-  function fechaValida(){
+  function validarFechaMenorActual(date){
+    var x=new Date();
+    var fecha = date.split("/");
+    x.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+    var today = new Date();
+
+    if (x >= today)
+      return false;
+    else
+      return true;
+  }
+
+  /*function fechaValida(){
     //Para comprobar que la fecha elegida es anterior a la fecha actual
     var e = document.getElementById("fechaNac_reg");
     var x=new Date();
@@ -107,7 +119,7 @@ function dniCorrecto(){
       e.className='input';
       return true;
     }
-  }
+  }*/
 
   function revisarLongitudTelefono(){
     var e = document.getElementById("phone_reg");
