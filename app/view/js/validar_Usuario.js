@@ -1,4 +1,6 @@
 function validar(){
+
+  
     var dni, nickname, nombre, apellidos, email, clave, telefono, fechaNac;
     dni = document.getElementById("dni_reg").value;
     nickname = document.getElementById("nickname_reg").value;
@@ -6,45 +8,45 @@ function validar(){
     apellidos = document.getElementById("apellidos_reg").value;
     email = document.getElementById("mail_reg").value;
     clave = document.getElementById("clave_reg").value;
-    clave2 = document.getElementById("clave_rev").value;
+    clave2 = document.getElementById("clave_val").value;
     telefono = document.getElementById("phone_reg").value;
     fechaNac = document.getElementById("fechaNac_reg").value;
 
     if (nombre == ""|| apellidos == "" || dni== "" || email=="" || clave== "" || telefono =="" || fechaNac =="" || nickname==""){
         alert("Todos los campos son obligatorios");
-        return false;
+        //return false;
     }
     else if (!dniCorrecto()){
         alert("El DNI no es correcto");
-        return false;
+        //return false;
     }
     else if (nickname.length>30){
         alert("El nickname es muy largo");
-        return false;
+        //return false;
     }
     else if (nombre.length>30){
         alert("El nombre es muy largo");
-        return false;
+        //return false;
     }
     else if (apellidos.length>120){
         alert("Los apellidos son muy largos");
-        return false;
+        //return false;
     }
     else if (!correoCorrecto()){
         alert("El correo electronico introducido no es válido");
-        return false;
+        //return false;
     }
     else if (!fechaValida()){
         alert("Fecha no válida");
-        return false;
+        //return false;
     }
     else if (!isNaN(telefono) || !revisarLongitudTelefono()){
         alert("El telefono introducido no es válido");
-        return false;
+        //return false;
     }
     else if (clave != clave2){
         alert("Las claves no coinciden");
-        return false;
+        //return false;
     }
  
 }
@@ -110,3 +112,4 @@ function dniCorrecto(){
     }
   }
   
+
