@@ -154,7 +154,7 @@ class DBControl{
             }
         }
         mysqli_close ($enlace);
-        return $buscado;
+        return $aloj;
     }
 
     public function VerAlojamientosPorTipo($idA, $tipo){
