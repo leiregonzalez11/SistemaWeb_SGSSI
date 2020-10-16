@@ -10,8 +10,8 @@ include("controller/AlojamientoController.php");
 include("model/Usuario.php");
 include("model/Alojamiento.php");
 include("model/Galeria.php");
-$_SESSION['sesion_iniciada']=true;
-$_SESSION['usr_rol']="Admin";
+//$_SESSION['sesion_iniciada']=true;
+//$_SESSION['usr_rol']="Admin";
 //ANTES DE NADA VALIDAMOS SI HA INICIADO SESIÓN EL USUARIO, YA QUE
 //EL RESTO DEL SITIO WEB DEPENDE DE ELLO
 
