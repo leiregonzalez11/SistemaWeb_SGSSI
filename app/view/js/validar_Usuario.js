@@ -81,13 +81,13 @@ function dniCorrecto(){
 
   function correoCorrecto(){
     var email = document.getElementById("mail_reg");
-    var data = e.value;
+    var data = email.value;
     var exp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/
     if(!exp.test(data)){
       email.className='fallo';
       return false;
     }else{
-      e.className='input';
+      email.className='input';
       return true;
     }
   }
