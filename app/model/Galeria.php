@@ -6,11 +6,13 @@ class Galeria{
     private $idAlojamiento;
     private $num;
     private $foto;
+    private $extension;
 
-    public function __construct($idAlojamiento, $num, $foto){
+    public function __construct($idAlojamiento, $num, $foto, $extension){
         $this->idAlojamiento=$idAlojamiento;
         $this->num=$num;
         $this->foto=$foto;
+        $this->extension=$extension;
     }
 
     public function getIdAlojamiento(){
@@ -37,6 +39,14 @@ class Galeria{
         $this->foto=$foto;
     }
 
+
+    public function getExtension(){
+        return $this->extension;
+    }
+
+    public function setExtension($ext){
+        $this->extension=$ext;
+    }
 }
 
 
