@@ -35,7 +35,7 @@ class Usuario{
         $this->email=$email;
         $this->clave=$clave;
         $this->rol=$rol;
-        $this->nick=$nick; #Por si hace falta
+        $this->nick=$nick;
     }
 
     public function getDni(){
