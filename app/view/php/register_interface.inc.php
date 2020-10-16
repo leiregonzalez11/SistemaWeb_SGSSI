@@ -7,15 +7,18 @@
             </div>
             <h1>Registrarse</h1>
             <form action="registro.php" method="POST" class="form-register" onsubmit="return validar();">
+                <!--Nickname-->
+                <label for="nickname_reg">Nickname:</label>
+                <input type="text" id="nickname_reg" name="nickname_reg" placeholder="Ejemplo: lamari33" pattern=[A-Z\sa-z]{3,20}>                
                 <!--Nombre-->
                 <label for="nombre_reg">Nombre:</label>
-                <input type="text" id="nombre_reg" name="nombre_reg" placeholder="Maripili" pattern=[A-Z\sa-z]{3,20}>
+                <input type="text" id="nombre_reg" name="nombre_reg" placeholder="Ejemplo: Maripili" pattern=[A-Z\sa-z]{3,20}>
                 <!--Apellidos-->
                 <label for="apellidos_reg">Apellidos:</label>
-                <input type="text" id="apellidos_reg" name="apellidos_reg" placeholder="Gonzalez Martinez" pattern=[A-Z\sa-z]{3,20}>
+                <input type="text" id="apellidos_reg" name="apellidos_reg" placeholder="Ejemplo: Gonzalez Martinez" pattern=[A-Z\sa-z]{3,20}>
                 <!--DNI-->
                 <label for="dni_reg">DNI:</label>
-                <input type="text" id="dni_reg" name="dni_reg"  placeholder="12345678K"/>
+                <input type="text" id="dni_reg" name="dni_reg"  placeholder="Ejemplo: 12345678K"/>
                 <!--Fecha Nacimiento-->
                 <label for="fechaNac_reg">Fecha Nacimiento:</label>
                 <input type="date" id="fechaNac_reg" name="fechaNac_reg"  placeholder="dd-mm-aaaa" />
@@ -24,7 +27,7 @@
                 <input type="text" id="phone_reg" name="phone_reg"  placeholder="Ejemplo: 987654321" />
                 <!--Email-->
                 <label for="mail_reg">Correo electrónico:</label>
-                <input type="mail" id="mail_reg" name="mail_reg"  placeholder="mail@mail.com" />
+                <input type="mail" id="mail_reg" name="mail_reg"  placeholder="Ejemplo: mail@mail.com" />
                 <!--Clave de Registro-->
                 <label for="clv_reg">Contraseña:</label>
                 <input type="password" id="clv_reg" name="clave_reg"  placeholder="Ejemplo: abcdefg" />
