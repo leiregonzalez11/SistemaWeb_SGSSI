@@ -11,7 +11,10 @@ include("model/Alojamiento.php");
 include("model/Galeria.php");
 //ANTES DE NADA VALIDAMOS SI HA INICIADO SESIÓN EL USUARIO, YA QUE
 //EL RESTO DEL SITIO WEB DEPENDE DE ELLO
-if(isset($_POST['registrarse'])){
+
+
+
+if(isset($_POST['dni_reg'])){
     $usuario=new Usuario($_POST['dni_reg'],
                          $_POST['nombre_reg'],
                         $_POST['apellidos_reg'],
@@ -27,7 +30,6 @@ if(isset($_POST['registrarse'])){
     }
 
 }else if(isset($_POST['iniciar_sesion'])){
-    var_dump($_POST);
     $usuario=new Usuario(null,
                         null,
                         null,
