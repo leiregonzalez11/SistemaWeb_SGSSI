@@ -22,7 +22,7 @@
        llevándonos a contratar un servicio de seguridad. Además, si el cliente lo desea puede solicitar el servicio de una caja fuerte
        por si tuviese algo de valor que desease proteger.
      </p>
-     <h3>adaptación a las necesidades del cliente.</h3>
+     <h3>Adaptación a las necesidades del cliente.</h3>
      <p>Estos años nos han ayudado a comprender que cada cliente puede tener necesidades distintas al resto. Por ello, nos ha llevado a 
        ampliar cada año la oferta de instalaciones y a adaptarnos a las necesidades que pueda tener cada cliente. Llevandonos a 
        comprender que debemos intentar que cada cliente se sienta como si estuviese en su propia casa.

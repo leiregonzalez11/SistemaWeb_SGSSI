@@ -48,6 +48,10 @@ function validar(){
         alert("Las claves no coinciden");
         //return false;
     }
+    else{
+      alert("Registro completado")
+      //return true;
+    }
  
 }
 
