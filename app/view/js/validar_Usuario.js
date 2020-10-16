@@ -40,11 +40,11 @@ function validar(){
         alert("Fecha no válida");
         //return false;
     }
-    else if ((!isNaN(telefono)) || (!revisarLongitudTelefono())){
+    else if ((isNaN(telefono)) || (!revisarLongitudTelefono())){
         alert("El telefono introducido no es válido");
         //return false;
     }
-    else if (!validar_password(clave,clave2)){
+    else if (clave != clave2){
         alert("Las claves no coinciden");
         //return false;
     }
