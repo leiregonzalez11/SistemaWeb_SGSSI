@@ -19,12 +19,12 @@ class DBControl{
     /**
      * Añada aquí el resto de las funciones, a conveniencia y según necesidades del software
      */
-    public function iniciarSesion($email,$contr){
+    public function iniciarSesion($nick,$contr){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $consulta ="SELECT nick FROM Usuario WHERE email='.$email.' AND clave='.$contr.'";
+        $consulta ="SELECT DNI FROM Usuario WHERE nick='.$nick.' AND clave='.$contr.'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
