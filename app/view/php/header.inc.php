@@ -21,23 +21,23 @@
         ?>
         </ul>
         <ul id="menu">
-            <li id="Alojamiento"><a href="#">Alojamientos</a>
+            <li id="Alojamiento"><a>Alojamientos</a>
                 <ul>
-                    <li><a href="">Parcela para Tienda</a></li>
-                    <li><a href="">Parcela para Caravana</a></li>
-                    <li><a href="">Caravanas</a></li>
-                    <li><a href="">Bungalows</a></li>
+                    <li><a href="index.php?vista=alojamientos&tipo=parcela_tienda">Parcela para Tienda</a></li>
+                    <li><a href="index.php?vista=alojamientos&tipo=parcela_caravana">Parcela para Caravana</a></li>
+                    <li><a href="index.php?vista=alojamientos&tipo=caravana">Caravanas</a></li>
+                    <li><a href="index.php?vista=alojamientos&tipo=bungalow">Bungalows</a></li>
                 </ul>
             </li>  
-            <li id="Instalaciones"><a href="/view/php/instalaciones.php">Instalaciones</a></li>   
-            <li id="Quienes_Somos"><a href="#">La Empresa</a>
+            <li id="Instalaciones"><a href="index.php?vista=instalaciones">Instalaciones</a></li>   
+            <li id="Quienes_Somos"><a>La Empresa</a>
                 <ul>
-                    <li><a href="/view/php/quienessomos.php">Quienes Somos</a></li>
-                    <li><a href="/view/php/filosofia.php">Filosofía</a></li>
-                    <li><a href="/view/php/dondeestamos.php">Dónde estamos</a></li>
+                    <li><a href="index.php?vista=quienes_somos">Quienes Somos</a></li>
+                    <li><a href="index.php?vista=filosofia">Filosofía</a></li>
+                    <li><a href="index.php?vista=donde_estamos">Dónde estamos</a></li>
                 </ul>
             </li>
-            <li id="Contacto"><a href="/view/php/formulariocontacto.php">Contacto</a></li> 
+            <li id="Contacto"><a href="index.php?vista=contacto">Contacto</a></li> 
         </ul>
     </nav>
 </header>

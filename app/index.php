@@ -100,6 +100,9 @@ if(isset($_GET['vista'])){
         case "editar_cuenta":
             include("view/php/cuenta_usuario.php");
         break;
+        case "quienes_somos":
+            include("view/php/quienessomos.php");
+        break;
         default:
             include("view/php/home_interface.inc.php");
     }
