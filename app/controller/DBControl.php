@@ -66,6 +66,7 @@ class DBControl{
         }
     }
     public function verDatos($usuario){
+        $usuario=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
@@ -150,6 +151,7 @@ class DBControl{
     }
 
     public function VerAlojamiento($idA){
+        $aloj=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
@@ -339,6 +341,7 @@ class DBControl{
         return $nu;
     }
     public function VerImagen($idAl, $num){
+        $imagen=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
