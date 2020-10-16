@@ -37,7 +37,7 @@
                 <div id="terminos">
                 <label for="termChk">He leído y acepto los <a id="tyc" href="">Términos y condiciones</a></label><input type="checkbox" id="termChk" value="acepta_tyc"/>
                 </div>
-                <input type="button" class="btn" id="btn_reg" name="registrarse" onclick="validar()" value="Registrarse">    
+                <input type="submit" class="btn" id="btn_reg" name="registrarse" onclick="validar()" value="Registrarse">    
             </form>
             
             <p>¿Ya tienes cuenta? <span href="login_interface.inc.php" id="goToLogin">¡Inicia sesión!</span></p>

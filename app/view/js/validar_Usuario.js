@@ -20,8 +20,8 @@ function validar(){
         alert("El DNI no es correcto");
         //return false;
     }
-    else if (nickname.length>30){
-        alert("El nickname es muy largo");
+    else if (nickname.length>30 || nickname.length<6){
+        alert("El nickname tiene que tener entre 6 y 30 caracteres");
         //return false;
     }
     else if (nombre.length>30){
@@ -48,8 +48,13 @@ function validar(){
         alert("Las claves no coinciden");
         //return false;
     }
+    else if (clave.length<6 || clave.length>15){
+        alert("La clave tiene que tener entre 6 y 15 caracteres");
+        //return false;
+    }
     else{
-      alert("Registro completado")
+      window.alert ("Registro Completado Correctamente");
+      document.registro_usuarios.submit();
       //return true;
     }
  
