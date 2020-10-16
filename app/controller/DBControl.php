@@ -144,6 +144,7 @@ class DBControl{
         }
         $cons="SELECT * FROM Usuario WHERE idAlojamiento='.$IdA.'";
         $res=mysqli_query($enlace,$cons);
+        
         mysqli_close ($enlace);
         return $res;
     }
@@ -154,8 +155,16 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='.$idA.'";
+        echo $cons;
         $res=mysqli_query($enlace,$cons);
         $buscado=mysqli_fetch_object ($res, 'Alojamiento');
+        if($res!=false){
+            if($res->num_rows==1){
+                if($row=$res->fetch_assoc()){
+                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"]);
+                }
+            }
+        }
         mysqli_close ($enlace);
         return $buscado;
     }
