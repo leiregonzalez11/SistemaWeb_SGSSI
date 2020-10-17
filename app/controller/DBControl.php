@@ -24,7 +24,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='$contr'";
+        $consulta ="SELECT DNI FROM Usuario WHERE nick='.$nick.' AND clave='.$contr.'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
@@ -50,7 +50,7 @@ class DBControl{
         $nick=$usu->getNick();
         $clave=$usu->getClave();
 
-        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
+        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='.$dni.' OR nick='.$nick.'"))==0){
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
@@ -65,13 +65,14 @@ class DBControl{
             return false;
         }
     }
-    public function verDatos($nckUsuario){
+    public function verDatos($usuario){
         $usuario=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, rol FROM Usuario WHERE nick='$nckUsuario'";
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$usuario'";
+        echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
@@ -197,24 +198,34 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $idAl=$aloj->getIdAlojamiento();
+        $idA=$aloj->getIdAlojamiento();
         $descr=$aloj->getDescripcion();
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
-        $consulta="INSERT INTO Alojamiento (idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo) Values ('$idAl', '$descr', '$m2', '$cap', '$tipo')";
-        mysqli_query($enlace,$consulta);
-        $idA=mysqli_insert_id($enlace);
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
         $reg=mysqli_num_rows($existe);
-        mysqli_close ($enlace);
-        if($reg==1){
-            return true;
+        if($reg==0){
+            $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idA'";
+            $resp=mysqli_query($enlace,$cons);
+            if (mysqli_num_rows($resp)){
+                $consulta="INSERT INTO Alojamiento (idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo) Values ('$idA', '$descr', '$m2', '$cap', '$tipo')";
+                mysqli_query($enlace,$consulta);
+            }
+            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
+            $reg=mysqli_num_rows($existe);
+            mysqli_close ($enlace);
+            if($reg==1){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
         else{
+            mysqli_close ($enlace);
             return false;
         }
-        
     }
 
     public function eliminarAlojamiento($idAl){
@@ -225,7 +236,7 @@ class DBControl{
         $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idAl'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Alojamiento WHERE idAlojamiento='$idAl'";
+            $borrar="DELETE FROM Alijamiento WHERE idAlojamiento='$idAl'";
             mysqli_query($enlace,$borrar);
         }
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idAl');");
@@ -273,12 +284,12 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='$idAl'AND num='$num');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='.$idAl.'AND num='.$num.');");
         $reg=mysqli_num_rows($existe);
         if ($reg==0){
             $cons="INSERT INTO Galeria (idAlojamiento, num, foto, extension) Values ('$idAl','$num','$foto', '$exten')";
             mysqli_query($enlace,$cons);
-            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='$idAl'AND num='$num');");
+            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='.$idAl.'AND num='.$num.');");
             $reg=mysqli_num_rows($existe);
             mysqli_close ($enlace);
             if($reg==1){
@@ -299,13 +310,13 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
+        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'";
+            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'";
             mysqli_query($enlace,$borrar);
         }
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.');");
         $reg=mysqli_num_rows($existe);
         mysqli_close ($enlace);
         if($reg==0){
@@ -325,7 +336,7 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
-        $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='$idAl' AND num='$num'";
+        $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
@@ -369,3 +380,4 @@ class DBControl{
         return $imagenes;
     }
 }
+?>
