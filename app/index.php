@@ -110,6 +110,7 @@ if(isset($_GET['vista'])){
             $cuentaControlador=new CuentaUsuarioController();
             $cuentaControlador->analizarCambios();
             include("view/php/cuenta_usuario.php");
+            mostrarDatosCuenta();
         break;
         case "quienes_somos":
             include("view/php/quienessomos.php");

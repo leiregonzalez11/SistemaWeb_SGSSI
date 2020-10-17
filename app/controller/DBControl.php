@@ -100,7 +100,7 @@ class DBControl{
         $email=$usu->getEmail();
         $clave=$usu->getClave();
 
-        $cons="UPDATE Usuario SET DNI='$dni', nick='$nick', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE DNI='$dni'";
+        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE nick='$nick'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
@@ -140,7 +140,7 @@ class DBControl{
             $borrar="DELETE FROM Usuario WHERE nick='$nick'";
             mysqli_query($enlace,$borrar);
         }
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Usuario WHERE nick='$nick');");
+        $existe=mysqli_query($enlace,"SELECT * FROM Usuario WHERE nick='$nick'");
         $reg=mysqli_num_rows($existe);
         mysqli_close ($enlace);
         if($reg==0){

@@ -1,3 +1,13 @@
+<?php
+function mostrarDatosCuenta(){
+  if(!isset($_SESSION['id_usr'])){
+    echo "<main><h1>Acceso no autorizado</h1><p>Debes iniciar sesión para visualizar este sitio.</p></main>";
+  }else{
+  $nick = $_SESSION['id_usr'];
+  $DB=new DBControl();
+  $usr=$DB->verDatos($nick);
+?>
+
 <main>
   <h1>Editar cuenta de usuario</h1>
   <div id="principal">
@@ -5,13 +15,17 @@
       <div id="principales">
         <div id="contenedor_datos">
         <label for="nombre_edit">Nombre:</label>
-        <input type="text" name="nombre_edit" id="nombre_edit" />
+        <input type="text" name="nombre_edit" id="nombre_edit" value="<?=$usr->getNombre()?>"/>
         <label for="apellidos_edit">Apellidos:</label>
-        <input type="text" name="apellidos_edit" id="apellidos_edit" />
+        <input type="text" name="apellidos_edit" id="apellidos_edit" value="<?=$usr->getApellidos()?>"/>
         <label for="dni_edit">DNI:</label>
-        <input type="text" name="dni_edit" id="dni_edit" />
+        <input type="text" name="dni_edit" id="dni_edit" value="<?=$usr->getDNI()?>"/>
+        <label for="telefono_edit">Teléfono:</label>
+        <input type="text" name="telefono_edit" id="telefono_edit" value="<?=$usr->getTelefono()?>"/>
+        <label for="fechNac_edit">Fecha de nacimiento:</label>
+        <input type="date" name="fechNac_edit" id="fechNac_edit" value="<?=$usr->getFechNac()?>"/>
         <label for="mail_edit">Correo electrónico:</label>
-        <input type="mail" name="mail_edit" id="mail_edit" />
+        <input type="mail" name="mail_edit" id="mail_edit" value="<?=$usr->getEmail()?>"/>
         <label for="clv_edit">Contraseña:</label>
         <input type="password" name="clave_edit" id="clv_edit" />
         <label for="clv_valedit">Repetir contraseña:</label>
@@ -20,8 +34,22 @@
       </div>
 
       <div id="botones">
-        <button id="borrar" name="borrar">Eliminar cuenta</button><button id="actualizar" name="actualizar" onclick="modificar()">Actualizar datos</button>
+        <?php
+          if($_SESSION['rol_usr']!="Admin"){
+        ?>
+        <button id="borrar" name="borrar" onclick="return confirm('¿Seguro que quieres eliminar la cuenta? Esta acción es irreversible')">Eliminar cuenta</button>
+        <?php
+}
+        ?>
+        
+        <input type="button" id="actualizar" name="actualizar" onclick="modificar()" value="Modificar datos">
+        <!--<button id="actualizar" name="actualizar" onclick="modificar()">MODIF</button>-->
       </div>
     </form>
   </div>
 </main>
+
+<?php
+  }
+}
+?>
