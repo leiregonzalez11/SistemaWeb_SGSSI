@@ -299,13 +299,13 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Galeria WHERE idAlojamiento='.$idAl.'AND num='.$num.'";
+            $borrar="DELETE FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'";
             mysqli_query($enlace,$borrar);
         }
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num');");
         $reg=mysqli_num_rows($existe);
         mysqli_close ($enlace);
         if($reg==0){
