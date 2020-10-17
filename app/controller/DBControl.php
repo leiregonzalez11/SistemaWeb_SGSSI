@@ -24,7 +24,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $consulta ="SELECT DNI FROM Usuario WHERE nick='.$nick.' AND clave='.$contr.'";
+        $consulta ="SELECT DNI FROM Usuario WHERE nick='.$nick.' AND clave='$contr'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
@@ -133,10 +133,10 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI FROM Usuario WHERE nick='.$nick.'";
+        $cons="SELECT DNI FROM Usuario WHERE nick='$nick'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Usuario WHERE nick='.$nick.'";
+            $borrar="DELETE FROM Usuario WHERE nick='$nick'";
             mysqli_query($enlace,$borrar);
         }
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Usuario WHERE nick='$nick');");
