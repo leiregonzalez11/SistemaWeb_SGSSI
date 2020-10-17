@@ -28,10 +28,16 @@ button{
     font-size: 40px;
 }
 
-#contenedor_datos, #contenedor_fotos, #contenedor_fotos_borrar{
+#contenedor_datos, #contenedor_fotos_borrar{
     display: grid;
     grid-template-columns: 50% 50%;
 }
+
+#contenedor_fotos{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
 #contenedor_fotos_borrar p{
     text-align: center;
 }

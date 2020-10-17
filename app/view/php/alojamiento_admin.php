@@ -2,18 +2,26 @@
 
 function mostrarAlojamientoAdmin($id)
 {
+  $alojamiento=null;
+
   $DB = new DBControl();
-  $alojamiento = $DB->VerAlojamiento($id);
+  if($id!="nuevo"){
+    $alojamiento = $DB->VerAlojamiento($id);
+  }
 ?>
 
   <main>
 
     <?php
 
+    $imgs=null;
+    $lnImgs=0;
+    if($id!="nuevo"){
+      $imgs = $DB->VerImagenes($id);
+      $lnImgs = sizeof($imgs);
 
-    $imgs = $DB->VerImagenes($id);
-    $lnImgs = sizeof($imgs);
-
+    }
+    
     $selTienda = "";
     $selCaravanaParcela = "";
     $selCaravana = "";
@@ -57,7 +65,7 @@ function mostrarAlojamientoAdmin($id)
             <label for="tipo">Tipo alojamiento:</label>
             <select name="tipo" id="tipo">
 
-              <option value="tienda" <?= $selTienda ?>>Tienda</option>
+              <option value="parcela_tienda" <?= $selTienda ?>>Tienda</option>
               <option value="caravana_parcela" <?= $selCaravanaParcela ?>>Parcela para caravana</option>
               <option value="caravana" <?= $selCaravana ?>>Caravana</option>
               <option value="bungalow" <?= $selBungalow ?>>Bungalow</option>
@@ -75,12 +83,16 @@ function mostrarAlojamientoAdmin($id)
           <div id="contenedor_fotos">
             <label for="foto_1">Imagen 1:</label>
             <input type="file" name="foto_1" id="foto_1" />
+            <input type="text" name="foto_desc_1" placeholder="Descripción fotografía 1..."/>
             <label for="foto_2">Imagen 2:</label>
             <input type="file" name="foto_2" id="foto_2" />
+            <input type="text" name="foto_desc_2" placeholder="Descripción fotografía 2..."/>
             <label for="foto_3">Imagen 3:</label>
             <input type="file" name="foto_3" id="foto_3" />
+            <input type="text" name="foto_desc_3" placeholder="Descripción fotografía 3..."/>
             <label for="foto_4">Imagen 4:</label>
             <input type="file" name="foto_4" id="foto_4" />
+            <input type="text" name="foto_desc_4" placeholder="Descripción fotografía 4..."/>
           </div>
         </div>
         <?php
@@ -91,7 +103,7 @@ function mostrarAlojamientoAdmin($id)
         }
 
 
-        if ($alojamiento != null) {
+        if ($alojamiento != null && $lnImgs!=0) {
         ?>
           <div id="galeria_borrar">
             <p>Eliminar fotos de galería</p>

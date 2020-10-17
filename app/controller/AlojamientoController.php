@@ -62,6 +62,37 @@ class AlojamientoController
 
     public function crearAlojamiento()
     {
+        $tipoAlojamiento=$_POST['tipo'];
+        $capacidad=$_POST['capacidad'];
+        $metrosCuadrados=$_POST['espacio'];
+        $descripcion=$_POST['descripcion'];
+
+        $alojamiento = new Alojamiento(null, $descripcion, $metrosCuadrados, $capacidad, $tipoAlojamiento);
+        $DB = new DBControl();
+        $resultadoConsulta=$DB->anadirAlojamiento($alojamiento);
+        if($resultadoConsulta!=-1){
+            for($i=0;$i<4;$i++){
+                $fichero=$_FILES['foto_'.($i+1)];
+                if($fichero['name']!=""){
+                    //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
+                    $nombreImg = $_FILES['foto_'.($i+1)]['name'];
+                    $ext = pathinfo($nombreImg, PATHINFO_EXTENSION);
+                    $dir_subida = '/var/www/html/view/img/web_app/';
+                    $nombreCompletoFichero=$dir_subida.$resultadoConsulta."_".($i+1).".".$ext;
+                    //Por https://www.php.net/manual/es/features.file-upload.post-method.php
+                    $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
+                    if($subida){
+                        $txtFoto="";
+                        if(isset($_POST['foto_desc_'.($i+1)])){
+                            $txtFoto=$_POST['foto_desc_'.($i+1)];
+                        }
+                        $galeria= new Galeria($resultadoConsulta, $i+1, $txtFoto, $ext);
+                        $DB->anadirImagen($galeria);
+                    }
+                }
+            }
+        }
+        
     }
 
     public function editarAlojamiento($id)
