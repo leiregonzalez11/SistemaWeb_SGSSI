@@ -38,7 +38,7 @@
         <div class="descripcion">
                 <h2>Instalaciones de calidad</h2>
                 <p>Nuestras instalaciones proporcionan al huésped el máximo confort, para que éste se sienta cómodo en todo momento.</p>
-                <a href="/view/php/instalaciones.php">Ver nuestras instalaciones &gt;</a>
+                <a href="?vista=instalaciones">Ver nuestras instalaciones &gt;</a>
             </div>
             <div class="imagen">
                 <img src="/view/img/promo_3.jpg" alt="Cabaña en el bosque"/>
