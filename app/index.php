@@ -1,6 +1,13 @@
 <?php
 ini_set("display_erros", "on"); //Muestra errores del parser PHP -BORRAR EN PRODUCCIÓN
 session_start();
+
+if(isset($_GET['accion']) && $_GET['accion']=="logout"){
+    session_destroy();
+    header("Location: index.php");
+}
+
+
 include("controller/CSSDisplayController.php");
 include("controller/TitleController.php");
 include("controller/LoginSignInController.php");
@@ -24,9 +31,9 @@ if(isset($_POST['dni_reg'])){
                         $_POST['phone_reg'],
                         $_POST['fechaNac_reg'],
                         $_POST['mail_reg'],
-                        $_POST['clv_reg'],
+                        $_POST['clave_reg'],
                         'Cliente',
-                        null);
+                        $_POST['nickname_reg']);
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $ctrRegistro->efectuarRegistro($usuario);
@@ -41,7 +48,7 @@ if(isset($_POST['dni_reg'])){
                         $_POST['mail'],
                         $_POST['clave'],
                         null,
-                        null);
+                        $_POST['nickname']);
     $ctrInicioSesion=new LoginSignInController();
     if($ctrInicioSesion->validarInicioSesion($usuario)){
         $ctrInicioSesion->efectuarInicioSesion($usuario);
@@ -51,6 +58,7 @@ if(isset($_POST['dni_reg'])){
 
 
 $sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada']==true);
+
 
 
 

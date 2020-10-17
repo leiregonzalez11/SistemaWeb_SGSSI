@@ -24,7 +24,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $consulta ="SELECT DNI FROM Usuario WHERE nick='.$nick.' AND clave='.$contr.'";
+        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='$contr'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
@@ -50,7 +50,7 @@ class DBControl{
         $nick=$usu->getNick();
         $clave=$usu->getClave();
 
-        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='.$dni.' OR nick='.$nick.'"))==0){
+        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
@@ -65,14 +65,13 @@ class DBControl{
             return false;
         }
     }
-    public function verDatos($usuario){
+    public function verDatos($nckUsuario){
         $usuario=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$usuario'";
-        echo $cons;
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$nckUsuario'";
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
