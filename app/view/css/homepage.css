@@ -124,3 +124,13 @@ article:nth-child(even) .descripcion a:hover{
     background-color: #1c7406;
     color: #FFFFFF;
 }
+
+
+@media only screen and (max-width: 1100px){
+    article, article:nth-child(even){
+        flex-direction: column;
+    }
+    .imagen, .descripcion{
+        width: 100%;
+    }
+}
