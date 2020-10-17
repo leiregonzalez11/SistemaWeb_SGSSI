@@ -102,5 +102,23 @@ class AlojamientoController
 
     public function borrarAlojamiento($id)
     {
+        $dir_subida = '/var/www/html/view/img/web_app/';
+        $DB=new DBControl();
+        $imagenesGaleria=$DB->VerImagenes($id);
+        for($i=0; $i<sizeof($imagenesGaleria);$i++){
+            $resultado=true;
+            $resultado=$DB->eliminarImagen($id, $imagenesGaleria[$i]->getNum());
+            if($resultado){
+                $rutaFichero=$dir_subida.$id."_".$imagenesGaleria[$i]->getNum().".".$imagenesGaleria[$i]->getExtension();
+                $ficheroExiste=file_exists($rutaFichero);
+                if($ficheroExiste){
+                    unlink($rutaFichero);
+                }
+            }
+        }
+        $eliminacion=$DB->eliminarAlojamiento($id);
+        if($eliminacion){
+            echo "<script>window.location.replace('index.php');</script>";
+        }
     }
 }

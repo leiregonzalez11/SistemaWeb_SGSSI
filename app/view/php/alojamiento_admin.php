@@ -2,10 +2,10 @@
 
 function mostrarAlojamientoAdmin($id)
 {
-  $alojamiento=null;
+  $alojamiento = null;
 
   $DB = new DBControl();
-  if($id!="nuevo"){
+  if ($id != "nuevo") {
     $alojamiento = $DB->VerAlojamiento($id);
   }
 ?>
@@ -14,14 +14,13 @@ function mostrarAlojamientoAdmin($id)
 
     <?php
 
-    $imgs=null;
-    $lnImgs=0;
-    if($id!="nuevo"){
+    $imgs = null;
+    $lnImgs = 0;
+    if ($id != "nuevo") {
       $imgs = $DB->VerImagenes($id);
       $lnImgs = sizeof($imgs);
-
     }
-    
+
     $selTienda = "";
     $selCaravanaParcela = "";
     $selCaravana = "";
@@ -66,7 +65,7 @@ function mostrarAlojamientoAdmin($id)
             <select name="tipo" id="tipo">
 
               <option value="parcela_tienda" <?= $selTienda ?>>Tienda</option>
-              <option value="caravana_parcela" <?= $selCaravanaParcela ?>>Parcela para caravana</option>
+              <option value="parcela_caravana" <?= $selCaravanaParcela ?>>Parcela para caravana</option>
               <option value="caravana" <?= $selCaravana ?>>Caravana</option>
               <option value="bungalow" <?= $selBungalow ?>>Bungalow</option>
             </select>
@@ -81,18 +80,26 @@ function mostrarAlojamientoAdmin($id)
         <div id="galeria">
           <p>Subir fotos de galería (máximo 4)</p>
           <div id="contenedor_fotos">
-            <label for="foto_1">Imagen 1:</label>
-            <input type="file" name="foto_1" id="foto_1" />
-            <input type="text" name="foto_desc_1" placeholder="Descripción fotografía 1..."/>
-            <label for="foto_2">Imagen 2:</label>
-            <input type="file" name="foto_2" id="foto_2" />
-            <input type="text" name="foto_desc_2" placeholder="Descripción fotografía 2..."/>
-            <label for="foto_3">Imagen 3:</label>
-            <input type="file" name="foto_3" id="foto_3" />
-            <input type="text" name="foto_desc_3" placeholder="Descripción fotografía 3..."/>
-            <label for="foto_4">Imagen 4:</label>
-            <input type="file" name="foto_4" id="foto_4" />
-            <input type="text" name="foto_desc_4" placeholder="Descripción fotografía 4..."/>
+            <?php
+            for ($i = 0; $i < 4; $i++) {
+              $encontrado = false;
+              for ($j = 0; $j < $lnImgs; $j++) {
+                $imagenComparada = $imgs[$j];
+                if (($i + 1) == $imagenComparada->getNum()) {
+                  $encontrado = true;
+                }
+              }
+
+              if (!$encontrado) {
+            ?>
+                <label for="foto_<?= ($i + 1) ?>">Imagen ranura <?= ($i + 1) ?>:</label>
+                <input type="file" name="foto_<?= ($i + 1) ?>" id="foto_<?= ($i + 1) ?>" />
+                <input type="text" name="foto_desc_<?=($i+1)?>" placeholder="Descripción fotografía ranura <?=($i+1)?>..." />
+            <?php
+              }
+            }
+            ?>
+
           </div>
         </div>
         <?php
@@ -103,7 +110,7 @@ function mostrarAlojamientoAdmin($id)
         }
 
 
-        if ($alojamiento != null && $lnImgs!=0) {
+        if ($alojamiento != null && $lnImgs != 0) {
         ?>
           <div id="galeria_borrar">
             <p>Eliminar fotos de galería</p>
@@ -113,7 +120,7 @@ function mostrarAlojamientoAdmin($id)
               <?php
               for ($i = 0; $i < $lnImgs; $i++) {
               ?>
-                <img src="/view/img/web_app/<?= $imgs[$i]->getIdAlojamiento() ?>_<?= $imgs[$i]->getNum() ?>.<?= $imgs[$i]->getExtension() ?>" /><input type="checkbox" name="borrar_<?= ($i + 1) ?>" />
+                <img src="/view/img/web_app/<?= $imgs[$i]->getIdAlojamiento() ?>_<?= $imgs[$i]->getNum() ?>.<?= $imgs[$i]->getExtension() ?>" /><input type="checkbox" name="borrar_<?= $imgs[$i]->getNum() ?>" />
               <?php
               }
               ?>
