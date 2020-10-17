@@ -22,13 +22,11 @@ class AlojamientoController
                     include("view/php/alojamientos.php");
                     mostrarListado($tipo);
                 } else {
-                    //Redireccionamos por defecto
-                    //header("Location: index.php?vista=alojamientos&tipo=parcela_tienda");
+                    echo "<main><h1>Recurso no encontrado</h1><p>Por favor compruebe si ha escrito el enlace correctamente</p></main>";
 
                 }
             } else {
-                //REDIRIGIMOS
-                //header("Location: index.php?vista=alojamientos&tipo=parcela_tienda");
+                echo "<main><h1>Recurso no encontrado</h1><p>Por favor compruebe si ha escrito el enlace correctamente</p></main>";
             }
         } else {
             //JUZGAMOS, ADMIN O USUARIO NORMAL (CON SESIÓN INICIADA!)
