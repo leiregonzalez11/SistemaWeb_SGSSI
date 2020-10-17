@@ -2,8 +2,8 @@
 
 $sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada']==true);
 $rol="";
-    if(isset($_SESSION['usr_rol'])){
-        $rol=$_SESSION['usr_rol'];
+    if(isset($_SESSION['rol_usr'])){
+        $rol=$_SESSION['rol_usr'];
     }
 
 ?>
