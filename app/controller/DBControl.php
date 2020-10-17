@@ -158,7 +158,6 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='$idA'";
-        echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
@@ -178,7 +177,6 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT idAlojamiento, descripcion, metrosCuadrados, capacidad FROM Alojamiento WHERE tipo ='$tipo'";
-        echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if ($res->num_rows > 0) {
@@ -257,7 +255,7 @@ class DBControl{
             return false;
         }
         elseif($nu==0){
-            return false;
+            return true;
         }
         else{
             return true;
@@ -339,7 +337,6 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT * FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
-        echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
@@ -357,7 +354,6 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT * FROM Galeria WHERE idAlojamiento='$idAl'";
-        echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows > 0){

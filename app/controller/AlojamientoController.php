@@ -97,6 +97,51 @@ class AlojamientoController
 
     public function editarAlojamiento($id)
     {
+        $tipoAlojamiento=$_POST['tipo'];
+        $capacidad=$_POST['capacidad'];
+        $metrosCuadrados=$_POST['espacio'];
+        $descripcion=$_POST['descripcion'];
+
+        $alojamiento = new Alojamiento($id, $descripcion, $metrosCuadrados, $capacidad, $tipoAlojamiento);
+        //var_dump($alojamiento);
+        $DB = new DBControl();
+        $resultadoConsulta=$DB->actualizarDatosAlojamiento($alojamiento);
+        if($resultadoConsulta==true){
+            for($i=0;$i<4;$i++){
+                $fichero=$_FILES['foto_'.($i+1)];
+                if($fichero['name']!=""){
+                    //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
+                    $nombreImg = $_FILES['foto_'.($i+1)]['name'];
+                    $ext = pathinfo($nombreImg, PATHINFO_EXTENSION);
+                    $dir_subida = '/var/www/html/view/img/web_app/';
+                    $nombreCompletoFichero=$dir_subida.$id."_".($i+1).".".$ext;
+                    //Por https://www.php.net/manual/es/features.file-upload.post-method.php
+                    $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
+                    if($subida){
+                        $txtFoto="";
+                        if(isset($_POST['foto_desc_'.($i+1)])){
+                            $txtFoto=$_POST['foto_desc_'.($i+1)];
+                        }
+                        $galeria= new Galeria($id, $i+1, $txtFoto, $ext);
+                        $DB->anadirImagen($galeria);
+                    }
+                }
+            }
+        }
+        $dir_subida = '/var/www/html/view/img/web_app/';
+        for($i=0; $i<4; $i++){
+            if(isset($_POST['borrar_'.($i+1)])){
+                $img = $DB->VerImagen($id, ($i+1));
+                $resultado=$DB->eliminarImagen($id, $i+1);
+                if($resultado){
+                    $rutaFichero=$dir_subida.$id."_".($i+1).".".$img->getExtension();
+                    $ficheroExiste=file_exists($rutaFichero);
+                    if($ficheroExiste){
+                        unlink($rutaFichero);
+                    }
+                }
+            }
+        }
     }
 
 
