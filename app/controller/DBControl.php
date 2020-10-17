@@ -71,7 +71,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$nckUsuario'";
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, rol FROM Usuario WHERE nick='$nckUsuario'";
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
