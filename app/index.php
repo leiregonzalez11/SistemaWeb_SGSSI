@@ -37,6 +37,8 @@ if(isset($_POST['dni_reg'])){
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $ctrRegistro->efectuarRegistro($usuario);
+    }else{
+        $_SESSION['registro_incorrecto']="No se ha podido registrar el usuario. Tal vez el nick ya exista. Pruebe con otro nick e inténtelo de nuevo.";
     }
 
 }else if(isset($_POST['iniciar_sesion'])){
@@ -52,6 +54,8 @@ if(isset($_POST['dni_reg'])){
     $ctrInicioSesion=new LoginSignInController();
     if($ctrInicioSesion->validarInicioSesion($usuario)){
         $ctrInicioSesion->efectuarInicioSesion($usuario);
+    }else{
+        $_SESSION['inicio_sesion_incorrecto']="Nick o clave incorrectas";
     }
 }
 

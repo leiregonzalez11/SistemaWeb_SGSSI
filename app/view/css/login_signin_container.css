@@ -96,3 +96,9 @@ button{
 }
 
 
+
+#error_inicio_sesion, #error_registro {
+    text-align: center;
+    color: #F00;
+    font-size: 24px;
+}

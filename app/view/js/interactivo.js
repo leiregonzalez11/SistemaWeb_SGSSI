@@ -43,4 +43,14 @@ window.onload=function(){
             winLogin.classList.remove("oculto");
         },true);
     }
+
+    var errorInicioSesion=document.getElementById("error_inicio_sesion");
+    if(errorInicioSesion!=null && errorInicioSesion!=undefined){
+        winLogin.classList.remove("oculto");
+    }
+
+    var errorRegistro=document.getElementById("error_registro");
+    if(errorRegistro!=null && errorRegistro!=undefined){
+        winSignIn.classList.remove("oculto");
+    }
 }
