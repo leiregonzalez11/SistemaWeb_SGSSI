@@ -273,12 +273,12 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='$idAl'AND num='$num');");
+        $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'");
         $reg=mysqli_num_rows($existe);
         if ($reg==0){
             $cons="INSERT INTO Galeria (idAlojamiento, num, foto, extension) Values ('$idAl','$num','$foto', '$exten')";
             mysqli_query($enlace,$cons);
-            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='$idAl'AND num='$num');");
+            $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num';");
             $reg=mysqli_num_rows($existe);
             mysqli_close ($enlace);
             if($reg==1){
