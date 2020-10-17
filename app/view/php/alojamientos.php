@@ -18,12 +18,12 @@
             break;
             case "caravana":
                 $tipoAlojamiento="Caravana";
-                $descripcionAlojamiento="Ponemos a tú disposición una caravana ";
+                $descripcionAlojamiento="Ponemos a tú disposición una caravana que ofrece una gran comodidad para los huéspedes que se desean queda. Dispone de todas las comodidades necesarias incluidas: baño, cocina y cama.";
                 $fotoAlojamientos="";
             break;
             case "bungalow":
                 $tipoAlojamiento="Bungalow";
-                $descripcionAlojamiento="A ESPECIFICAR (4)";
+                $descripcionAlojamiento="El bungalow es lo más cercano que puedes encontrar a una casa tradicional. El cual dispone de un baño con todas las comodides, dormitorio de pareja o familiar según el número de personas, cocina con tosdos los electrodomésticos necesarios y con un jardín donde pasar el día.";
                 $fotoAlojamientos="view/img/fotosalojamiento/Bungalow_Especial_Familias/bungalow2_(2).jpg";
             break;
         }
