@@ -51,7 +51,7 @@ class DBControl{
         $nick=$usu->getNick();
         $clave=$usu->getClave();
 
-        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='.$dni.' OR nick='.$nick.'"))==0){
+        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
@@ -273,12 +273,12 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='.$idAl.'AND num='.$num.');");
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='$idAl'AND num='$num');");
         $reg=mysqli_num_rows($existe);
         if ($reg==0){
             $cons="INSERT INTO Galeria (idAlojamiento, num, foto, extension) Values ('$idAl','$num','$foto', '$exten')";
             mysqli_query($enlace,$cons);
-            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='.$idAl.'AND num='.$num.');");
+            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Galeria WHERE nick='$idAl'AND num='$num');");
             $reg=mysqli_num_rows($existe);
             mysqli_close ($enlace);
             if($reg==1){
@@ -325,7 +325,7 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
-        $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+        $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='$idAl' AND num='$num'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
@@ -337,7 +337,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT * FROM Galeria WHERE idAlojamiento='.$idAl.' AND num='.$num.'";
+        $cons="SELECT * FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
         echo $cons;
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
