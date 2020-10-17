@@ -8,17 +8,17 @@
         switch($pTipo){
             case "parcela_tienda":
                 $tipoAlojamiento="Parcela para tienda";
-                $descripcionAlojamiento="A ESPECIFICAR";
+                $descripcionAlojamiento="El lugar idóneo para realizar una acampada tanto para mayores como pequeños. Ponemos a tu disposición una parcela en la ue poder colocar tú tienda.";
                 $fotoAlojamientos="";
             break;
             case "parcela_caravana":
                 $tipoAlojamiento="Parcela para caravana";
-                $descripcionAlojamiento="A ESPECIFICAR (2)";
+                $descripcionAlojamiento="Un lugar donde aparcar la caravana junto a otros amantes de las caravanas. ";
                 $fotoAlojamientos="";
             break;
             case "caravana":
                 $tipoAlojamiento="Caravana";
-                $descripcionAlojamiento="A ESPECIFICAR (3)";
+                $descripcionAlojamiento="Ponemos a tú disposición una caravana ";
                 $fotoAlojamientos="";
             break;
             case "bungalow":
