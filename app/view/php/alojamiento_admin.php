@@ -92,7 +92,7 @@ function mostrarAlojamientoAdmin($id)
 
               if (!$encontrado) {
             ?>
-                <label for="foto_<?= ($i + 1) ?>">Imagen ranura <?= ($i + 1) ?>:</label>
+                <label for="foto_<?= ($i + 1) ?>">Imagen ranura <?= ($i + 1) ?> <?php if ($i==0) echo "(portada)";?>:</label>
                 <input type="file" name="foto_<?= ($i + 1) ?>" id="foto_<?= ($i + 1) ?>" />
                 <input type="text" name="foto_desc_<?=($i+1)?>" placeholder="Descripción fotografía ranura <?=($i+1)?>..." />
             <?php

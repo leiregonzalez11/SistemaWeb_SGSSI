@@ -9,17 +9,17 @@
             case "parcela_tienda":
                 $tipoAlojamiento="Parcela para tienda";
                 $descripcionAlojamiento="El lugar idóneo para realizar una acampada tanto para mayores como pequeños. Ponemos a tu disposición una parcela en la ue poder colocar tú tienda.";
-                $fotoAlojamientos="";
+                $fotoAlojamientos="view/img/fotosalojamiento/tiendas/tienda21.jpg";
             break;
             case "parcela_caravana":
                 $tipoAlojamiento="Parcela para caravana";
                 $descripcionAlojamiento="Un lugar donde aparcar la caravana junto a otros amantes de las caravanas. ";
-                $fotoAlojamientos="";
+                $fotoAlojamientos="view/img/fotosalojamiento/Parcelas_Autocaravana/parcela_para_caravana3.jpg";
             break;
             case "caravana":
                 $tipoAlojamiento="Caravana";
                 $descripcionAlojamiento="Ponemos a tú disposición una caravana que ofrece una gran comodidad para los huéspedes que se desean queda. Dispone de todas las comodidades necesarias incluidas: baño, cocina y cama.";
-                $fotoAlojamientos="";
+                $fotoAlojamientos="view/img/fotosalojamiento/Caravana_EspecialParejas/caravanatipo21.jpeg";
             break;
             case "bungalow":
                 $tipoAlojamiento="Bungalow";
@@ -52,7 +52,13 @@
         <a href="?vista=alojamientos&id_alojamiento=<?=$arrayAlojamientos[$i]->getIdAlojamiento();?>">
             <div class="elem_alojamiento">
                 <div class="container_foto_listado">
-                    <img src="/view/img/alojamiento_bungalow.jpg"/>
+                <?php
+                    $imagen="/view/img/camping.png";
+                    if($fotoPortada!=NULL){
+                        $imagen="/view/img/web_app/".$arrayAlojamientos[$i]->getIdAlojamiento()."_1.".$fotoPortada->getExtension();
+                    }
+                ?>
+                    <img src="<?=$imagen?>"/>
                 </div>
                 <div class="txt_listado">
                     <p>Tipo: <?=$tipoAlojamiento?></p>

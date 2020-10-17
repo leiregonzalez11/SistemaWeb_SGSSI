@@ -52,6 +52,7 @@ main{
 
 #container_texto p{
     /*border: 10px solid slateblue;*/
+    width: 90%;
 }
 
 #listado_alojamientos a{
@@ -74,10 +75,12 @@ main{
 .container_foto_listado{
 /*    border: 10px dashed orange;*/
     width: 20%;
+    display: flex;
 }
 
 .container_foto_listado img{
     width: 100%;
+    margin: auto;
 }
 
 .txt_listado{
