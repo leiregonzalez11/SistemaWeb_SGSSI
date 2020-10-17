@@ -66,14 +66,14 @@ class DBControl{
             return false;
         }
     }
-    public function verDatos($usuario){
+    public function verDatos($usuarioNick){
         $usuario=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave FROM Usuario WHERE nick='$usuario'";
-        echo $cons;
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, rol FROM Usuario WHERE nick='$usuarioNick'";
+        
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
