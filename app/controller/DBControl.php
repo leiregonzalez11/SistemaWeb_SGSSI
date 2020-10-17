@@ -198,33 +198,21 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $idA=$aloj->getIdAlojamiento();
         $descr=$aloj->getDescripcion();
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
+        $consulta="INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) Values ('$descr', '$m2', '$cap', '$tipo')";
+        mysqli_query($enlace,$consulta);
+        $idA=mysqli_insert_id($enlace);
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
         $reg=mysqli_num_rows($existe);
-        if($reg==0){
-            $cons="SELECT idA FROM Alojamiento WHERE idAlojamiento='$idA'";
-            $resp=mysqli_query($enlace,$cons);
-            if (mysqli_num_rows($resp)){
-                $consulta="INSERT INTO Alojamiento (idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo) Values ('$idA', '$descr', '$m2', '$cap', '$tipo')";
-                mysqli_query($enlace,$consulta);
-            }
-            $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
-            $reg=mysqli_num_rows($existe);
-            mysqli_close ($enlace);
-            if($reg==1){
-                return true;
-            }
-            else{
-                return false;
-            }
+        mysqli_close ($enlace);
+        if($reg==1){
+            return $idA;
         }
         else{
-            mysqli_close ($enlace);
-            return false;
+            return -1;
         }
     }
 
