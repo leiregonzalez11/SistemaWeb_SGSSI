@@ -336,12 +336,12 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT * FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
+        $cons="SELECT idAlojamiento, num, foto, extension FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
                 if ($row=$res->fetch_assoc()){
-                        $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["Extension"]);
+                        $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["extension"]);
                 }
             }
         }
