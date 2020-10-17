@@ -197,11 +197,12 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
+        $idAl=$aloj->getIdAlojamiento();
         $descr=$aloj->getDescripcion();
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
-        $consulta="INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) Values ('$descr', '$m2', '$cap', '$tipo')";
+        $consulta="INSERT INTO Alojamiento (idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo) Values ('$idAl', '$descr', '$m2', '$cap', '$tipo')";
         mysqli_query($enlace,$consulta);
         $idA=mysqli_insert_id($enlace);
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
