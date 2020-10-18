@@ -56,8 +56,7 @@ function mostrarAlojamientoAdmin($id)
     <?php
     }
     ?>
-    <div id="principal">
-      <?php
+    <?php
       if (isset($_SESSION['alojamientoCreado'])) {
         echo "<p id='accion_alojamiento_correcta'>".$_SESSION['alojamientoCreado']."</p>";
         unset($_SESSION['alojamientoCreado']);
@@ -67,6 +66,8 @@ function mostrarAlojamientoAdmin($id)
         unset($_SESSION['alojamientoEditado']);
       }
       ?>
+    <div id="principal">
+      
       <form action="" method="POST" enctype="multipart/form-data">
         <div id="principales">
           <p>Datos principales</p>
