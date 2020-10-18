@@ -21,11 +21,11 @@ function modificar(){
         alert("La clave tiene que tener entre 6 y 15 caracteres");
             //return false;
     }
-    else if ((isNaN(telefono2)) || (!revisarLongitudTelefono())){
+    else if ((isNaN(telefono2)) || (!revisarLongitudTelefonoModif())){
         alert("El telefono introducido no es válido");
         //return false;
     }
-    else if (!dniCorrecto()){
+    else if (!dniCorrectoModif()){
     alert("El DNI no es correcto");
     //return false;
     }
@@ -37,11 +37,11 @@ function modificar(){
         alert("Los apellidos son muy largos");
         //return false;
     }
-    else if (!correoCorrecto()){
+    else if (!correoCorrectoModif()){
         alert("El correo electronico introducido no es válido");
         //return false;
     }
-    else if (!validarFechaMenorActual(fechaNac2)){
+    else if (!validarFechaMenorActualModif(fechaNac2)){
         alert("Fecha no válida");
         //return false;
     }
@@ -51,7 +51,7 @@ function modificar(){
     }    
 }
 
-function dniCorrecto(){
+function dniCorrectoModif(){
     var e = document.editar_info.dni_edit;
     var dni = e.value.toUpperCase();
   
@@ -70,7 +70,7 @@ function dniCorrecto(){
     }
   }
 
-  function correoCorrecto(){
+  function correoCorrectoModif(){
     var email = document.editar_info.mail_edit;
     var data = email.value;
     var exp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -84,7 +84,7 @@ function dniCorrecto(){
   }
 
   //Algoritmo obtenido en https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/
-  function validarFechaMenorActual(date){
+  function validarFechaMenorActualModif(date){
     var x=new Date();
     var fecha = date.split("/");
     x.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
@@ -96,7 +96,7 @@ function dniCorrecto(){
       return true;
   }
 
-  function revisarLongitudTelefono(){
+  function revisarLongitudTelefonoModif(){
     var e = document.editar_info.telefono_edit;
     var data = e.value;
     if(data.length !== 9){
