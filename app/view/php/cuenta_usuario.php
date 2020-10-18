@@ -22,8 +22,8 @@ function mostrarDatosCuenta(){
         <input type="text" name="dni_edit" id="dni_edit" value="<?=$usr->getDNI()?>"/>
         <label for="telefono_edit">Teléfono:</label>
         <input type="text" name="telefono_edit" id="telefono_edit" value="<?=$usr->getTelefono()?>"/>
-        <label for="fechNac_edit">Fecha de nacimiento:</label>
-        <input type="date" name="fechNac_edit" id="fechNac_edit" value="<?=$usr->getFechNac()?>"/>
+        <label for="fechaNac_edit">Fecha de nacimiento:</label>
+        <input type="date" name="fechaNac_edit" id="fechaNac_edit" value="<?=$usr->getFechNac()?>"/>
         <label for="mail_edit">Correo electrónico:</label>
         <input type="mail" name="mail_edit" id="mail_edit" value="<?=$usr->getEmail()?>"/>
         <label for="clv_edit">Contraseña:</label>
