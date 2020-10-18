@@ -46,6 +46,14 @@
         $DB = new DBControl();
         $arrayAlojamientos=$DB->VerAlojamientosPorTipo(null, $pTipo);
         
+        if(sizeof($arrayAlojamientos)==0){
+            ?>
+            <div id="contenido_vacio">
+            <h1>¡No hay contenido!</h1>
+            <p>¡Vaya! Esta página no tiene ningún alojamiento disponible. Compruebe más tarde si existe algún alojamiento disponible.</p>
+            </div>
+            <?php
+        }
         for($i=0; $i<sizeof($arrayAlojamientos); $i++){
             $fotoPortada=$DB->VerImagen($arrayAlojamientos[$i]->getIdAlojamiento(), 1);
 ?>  

@@ -15,9 +15,8 @@ main{
     
 }
 
-#listado_alojamientos{
-    /*border: 10px solid slateblue;*/
-    
+#contenido_vacio{
+    padding:1%;
 }
 
 #container_foto{
