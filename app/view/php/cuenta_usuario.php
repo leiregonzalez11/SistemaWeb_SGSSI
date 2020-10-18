@@ -11,7 +11,7 @@ function mostrarDatosCuenta(){
 <main>
   <h1>Editar cuenta de usuario</h1>
   <div id="principal">
-    <form name = "Formulario_editar" action="" method="POST" enctype="multipart/form-data">
+    <form id= "formulario_registro" name = "editar_info" action="" method="POST" enctype="multipart/form-data">
       <div id="principales">
         <div id="contenedor_datos">
         <label for="nombre_edit">Nombre:</label>
