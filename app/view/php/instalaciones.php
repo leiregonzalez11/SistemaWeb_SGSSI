@@ -7,8 +7,8 @@
       los días del año como una piscina infantil acuático para los días más calurosos del verano.
     </p>
     <div class="imagenes">
-      <img src="/view/img/fotosinstalaciones/parque infantil.jpg" alt="Parque infantil"/>
-      <img src="/view/img/fotosinstalaciones/piscina infantil.jpg" alt="Piscina infantil"/>
+      <img src="/view/img/fotosinstalaciones/parqueinfantil.jpg" alt="Parque infantil"/>
+      <img src="/view/img/fotosinstalaciones/piscinainfantil.jpg" alt="Piscina infantil"/>
     </div>
     <h2>Instalaciones de ocio</h2>
     <p>
@@ -19,7 +19,7 @@
     </p>
     <div class="imagenes">
       <img src="/view/img/fotosinstalaciones/ludoteca.jpg" alt="Ludoteca"/>
-      <img src="/view/img/fotosinstalaciones/bar chill out.jpg" alt="Bar chill out"/>
+      <img src="/view/img/fotosinstalaciones/barchillout.jpg" alt="Bar chill out"/>
       <img src="/view/img/fotosinstalaciones/recepcion.jpg" alt="Recepción"/>
     </div>
     <h2>Bar/Restaurante</h2>
