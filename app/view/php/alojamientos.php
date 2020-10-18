@@ -6,9 +6,9 @@
         $fotoAlojamientos="";
 
         switch($pTipo){
-            case "parcela_tienda":
-                $tipoAlojamiento="Parcela para tienda";
-                $descripcionAlojamiento="El lugar idóneo para realizar una acampada tanto para mayores como pequeños. Ponemos a tu disposición una parcela en la ue poder colocar tú tienda.";
+            case "tienda":
+                $tipoAlojamiento="Tienda";
+                $descripcionAlojamiento="La mejor opción para los amantes de la naturaleza. Les ofrecemos el poder alojarse en una tienda de campaña para vivir en un contacto constante con la naturaleza pero con todas las comodidades que les podamos ofrecer.";
                 $fotoAlojamientos="view/img/fotosalojamiento/tiendas/tienda21.jpg";
             break;
             case "parcela_caravana":
