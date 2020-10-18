@@ -25,6 +25,9 @@ sudo service apache2 stop
 ```
 Si no tiene Apache instalado, pero ha usado Docker con servidores web en otras ocasiones, es probable que necesite desconectar cualquier contenedor en ejecución (primero ejecutando ```docker ps``` para ver el identificador de contenedor -container ID- y luego ejecutando ```docker stop el_id_del_container```) que use el puerto 80 (columna PORTS cuando se listan los contenedores con ```docker ps```, en la parte izquierda de la flecha).
 
+## Panel de gestión
+Se entrega el sitio web vacío, sin alojamientos, pero con una cuenta de administrador. Para realizar gestiones (agregar alojamientos, modificarlos o borrarlos), inicia sesión con el Nick "Admin" y la contraseña "123abc" (la puedes cambiar en la sección "Editar Usuario").
+
 ## Preguntas no tan frecuentes
 - P: ¿Y la base de datos? ¿No tengo que agregarla manualmente?
 - R: Las imágenes Docker de bases de datos contienen un directorio "especial" (```/docker-entrypoint-initdb.d```/), en el cual todo fichero que se ponga ahí, es ejecutado por el SGBD. En este caso se ha creado un volumen que apunta a ese directorio y que tiene como enlace al fichero "database.sql", que contiene el script de creación de tablas.
