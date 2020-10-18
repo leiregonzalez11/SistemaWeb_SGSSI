@@ -3,13 +3,19 @@ Proyecto desarrollado por: Leire González López, Unai Hernández Gómez y Chri
 Las imágenes y vídeos empleados en el proyecto se han extraído de fuentes libres de derechos de autor o en su defecto, limitado por licencia Creative Commons. En concreto, los sitios web en los que se han extraído las imágenes son [Unsplash](https://unsplash.com/) y [Pixabay](https://pixabay.com/es/).
 Un porcentaje mínimo del código del proyecto (por ejemplo, carrusel en vista detallada de alojamientos) ha sido extraído de otras fuentes externas, respetando siempre su uso según términos y condiciones de la web de la que se obtiene dicho código y citando la fuente tomada en el código.
 
-
+## Requisitos previos
 Para iniciar el proyecto y trabajar con ello, se requiere tener instalado Docker.
 ## Pasos a seguir durante la instalación
 En la carpeta del proyecto, se puede observar un fichero, denominado Dockerfile. Este fichero se ha empleado para crear la imagen y subirla al repositorio DockerHub.
 Para arrancar toda la infraestructura, debe ejecutar el siguiente comando:
 ```console
 docker-compose up
+```
+
+## Permisos necesarios
+Se creará una carpeta en el directorio de trabajo (donde se encuentre el fichero docker-compose), llamada imgs_web. Esta carpeta debe pertenecer al usuario www-data para que el servidor pueda subir imágenes y éstas persistan. Se requiere ejecutar el siguiente comando:
+```console
+sudo chown www-data imgs_web
 ```
 
 ## Visualizar el sitio web
