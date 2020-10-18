@@ -36,7 +36,10 @@ if(isset($_POST['dni_reg'])){
                         $_POST['nickname_reg']);
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
-        $ctrRegistro->efectuarRegistro($usuario);
+        $resultRegistro=$ctrRegistro->efectuarRegistro($usuario);
+        if(!$resultRegistro){
+            $_SESSION['registro_incorrecto']="No se ha podido registrar el usuario. Puede que ya tenga otro usuario con el mismo DNI. Inténtelo de nuevo más tarde.";    
+        }
     }else{
         $_SESSION['registro_incorrecto']="No se ha podido registrar el usuario. Tal vez el nick ya exista. Pruebe con otro nick e inténtelo de nuevo.";
     }

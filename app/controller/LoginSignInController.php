@@ -31,6 +31,7 @@ class LoginSignInController{
             $_SESSION['id_usr']=$pUsuario->getNick();
             $_SESSION['rol_usr']="Cliente";
         }
+        return $resultadoRegistro;
     }
 
     /**

@@ -25,13 +25,13 @@ db:
     - "8889:3306"
 
 #Se puede descomentar el phpmyadmin para gestionar la base de datos
-#phpmyadmin:
-#  image: phpmyadmin/phpmyadmin:latest
-#  links:
-#    - db
-#  ports:
-#    - 8890:80
-#  environment:
-#    MYSQL_USER: admin
-#    MYSQL_PASSWORD: test
-#    MYSQL_DATABASE: database
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin:latest
+  links:
+    - db
+  ports:
+    - 8890:80
+  environment:
+    MYSQL_USER: admin
+    MYSQL_PASSWORD: test
+    MYSQL_DATABASE: database
