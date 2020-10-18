@@ -43,7 +43,7 @@
                 <label for="clv_val">Repita su contraseña:</label>
                 <input type="password" name="clave_val" id="clave_val" />
                 <div id="terminos">
-                    <label for="termChk">He leído y acepto los <a id="tyc" href="">Términos y condiciones</a></label><input type="checkbox" id="termChk" value="acepta_tyc" />
+                    <label for="termChk">He leído y acepto los <a id="tyc" href="index.php?vista=terminos" target="_blank">Términos y condiciones</a></label><input type="checkbox" id="termChk" value="acepta_tyc" />
                 </div>
                 <input type="button" class="btn" id="btn_reg" name="registrarse" onclick="validar()" value="Registrarse">
             </form>

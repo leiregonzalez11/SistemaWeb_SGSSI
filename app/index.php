@@ -124,6 +124,9 @@ if(isset($_GET['vista'])){
         case "quienes_somos":
             include("view/php/quienessomos.php");
         break;
+        case "terminos":
+            include("view/php/terminos.php");
+        break;
         default:
             include("view/php/home_interface.inc.php");
     }
