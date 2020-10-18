@@ -41,12 +41,15 @@ function modificar(){
             alert("El correo electronico introducido no es válido");
             //return false;
         }
-         else if (!validarFechaMenorActual(fechaNac)){
+         else if (!validarFechaMenorActual(fechaNac2)){
             alert("Fecha no válida");
             //return false;
         }
-        window.alert ("Cambios realizados correctamente");
-        document.editar_info.submit();
+        else{
+            window.alert ("Cambios realizados correctamente");
+            document.editar_info.submit();
+        }
+        
     }     
 }
 
