@@ -10,47 +10,45 @@ function modificar(){
     telefono2 = document.editar_info.telefono_edit.value;
     fechaNac2 = document.editar_info.fechaNac_edit.value;
 
-    if (dni2 == "" && nombre2 == "" && apellidos2 == "" && email2 == "" && clave2 =="" && clave2val ==""){
+    if (dni2 == "" && nombre2 == "" && apellidos2 == "" && email2 == "" && clave2 =="" && clave2val =="" && 
+        telefono2 =="" &&fechaNac2==""){
         window.alert ("Sin cambios");
     } 
-    else {
-        if (clave2 != clave2val){
-            alert ("Las contraseñas no coinciden");
-        }
-        else if (clave2.length<6 || clave2.length>15){
-            alert("La clave tiene que tener entre 6 y 15 caracteres");
+    else if (clave2 != clave2val){
+        alert ("Las contraseñas no coinciden");
+    }
+    else if (clave2.length<6 || clave2.length>15){
+        alert("La clave tiene que tener entre 6 y 15 caracteres");
             //return false;
-        }
-        else if ((isNaN(telefono)) || (!revisarLongitudTelefono())){
-            alert("El telefono introducido no es válido");
-            //return false;
-        }
-        else if (!dniCorrecto()){
-            alert("El DNI no es correcto");
-            //return false;
-        }
-        else if (nombre2.length>30){
-            alert("El nombre es muy largo");
-            //return false;
-        }
-        else if (apellidos2.length>120){
-            alert("Los apellidos son muy largos");
-            //return false;
-        }
-        else if (!correoCorrecto()){
-            alert("El correo electronico introducido no es válido");
-            //return false;
-        }
-         else if (!validarFechaMenorActual(fechaNac2)){
-            alert("Fecha no válida");
-            //return false;
-        }
-        else{
-            window.alert ("Cambios realizados correctamente");
-            document.editar_info.submit();
-        }
-        
-    }     
+    }
+    else if ((isNaN(telefono2)) || (!revisarLongitudTelefono())){
+        alert("El telefono introducido no es válido");
+        //return false;
+    }
+    else if (!dniCorrecto()){
+    alert("El DNI no es correcto");
+    //return false;
+    }
+    else if (nombre2.length>30){
+        alert("El nombre es muy largo");
+        //return false;
+    }
+    else if (apellidos2.length>120){
+        alert("Los apellidos son muy largos");
+        //return false;
+    }
+    else if (!correoCorrecto()){
+        alert("El correo electronico introducido no es válido");
+        //return false;
+    }
+    else if (!validarFechaMenorActual(fechaNac2)){
+        alert("Fecha no válida");
+        //return false;
+    }
+    else{
+        window.alert ("Cambios realizados correctamente");
+        document.editar_info.submit();
+    }    
 }
 
 function dniCorrecto(){
