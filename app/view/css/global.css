@@ -26,3 +26,13 @@ Fuentes
   #contenedor_texto{
 
   }
+
+  .imagenes{
+      display: flex;
+      flex-direction: row;
+  }
+
+  .imagenes img{
+      width: 100%;
+      margin: 1%;
+  }

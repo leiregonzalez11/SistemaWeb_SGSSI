@@ -6,7 +6,7 @@
       En nuestro camping disponemos de instalaciones para los más pequeños. Tanto parque infantil para todos 
       los días del año como una piscina infantil acuático para los días más calurosos del verano.
     </p>
-    <div class="imagen">
+    <div class="imagenes">
       <img src="/view/img/fotosinstalaciones/parqueinfantil.jpg" alt="Parque infantil"/>
       <img src="/view/img/fotosinstalaciones/piscinainfantil.jpg" alt="Piscina infantil"/>
     </div>
@@ -17,7 +17,7 @@
       el rato en todo momento. Por supuesto, se podrá ir a la recepción en todo momento y se podrá pasar todo 
       el tiempo que se quiera en ésta.
     </p>
-    <div class="imagen">
+    <div class="imagenes">
       <img src="/view/img/fotosinstalaciones/ludoteca.jpg" alt="Ludoteca"/>
       <img src="/view/img/fotosinstalaciones/bar chill out.jpg" alt="Bar chill out"/>
       <img src="/view/img/fotosinstalaciones/recepcion.jpg" alt="Recepción"/>
@@ -30,7 +30,7 @@
       infantiles pues, somos conscientes que hay edades en las que es más difícil que se coma de todo. Así 
       podrán todos comer a gusto.
     </p>
-    <div class="imagen">
+    <div class="imagenes">
       <img src="/view/img/fotosinstalaciones/restaurante.jpg" alt="Restaurante del camping"/>
     </div>
     <h2>Piscina y spa</h2>
@@ -41,7 +41,7 @@
       y una sauna. También ofrecemos servicios estéticos e incluso de servicio de masajista. Ambos estarán 
       disponibles a diario desde las 10:00 de la mañana y las 18:00 de la tarde.
     </p>
-    <div class="imagen">
+    <div class="imagenes">
       <img src="/view/img/fotosinstalaciones/piscina.jpg" alt="Piscina"/>
       <img src="/view/img/fotosinstalaciones/spa.jpg" alt="Spa"/>
     </div>
