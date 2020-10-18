@@ -71,6 +71,7 @@ class AlojamientoController
         $DB = new DBControl();
         $resultadoConsulta=$DB->anadirAlojamiento($alojamiento);
         if($resultadoConsulta!=-1){
+            $_SESSION['alojamientoCreado']="Se ha creado correctamente el alojamiento: Puedes comprobar sus datos <a href='index.php?vista=alojamientos&id_alojamiento=$resultadoConsulta'>aquí</a>";
             for($i=0;$i<4;$i++){
                 $fichero=$_FILES['foto_'.($i+1)];
                 if($fichero['name']!=""){
@@ -107,6 +108,7 @@ class AlojamientoController
         $DB = new DBControl();
         $resultadoConsulta=$DB->actualizarDatosAlojamiento($alojamiento);
         if($resultadoConsulta==true){
+            $_SESSION['alojamientoEditado']="Se han guardado los cambios correctamente";
             for($i=0;$i<4;$i++){
                 $fichero=$_FILES['foto_'.($i+1)];
                 if($fichero['name']!=""){

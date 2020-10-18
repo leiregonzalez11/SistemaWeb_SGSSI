@@ -57,6 +57,16 @@ function mostrarAlojamientoAdmin($id)
     }
     ?>
     <div id="principal">
+      <?php
+      if (isset($_SESSION['alojamientoCreado'])) {
+        echo "<p id='accion_alojamiento_correcta'>".$_SESSION['alojamientoCreado']."</p>";
+        unset($_SESSION['alojamientoCreado']);
+      }
+      if (isset($_SESSION['alojamientoEditado'])) {
+        echo "<p id='accion_alojamiento_correcta'>".$_SESSION['alojamientoEditado']."</p>";
+        unset($_SESSION['alojamientoEditado']);
+      }
+      ?>
       <form action="" method="POST" enctype="multipart/form-data">
         <div id="principales">
           <p>Datos principales</p>
@@ -92,9 +102,9 @@ function mostrarAlojamientoAdmin($id)
 
               if (!$encontrado) {
             ?>
-                <label for="foto_<?= ($i + 1) ?>">Imagen ranura <?= ($i + 1) ?> <?php if ($i==0) echo "(portada)";?>:</label>
+                <label for="foto_<?= ($i + 1) ?>">Imagen ranura <?= ($i + 1) ?> <?php if ($i == 0) echo "(portada)"; ?>:</label>
                 <input type="file" name="foto_<?= ($i + 1) ?>" id="foto_<?= ($i + 1) ?>" />
-                <input type="text" name="foto_desc_<?=($i+1)?>" placeholder="Descripción fotografía ranura <?=($i+1)?>..." />
+                <input type="text" name="foto_desc_<?= ($i + 1) ?>" placeholder="Descripción fotografía ranura <?= ($i + 1) ?>..." />
             <?php
               }
             }
