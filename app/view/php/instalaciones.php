@@ -3,8 +3,9 @@
   <div id="contenedor_texto">
     <h2>Instalaciones infantiles</h2>
     <p>
-      En nuestro camping disponemos de instalaciones para los más pequeños. Tanto parque infantil para todos
-      los días del año como una piscina infantil acuático para los días más calurosos del verano.
+      En nuestro camping disponemos de instalaciones para los más pequeños. El parque infantil, disponible todos
+      los días del año como la piscina infantil, disponible para disfrutar los días más calurosos del verano.
+      <dd><b> -Horario piscina infantil: Mañanas de 10:00 a 13:00 y tardes de 15:00 a 19:00</b></dd>
     </p>
     <div class="imagenes">
       <div class="container_img">
@@ -17,10 +18,11 @@
     </div>
     <h2>Instalaciones de ocio</h2>
     <p>
-      Disponemos por ejemplo de una ludoteca para principalmente los más pequeños. Aunque estas instalaciones
-      también lo pueden usar los adultos. Tambien disponemos de una terraza en el bar en el que se puede pasar
-      el rato en todo momento. Por supuesto, se podrá ir a la recepción en todo momento y se podrá pasar todo
-      el tiempo que se quiera en ésta.
+      Para el entretenimiento de los más pequeños (y el relax de los más mayores) el complejo dispone de una
+      ludoteca vigilada por un monitor titulado Además, disponemos de un bar chill out con una gran terraza donde 
+      poder pasar el rato en cualquier momento dentro del horario de éste.
+      <dd><b> -Horario ludoteca: Mañanas de 10:00 a 13:00 y tardes de 15:00 a 19:00</b></dd>
+      <dd><b> -Horario bar chill out: Mañanas de 10:00 a 13:00, tardes de 15:00 a 19:00 y noches de 22:00 a 02:00</b></dd>
     </p>
     <div class="imagenes">
       <div class="container_img">
@@ -38,11 +40,14 @@
     </div>
     <h2>Bar/Restaurante</h2>
     <p>
-      También disponemos de un restaurante en el que se sirve desayuno, comida y cena. En el desayuno habrá
-      varias opciones para que se pueda hacer un desayuno más al gusto del consumidor. En la comida y cena se
-      podrá elegir entre menú del día o diversos platos combinados y entrantes. Además disponemos de menús
-      infantiles pues, somos conscientes que hay edades en las que es más difícil que se coma de todo. Así
-      podrán todos comer a gusto.
+      En el complejo también se encuentra nuestro restaurante "Country Club", disponible todos los dias para desayuno,
+       comida y cena. El desayuno, tipo buffet, ofrece opciones para que se pueda hacer un desayuno más al gusto del 
+       consumidor. En la comida y cena se podrá elegir entre menú del día o diversos platos combinados y entrantes,
+       ofreciendo diversas opciones tanto para niños como para adultos.
+
+       <dd><b> -Horario Desayunos: De 08:00 a 11:00</b></dd>
+       <dd><b> -Horario Comidas: De 13:00 a 16:00</b></dd>
+       <dd><b> -Horario Cenas: De 20:00 a 23:00</b></dd>
     </p>
     <div class="imagenes">
       <div class="container_img">
@@ -52,11 +57,13 @@
     </div>
     <h2>Piscina y spa</h2>
     <p>
-      Disponemos además de una piscina vigilada entre las 08:00 de la mañana y las 20:00 de la noche por un
-      socorrista. Por esto, se podrá hacer uso de esta en cualquier momento dentro del horario. El spa estará
-      abierto en el mismo horario que la piscina. Dentro del spa disponemos entre otros elementos de un jacuzzi
-      y una sauna. También ofrecemos servicios estéticos e incluso de servicio de masajista. Ambos estarán
-      disponibles a diario desde las 10:00 de la mañana y las 18:00 de la tarde.
+      La piscina "Blue Lagoon", vigilada por un socorrista titulado, se encuentra también disponible para 
+      nuestros campistas en la época estival El spa, disponible durante todo el año, ofrece entre otros, jacuzzi,
+      piscina interior y una sauna, además de tratamiento estéticos y una amplia gama de masajes orientales.
+
+      <dd><b> -Horario Piscina: Horario ininterrupido entre las 08:00 y las 20:00</b></dd>
+      <dd><b> -Horario Spa: Horario ininterrupido entre las 08:00 y las 20:00</b></dd>
+      <dd><b> -Horario tratamientos: Mañanas de 10:00 a 13:00 y tardes de 15:00 a 18:00</b></dd>
     </p>
     <div class="imagenes">
       <div class="container_img">
