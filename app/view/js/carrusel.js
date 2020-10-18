@@ -1,6 +1,8 @@
 /*
 ESTE CÓDIGO SE HA COGIDO DE LA WEB DE W3SCHOOLS (https://www.w3schools.com/howto/howto_js_slideshow.asp) PARA
-ACELERAR EL DESARROLLO DEL PROYECTO
+ACELERAR EL DESARROLLO DEL PROYECTO.
+DADO QUE EL PROYECTO ES MATERIAL ACADÉMICO, SE RESPETA EL USO DEL CÓDIGO SEGÚN TÉRMINOS Y CONDICIONES DEL SITIO WEB 
+(https://www.w3schools.com/about/about_copyright.asp)
 */
 
 var slideIndex = 1;
