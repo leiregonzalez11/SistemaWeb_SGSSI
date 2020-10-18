@@ -77,6 +77,8 @@ $sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_inicia
     <script src="view/js/interactivo.js" async></script>
     <script src="view/js/validar_Usuario.js" async></script>
     <script src="view/js/modificar_usuario.js" async></script>
+    <audio src="view/img/Lluvia-1.mp3" autoplay loop>
+</audio>
     <?php
         $controladorTitulo=new TitleController();
         $controladorTitulo->generarTitulo();
