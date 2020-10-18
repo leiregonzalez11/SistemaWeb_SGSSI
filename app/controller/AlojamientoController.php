@@ -18,7 +18,7 @@ class AlojamientoController
         if (!isset($_GET['id_alojamiento'])) {
             if (isset($_GET['tipo'])) {
                 $tipo = $_GET['tipo'];
-                if ($tipo == "parcela_tienda" || $tipo == "parcela_caravana" || $tipo == "caravana" || $tipo == "bungalow") {
+                if ($tipo == "tienda" || $tipo == "parcela_caravana" || $tipo == "caravana" || $tipo == "bungalow") {
                     include("view/php/alojamientos.php");
                     mostrarListado($tipo);
                 } else {

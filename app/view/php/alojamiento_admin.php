@@ -64,7 +64,7 @@ function mostrarAlojamientoAdmin($id)
             <label for="tipo">Tipo alojamiento:</label>
             <select name="tipo" id="tipo">
 
-              <option value="parcela_tienda" <?= $selTienda ?>>Tienda</option>
+              <option value="tienda" <?= $selTienda ?>>Tienda</option>
               <option value="parcela_caravana" <?= $selCaravanaParcela ?>>Parcela para caravana</option>
               <option value="caravana" <?= $selCaravana ?>>Caravana</option>
               <option value="bungalow" <?= $selBungalow ?>>Bungalow</option>

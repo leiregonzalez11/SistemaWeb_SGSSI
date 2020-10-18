@@ -3,12 +3,12 @@ main{
 }
 
 
-input[type=text], input[type=password], input[type=number]{
+input[type=text], input[type=password], input[type=number], input[type=mail]{
     border: none;
     margin-top: 20px;
     margin-bottom: 20px;
-    height: 20%;
     font-size: 20px;
+    height: 40px;
     border-bottom: 2px solid #1c7406;
 }
 
