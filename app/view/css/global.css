@@ -32,15 +32,12 @@ Fuentes
       flex-direction: row;
   }
 
-  .imagenes img{
+  .container_img{
       width: 100%;
-      margin: 1%;
+      margin: 5px;
   }
 
-  .imagenes img:nth-child(1), .imagenes img:nth-child(4){
-    width: 50%;
-}
-
-  .imagenes img:nth-child(2){
-      width: 33%;
+  .imagenes img{
+      width: 100%;
+      height: 100%;
   }
