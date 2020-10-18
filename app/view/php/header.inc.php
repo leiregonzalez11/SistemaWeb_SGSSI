@@ -46,7 +46,7 @@ $rol="";
             <li id="Inicio"><a href="index.php">Inicio</a></li> 
             <li id="Alojamiento"><a>Alojamientos</a>
                 <ul>
-                    <li><a href="index.php?vista=alojamientos&tipo=parcela_tienda">Tiendas</a></li>
+                    <li><a href="index.php?vista=alojamientos&tipo=tienda">Tiendas</a></li>
                     <li><a href="index.php?vista=alojamientos&tipo=parcela_caravana">Parcela para Autocaravana</a></li>
                     <li><a href="index.php?vista=alojamientos&tipo=caravana">Caravanas</a></li>
                     <li><a href="index.php?vista=alojamientos&tipo=bungalow">Bungalows</a></li>
