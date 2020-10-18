@@ -9,9 +9,11 @@
     </p>
     <div class="imagenes">
       <div class="container_img">
+      <!-- Parque: https://c1.peakpx.com/wallpaper/621/868/878/playground-plant-trees-green-nature-wallpaper.jpg-->
         <img src="/view/img/fotosinstalaciones/parqueinfantil.jpg" alt="Parque infantil" />
       </div>
       <div class="container_img">
+      <!--Piscina Infantil: https://familiayturismo.com/img/blog/camping-cabopino-nueva-piscina-infantil-ninos-gratis.jpg-->
         <img src="/view/img/fotosinstalaciones/piscinainfantil.jpg" alt="Piscina infantil" />
       </div>
 
@@ -26,12 +28,15 @@
     </p>
     <div class="imagenes">
       <div class="container_img">
+      <!-- Ludoteca: https://www.madridlicencias.com/blog/wp-content/uploads/Licencia-Apertura-Ludoteca.jpg -->
         <img src="/view/img/fotosinstalaciones/ludoteca.jpg" alt="Ludoteca" />
       </div>
       <div class="container_img">
+      <!--Chill Out:https://imaginahome.com/wp-content/uploads/2015/07/cozy-outdoor-space-4112236-scaled.jpg -->
         <img src="/view/img/fotosinstalaciones/barchillout.jpg" alt="Bar chill out" />
       </div>
       <div class="container_img">
+      <!--Recepcion: https://cmsmultimedia.catalunya.com/mds/multimedia/482245/F1/-->
         <img src="/view/img/fotosinstalaciones/recepcion.jpg" alt="Recepción" />
       </div>
 
@@ -51,6 +56,7 @@
     </p>
     <div class="imagenes">
       <div class="container_img">
+      <!--Restaurante: https://c1.peakpx.com/wallpaper/797/927/759/diner-restaurant-chairs-local-wallpaper.jpg-->
       <img src="/view/img/fotosinstalaciones/restaurante.jpg" alt="Restaurante del camping" />
       </div>
       
@@ -67,13 +73,31 @@
     </p>
     <div class="imagenes">
       <div class="container_img">
+      <!--Piscina: https://images.pexels.com/photos/170156/pexels-photo-170156.jpeg?cs=srgb&dl=pexels-david-ortega-170156.jpg&fm=jpg -->
       <img src="/view/img/fotosinstalaciones/piscina.jpg" alt="Piscina" />
       </div>
       <div class="container_img">
+      <!--Spa: https://static.secureholiday.net/static/CMS/photos/000/023/000023953.jpg -->
       <img src="/view/img/fotosinstalaciones/spa.jpg" alt="Spa" />
       </div>
-      
-      
+    </div>
+
+      <h2> Baños comunes </h2>
+      <p>
+        Para los campistas que se alojen en nuestro camping, y principalmente para aquellos que se alojen en las tiendas,
+        nuestro camping dispone de baños comunes equipados con ducha, WC, lavabo y toallas con las que poder asearse 
+        disponibles las 24 horas  del dia.
+        <dd><b> Por motivo de la situación sanitaria el servicio de toallas queda excluido de los baños comunes</b></dd>
+      </p>
+      <div class="imagenes">
+      <div class="container_img">
+      <!--Imagen baños dentro: https://cf.bstatic.com/images/hotel/max1280x900/267/267723456.jpg -->
+      <img src="/view/img/fotosinstalaciones/bañosdentro.jpg" alt="Baños 1" />
+      </div>
+      <div class="container_img">
+      <!-- Imagen baños fuera: https://lh3.googleusercontent.com/proxy/8FRhNHxzJZP-cJNB7sbv1B0ywp7mqCwIpbe-xcXL0-X4VjXzXOjycSHIGBQrb5HDRcVKbHmZjiJbOpYD-_-JBgExZLBBfoLKe2BXTiXRmZe-XcrEwTNZAttNRQ0LJO8Owow4xYbkR7m5o2U1piFML_1mcYAZNcEbxHTLzkI -->
+      <img src="/view/img/fotosinstalaciones/bañosfuera.jpg" alt="Baños 2" />
+      </div> 
     </div>
   </div>
 </main>

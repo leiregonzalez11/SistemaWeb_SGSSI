@@ -4,6 +4,7 @@
   <h1>Nuestra filosofía</h1>
   <div id="contenedor_texto">
     <h2>Misión</h2>
+          <!-- Imagen unity: https://lh3.googleusercontent.com/iADrIZf47eC3mxyeK1xFVa6ICsOzIinmPeSkXF13z3eCSVOC1948rCOpvOsbvVtrscDQoRw=s159-->
           <img style="float:right; margin:10px;" src="view/img/unidad.png" width=450; height=150/>En nuestro camping sabemos que las vacaciones, en cualquier época del año, son lo más importante para
           muchos de nuestros clientes. La búsqueda de la diversión y el placer de un buen descanso son unas
           de las cosas que más buscamos sea cual sea la época del año.

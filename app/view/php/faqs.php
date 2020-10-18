@@ -3,7 +3,7 @@
   <h1>   PREGUNTAS MÁS FRECUENTES (FAQS)</h1>
   <div id="contenedor_texto">
     <h2><dd>¿Se admiten animales?</dd></h2>
-      <p>
+      <p> <!--Imagen faqs: https://programadorprestashop.com/wp-content/uploads/2020/07/que-son-las-faqs-o-preguntas-frecuentes-y-como-usarlas.png-->
         <dd> <img style="float:right; margin:10px;" src="view/img/faqs.png" width=450; height=250/>
           Como grandes amantes de la naturaleza y de los animales que somos, en nuestro camping 
           las mascotas están permitidas, excepto en las zonas comunes (excepto en recepción y en la 
