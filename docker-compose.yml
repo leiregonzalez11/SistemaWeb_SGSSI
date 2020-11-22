@@ -1,5 +1,6 @@
 web:
-   image: sgssiworks/camping_sgssi
+   #PROD image: sgssiworks/camping_sgssi
+   image: web
    environment:
      - ALLOW_OVERRIDE=true
    ports:
@@ -7,7 +8,8 @@ web:
    links:
      - db
    volumes:
-     - ./imgs_web:/var/www/html/view/img/web_app
+     #PROD - ./imgs_web:/var/www/html/view/img/web_app
+     - ./app:/var/www/html/
 
 db:
   image: mariadb

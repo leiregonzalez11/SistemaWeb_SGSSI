@@ -3,6 +3,17 @@ Proyecto desarrollado por: Leire González López, Unai Hernández Gómez y Chri
 Las imágenes y vídeos empleados en el proyecto se han extraído de fuentes libres de derechos de autor o en su defecto, limitado por licencia Creative Commons. En concreto, los sitios web en los que se han extraído las imágenes son [Unsplash](https://unsplash.com/) y [Pixabay](https://pixabay.com/es/).
 Un porcentaje mínimo del código del proyecto (por ejemplo, carrusel en vista detallada de alojamientos) ha sido extraído de otras fuentes externas, respetando siempre su uso según términos y condiciones de la web de la que se obtiene dicho código y citando la fuente tomada en el código.
 
+# VERSIÓN DE AUDITORÍA
+Es necesario realizar los siguientes pasos desde cero para poder realizar las modificaciones pertinentes en el código y comprobar éstas posteriormente de manera eficaz:
+ - Eliminar cualquier contenedor docker que se tenga.
+ - Crear imagen mediante Dockerfile.
+ 
+ Para:
+  - Eliminar contenedores:
+    - Listarlos mediante ``` docker images ``` y borrar cada uno mediante ```docker rmi IMAGE_ID```, donde ```IMAGE_ID``` es el valor de la columna ```IMAGE ID``` (usar el argumento --force si da error de borrado).
+  - Crear imagen mediante Dockerfile mediante ```docker build -t="web" .```
+
+
 ## Requisitos previos
 Para iniciar el proyecto y trabajar con ello, se requiere tener instalado Docker.
 ## Pasos a seguir durante la instalación
