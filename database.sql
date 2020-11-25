@@ -63,6 +63,7 @@ CREATE TABLE `Usuario` (
   `FechNac` date NOT NULL,
   `email` varchar(100) NOT NULL,
   `clave` varchar(16) NOT NULL,
+  `cuenta` varchar(30) NOT NULL,
   `rol` enum('Admin','Cliente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -70,8 +71,8 @@ CREATE TABLE `Usuario` (
 -- Dumping data for table `Usuario`
 --
 
-INSERT INTO `Usuario` (`DNI`, `nick`, `Nombre`, `Apellidos`, `telefono`, `FechNac`, `email`, `clave`, `rol`) VALUES
-('11111111A', 'admin', 'Admin', 'Administrador', 111111111, '0000-00-00', 'admin@email.com', '123abc', 'Admin');
+INSERT INTO `Usuario` (`DNI`, `nick`, `Nombre`, `Apellidos`, `telefono`, `FechNac`, `email`, `clave`, `cuenta` `rol`) VALUES
+('11111111A', 'admin', 'Admin', 'Administrador', 111111111, '0000-00-00', 'admin@email.com', '123abc', '1216a1dsa4a' , 'Admin');
 
 --
 -- Indexes for dumped tables
