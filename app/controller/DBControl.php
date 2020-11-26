@@ -25,7 +25,9 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='SHA2($contr,512)'";
+        $sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
+        $contrase=$sal.$contr;
+        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='$sal.SHA2($contrase,512)'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
@@ -53,9 +55,11 @@ class DBControl{
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
         $llave=$this->key;
+        $sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
+        $contrase=$sal.$clave;
 
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
-            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', 'SHA2($clave,512)', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
+            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$sal.SHA2($contrase,512)', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
             if($res){
@@ -105,8 +109,10 @@ class DBControl{
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
         $llave=$this->key;
+        $sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
+        $contrase=$sal.$clave;
 
-        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='SHA2($clave,512)' WHERE nick='$nick'";
+        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='$sal.SHA2($contrase,512)' WHERE nick='$nick'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);

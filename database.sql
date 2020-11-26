@@ -62,7 +62,7 @@ CREATE TABLE `Usuario` (
   `telefono` int(9) NOT NULL,
   `FechNac` date NOT NULL,
   `email` varchar(100) NOT NULL,
-  `clave` varchar(16) NOT NULL,
+  `clave` varchar(100) NOT NULL,
   `cuenta` varchar(30) NOT NULL,
   `rol` enum('Admin','Cliente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
