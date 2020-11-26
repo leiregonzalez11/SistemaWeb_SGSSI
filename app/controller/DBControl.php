@@ -6,6 +6,7 @@ class DBControl{
     private $pwd="root";
     private $dbName="database";
     private $hostname="db";
+    private $key='8A68AKSGGBHBSDEW465892456IWR38YR732';
 
 
     /**
@@ -51,9 +52,10 @@ class DBControl{
         $nick=$usu->getNick();
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
+        $llave=$this->key;
 
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
-            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$cuenta', '$rol')";
+            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
             if($res){
@@ -69,11 +71,12 @@ class DBControl{
     }
     public function verDatos($usuarioNick){
         $usuario=null;
+        $llave=$this->key;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, cuenta, rol FROM Usuario WHERE nick='$usuarioNick'";
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, $llave), rol FROM Usuario WHERE nick='$usuarioNick'";
         
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
@@ -100,8 +103,10 @@ class DBControl{
         $fecha=$usu->getFechNac();
         $email=$usu->getEmail();
         $clave=$usu->getClave();
+        $cuenta=$usu->getCuenta();
+        $llave=$this->key;
 
-        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', email='$email', clave='$clave' WHERE nick='$nick'";
+        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='$clave' WHERE nick='$nick'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
