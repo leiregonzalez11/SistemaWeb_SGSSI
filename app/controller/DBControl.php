@@ -50,9 +50,10 @@ class DBControl{
         $rol=$usu->getRol();
         $nick=$usu->getNick();
         $clave=$usu->getClave();
+        $cuenta=$usu->getCuenta();
 
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
-            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$rol')";
+            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', '$cuenta', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
             if($res){
@@ -72,13 +73,13 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, rol FROM Usuario WHERE nick='$usuarioNick'";
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, cuenta, rol FROM Usuario WHERE nick='$usuarioNick'";
         
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
                 if($row=$res->fetch_assoc()){
-                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"]);
+                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["cuenta"], $row["rol"], $row["nick"]);
                 }
             }
         }
