@@ -25,7 +25,7 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='$contr'";
+        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='SHA2($contr,512)'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
@@ -55,7 +55,7 @@ class DBControl{
         $llave=$this->key;
 
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
-            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$clave', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
+            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', 'SHA2($clave,512)', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
             if($res){
@@ -106,7 +106,7 @@ class DBControl{
         $cuenta=$usu->getCuenta();
         $llave=$this->key;
 
-        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='$clave' WHERE nick='$nick'";
+        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='SHA2($clave,512)' WHERE nick='$nick'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
