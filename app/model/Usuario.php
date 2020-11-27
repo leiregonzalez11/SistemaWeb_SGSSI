@@ -26,6 +26,7 @@ class Usuario{
      * @param clave Contraseña (en función del contexto, en hash o texto plano)
      * @param rol Rol del usuario (Admin o Cliente)
      * @param nick Nick del usuario
+     * @param cuenta Cuenta del usuario
      */
     public function __construct($DNI, $nombre, $apellidos, $telefono, $fechNac, $email, $clave, $rol, $nick, $cuenta){
         $this->DNI=$DNI;
