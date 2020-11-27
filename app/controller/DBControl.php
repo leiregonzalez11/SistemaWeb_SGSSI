@@ -64,11 +64,12 @@ class DBControl{
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
         $llave=$this->key;
-        $sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
-        $contrase=$sal.$clave;
+        //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
+        //$contrase=$sal.$clave;
+        $contrase=password_hash($clave, PASSWORD_BCRYPT);
 
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
-            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$sal.SHA2($contrase,512)', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
+            $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$contrase', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
             $res=mysqli_query($enlace,$consulta);
             mysqli_close ($enlace);
             if($res){
@@ -90,15 +91,11 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$llave') as 'cuenta', rol FROM Usuario WHERE nick='$usuarioNick'";
-        echo $cons."<br>";
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
                 if($row=$res->fetch_assoc()){
-                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);
-                    echo "<br>".$row['rol']."<br>";
-                    var_dump($usuario);
-                    
+                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);                    
                 }
             }
         }
@@ -121,10 +118,10 @@ class DBControl{
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
         $llave=$this->key;
-        $sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
-        $contrase=$sal.$clave;
-
-        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='$sal.SHA2($contrase,512)' WHERE nick='$nick'";
+        //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
+        //$contrase=$sal.$clave;
+        $contrase=password_hash($clave, PASSWORD_BCRYPT);
+        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='$contrase' WHERE nick='$nick'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
         mysqli_close ($enlace);
