@@ -63,7 +63,7 @@ CREATE TABLE `Usuario` (
   `FechNac` date NOT NULL,
   `email` varchar(100) NOT NULL,
   `clave` TEXT NOT NULL,
-  `cuenta` varchar(30) NOT NULL,
+  `cuenta` BLOB NOT NULL,
   `rol` enum('Admin','Cliente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -73,7 +73,7 @@ CREATE TABLE `Usuario` (
 
 -- Clave de Admin: 123abc
 INSERT INTO `Usuario` (`DNI`, `nick`, `Nombre`, `Apellidos`, `telefono`, `FechNac`, `email`, `clave`, `cuenta`, `rol`) VALUES
-('11111111A', 'admin', 'Admin', 'Administrador', 111111111, '0000-00-00', 'admin@email.com', '$2y$10$cI0NukwYTDbyx.YDsE6Haefpn1h2eUMVyEf96Fo.FYzwaef30J3ve', '1216a1dsa4a' , 'Admin');
+('11111111A', 'admin', 'Admin', 'Administrador', 111111111, '0000-00-00', 'admin@email.com', '$2y$10$cI0NukwYTDbyx.YDsE6Haefpn1h2eUMVyEf96Fo.FYzwaef30J3ve', AES_ENCRYPT('ES481324567899846', '8A68AKSGGBHBSDEW465892456IWR38YR732') , 'Admin');
 
 --
 -- Indexes for dumped tables
