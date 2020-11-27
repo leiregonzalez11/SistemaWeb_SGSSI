@@ -33,7 +33,8 @@ if(isset($_POST['dni_reg'])){
                         $_POST['mail_reg'],
                         $_POST['clave_reg'],
                         'Cliente',
-                        $_POST['nickname_reg']);
+                        $_POST['nickname_reg'],
+                        '12345678');
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $resultRegistro=$ctrRegistro->efectuarRegistro($usuario);
@@ -53,7 +54,8 @@ if(isset($_POST['dni_reg'])){
                         $_POST['mail'],
                         $_POST['clave'],
                         null,
-                        $_POST['nickname']);
+                        $_POST['nickname'],
+                        null);
     $ctrInicioSesion=new LoginSignInController();
     if($ctrInicioSesion->validarInicioSesion($usuario)){
         $ctrInicioSesion->efectuarInicioSesion($usuario);

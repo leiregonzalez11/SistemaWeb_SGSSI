@@ -25,15 +25,24 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
-        $contrase=$sal.$contr;
-        $consulta ="SELECT DNI FROM Usuario WHERE nick='$nick' AND clave='$sal.SHA2($contrase,512)'";
+        //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
+        //$contrase=$sal.$contr;
+        
+        $consulta ="SELECT DNI, clave FROM Usuario WHERE nick='$nick'";
+        
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
 
         if($num==1){
-            return true;
+            $row=$resultado->fetch_assoc();
+            $claveVerif= $row['clave'];
+            if(password_verify($contr, $claveVerif)){
+                return true;
+            }else{
+                return false;
+            }
+            
         }
         else{
             return false;
@@ -80,13 +89,16 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, $llave), rol FROM Usuario WHERE nick='$usuarioNick'";
-        
+        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$llave') as 'cuenta', rol FROM Usuario WHERE nick='$usuarioNick'";
+        echo $cons."<br>";
         $res=mysqli_query($enlace,$cons);
         if($res!=false){
             if($res->num_rows==1){
                 if($row=$res->fetch_assoc()){
-                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["cuenta"], $row["rol"], $row["nick"]);
+                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);
+                    echo "<br>".$row['rol']."<br>";
+                    var_dump($usuario);
+                    
                 }
             }
         }
