@@ -12,7 +12,11 @@ Es necesario realizar los siguientes pasos desde cero para poder realizar las mo
   - Eliminar contenedores:
     - Listarlos mediante ``` docker images ``` y borrar cada uno mediante ```docker rmi IMAGE_ID```, donde ```IMAGE_ID``` es el valor de la columna ```IMAGE ID``` (usar el argumento --force si da error de borrado).
   - Crear imagen mediante Dockerfile mediante ```docker build -t="web" .```
+## Recargando la base de datos tras modificaciones
+En el caso de haberse creado un nuevo campo en la base de datos, para que éste aparezca, es necesario eliminar el fichero de base de datos, para que, de ese modo, se ejecute el fichero ```database.sql``` que contiene el script de creación de base de datos.
+Para eliminar dicho fichero, es necesario ejecutar el comando ```sudo rm -r mysql```.
 
+#
 
 ## Requisitos previos
 Para iniciar el proyecto y trabajar con ello, se requiere tener instalado Docker.
