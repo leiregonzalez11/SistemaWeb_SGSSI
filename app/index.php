@@ -2,11 +2,20 @@
 ini_set("display_erros", "on"); //Muestra errores del parser PHP -BORRAR EN PRODUCCIÓN
 session_start();
 
+
 if(isset($_GET['accion']) && $_GET['accion']=="logout"){
     session_destroy();
     header("Location: index.php");
 }
 
+if(isset($_SESSION['tiempo'])){
+    $time=intval($_SESSION['tiempo']);
+    if(intval(time())>($time+60) && isset($_SESSION['sesion_iniciada'])){
+        session_destroy();
+        header("Location: index.php?inactivo=true");
+    }
+}
+$_SESSION['tiempo']=time();
 
 include("controller/CSSDisplayController.php");
 include("controller/TitleController.php");

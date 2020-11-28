@@ -12,6 +12,11 @@
                 echo "<p id='error_inicio_sesion'>" . $_SESSION['inicio_sesion_incorrecto'] . "</p>";
                 unset($_SESSION['inicio_sesion_incorrecto']);
             }
+
+            if(isset($_GET['inactivo'])){
+                echo "<p id='error_inicio_sesion'>Se ha expirado la sesión por tiempo de inactividad. Por favor, inicie de sesión de nuevo.</p>";
+                
+            }
             ?>
             <form action="" method="POST">
                 <!--Email-->
