@@ -66,7 +66,13 @@ class DBControl{
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
         $contrase=password_hash($clave, PASSWORD_BCRYPT);
-
+        $nick=mysqli_real_escape_string($enlace,$nick);
+        $dni=mysqli_real_escape_string($enlace,$dni);
+        $Nombre=mysqli_real_escape_string($enlace,$Nombre);
+        $Apellidos=mysqli_real_escape_string($enlace,$Apellidos);
+        $telf=mysqli_real_escape_string($enlace,$telf);
+        $fecha=mysqli_real_escape_string($enlace,$fecha);
+        $email=mysqli_real_escape_string($enlace,$email);
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
             $consulta="INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES ('$dni', '$nick', '$Nombre', '$Apellidos', '$telf', '$fecha', '$email', '$contrase', 'AES_ENCRYPT($cuenta,$llave)', '$rol')";
             $res=mysqli_query($enlace,$consulta);
@@ -86,6 +92,7 @@ class DBControl{
         $usuario=null;
         $llave=$this->key;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        $usuarioNick=mysqli_real_escape_string($enlace,$usuarioNick);
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -116,6 +123,15 @@ class DBControl{
         $email=$usu->getEmail();
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
+
+        $nick=mysqli_real_escape_string($enlace,$nick);
+        $dni=mysqli_real_escape_string($enlace,$dni);
+        $Nombre=mysqli_real_escape_string($enlace,$Nombre);
+        $Apellidos=mysqli_real_escape_string($enlace,$Apellidos);
+        $telf=mysqli_real_escape_string($enlace,$telf);
+        $fecha=mysqli_real_escape_string($enlace,$fecha);
+        $email=mysqli_real_escape_string($enlace,$email);
+
         $llave=$this->key;
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
@@ -129,6 +145,7 @@ class DBControl{
 
     public function cambiarRol($nick){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        $nick=mysqli_real_escape_string($enlace,$nick);
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -151,6 +168,7 @@ class DBControl{
 
     public function eliminarUsuario($nick){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        $nick=mysqli_real_escape_string($enlace,$nick);
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -174,6 +192,7 @@ class DBControl{
     public function VerAlojamiento($idA){
         $aloj=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        $idA=mysqli_real_escape_string($enlace,$idA);
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -192,6 +211,8 @@ class DBControl{
 
     public function VerAlojamientosPorTipo($idA, $tipo){
         $enlace=mysqli_connect($this->hostname,$this->user,$this->pwd,$this->dbName);
+        $idA=mysqli_real_escape_string($enlace,$idA);
+        $tipo=mysqli_real_escape_string($enlace,$tipo);
         $alojamientos=array();
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
@@ -221,6 +242,12 @@ class DBControl{
         $m2=$aloj->getMetrosCuadrados();
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
+
+        $descr=mysqli_real_escape_string($enlace,$descr);
+        $m2=mysqli_real_escape_string($enlace,$m2);
+        $cap=mysqli_real_escape_string($enlace,$cap);
+        $tipo=mysqli_real_escape_string($enlace,$tipo);
+
         $consulta="INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) Values ('$descr', '$m2', '$cap', '$tipo')";
         mysqli_query($enlace,$consulta);
         $idA=mysqli_insert_id($enlace);
@@ -237,6 +264,7 @@ class DBControl{
 
     public function eliminarAlojamiento($idAl){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -264,6 +292,13 @@ class DBControl{
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
+        $descr=mysqli_real_escape_string($enlace,$descr);
+        $m2=mysqli_real_escape_string($enlace,$m2);
+        $cap=mysqli_real_escape_string($enlace,$cap);
+        $tipo=mysqli_real_escape_string($enlace,$tipo);
+
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -291,6 +326,11 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
+
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
+        $num=mysqli_real_escape_string($enlace,$num);
+        $foto=mysqli_real_escape_string($enlace,$foto);
+
         $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'");
         $reg=mysqli_num_rows($existe);
         if ($reg==0){
@@ -314,6 +354,10 @@ class DBControl{
 
     public function eliminarImagen($idAl, $num){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
+        $num=mysqli_real_escape_string($enlace,$num);
+
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -344,6 +388,11 @@ class DBControl{
         $num=$imag->getNum();
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
+
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
+        $num=mysqli_real_escape_string($enlace,$num);
+        $foto=mysqli_real_escape_string($enlace,$foto);
+
         $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='$idAl' AND num='$num'";
         mysqli_query($enlace,$cons);
         $nu=mysqli_affected_rows($enlace);
@@ -353,6 +402,10 @@ class DBControl{
     public function VerImagen($idAl, $num){
         $imagen=null;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
+        $num=mysqli_real_escape_string($enlace,$num);
+
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
@@ -370,6 +423,9 @@ class DBControl{
     public function VerImagenes($idAl){
         $imagenes=array();
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+
+        $idAl=mysqli_real_escape_string($enlace,$idAl);
+
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
