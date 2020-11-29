@@ -29,7 +29,7 @@ class DBControl{
         //$contrase=$sal.$contr;
         
         $consulta ="SELECT DNI, clave FROM Usuario WHERE nick='$nick'";
-        
+        $nick=mysqli_real_escape_string($enlace,$nick);
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
