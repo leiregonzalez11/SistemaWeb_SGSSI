@@ -27,9 +27,8 @@ class DBControl{
         }
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$contr;
-        
-        $consulta ="SELECT DNI, clave FROM Usuario WHERE nick='$nick'";
         $nick=mysqli_real_escape_string($enlace,$nick);
+        $consulta ="SELECT DNI, clave FROM Usuario WHERE nick='$nick'";
         $resultado=mysqli_query($enlace,$consulta);
         $num=mysqli_num_rows ($resultado);
         mysqli_close ($enlace);
