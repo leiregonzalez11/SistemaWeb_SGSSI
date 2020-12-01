@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<log_history>
+    <login_attemp>
+        <username>usuario</username>
+        <ip_address>127.0.0.1</ip_address>
+        <date>20201201T12:00</date>
+        <login_successful>True</login_successful>
+    </login_attemp>
+</log_history>
