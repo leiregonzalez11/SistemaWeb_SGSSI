@@ -225,12 +225,20 @@ class DBControl{
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
 
-        $consulta="INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) Values ('$descr', '$m2', '$cap', '$tipo')";
-        mysqli_query($enlace,$consulta);
         $idA=mysqli_insert_id($enlace);
         $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
         $reg=mysqli_num_rows($existe);
         mysqli_close ($enlace);
+
+        $stmt=$enlace->prepare("INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss",$descr, $m2, $cap, $tipo);
+        $stmt->execute();
+        $stmt->close();
+        $idA=mysqli_insert_id($enlace);
+        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
+        $reg=mysqli_num_rows($existe);
+        mysqli_close ($enlace);
+
         if($reg==1){
             return $idA;
         }
@@ -300,12 +308,12 @@ class DBControl{
         $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'");
         $reg=mysqli_num_rows($existe);
         if ($reg==0){
-            $cons="INSERT INTO Galeria (idAlojamiento, num, foto, extension) Values ('$idAl','$num','$foto', '$exten')";
-            mysqli_query($enlace,$cons);
-            $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num';");
-            $reg=mysqli_num_rows($existe);
-            mysqli_close ($enlace);
-            if($reg==1){
+
+            $stmt=$enlace->prepare("INSERT INTO Galeria (idAlojamiento, num, foto, extension) VALUES (?,?,?,?)");
+            $stmt->bind_param("ssss",$idAl, $num, $foto, $exten);
+            $res=$stmt->execute();
+            $stmt->close();
+            if($res==1){
                 return true;
             }
             else{
