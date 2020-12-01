@@ -31,10 +31,10 @@ class LoginHistory{
             $k=0;
             $valores=array();
             for($i=0; $i<sizeof($nodo->childNodes); $i++){
-                if($i%2!=0){
+                if($nodo->childNodes[$i]->nodeName!="#text"){
                     $nodosHijo=$nodo->childNodes[$i];
                     for($j=0; $j<sizeof($nodosHijo->childNodes); $j++){
-                        if($j%2!=0){
+                        if($nodosHijo->childNodes[$j]->nodeName!="#text"){
                             $nodoAnalizar=$nodosHijo->childNodes[$j];
                             $valor= $nodoAnalizar->nodeValue;
                             $valores[$k]=$valor;
