@@ -67,8 +67,9 @@ class DBControl{
         $contrase=password_hash($clave, PASSWORD_BCRYPT);
     
         if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
-            $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, 'AES_ENCRYPT($cuenta,$llave)',?)");
-            $res=$stmt->bind_param("sss",$dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $contrase, $rol);
+            $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, AES_ENCRYPT(?,'$llave'),?)");
+            $stmt->bind_param("ssssisssss",$dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $contrase, $cuenta, $rol);
+            $res=$stmt->execute();
             $stmt->close();
 
             if($res){
