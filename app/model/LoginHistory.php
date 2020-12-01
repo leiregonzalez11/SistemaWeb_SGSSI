@@ -20,31 +20,36 @@ class LoginHistory{
     }
 
     //https://www.php.net/manual/es/intro.xmlreader.php
+    //https://www.php.net/manual/es/domdocument.getelementsbytagname.php
     private function readXML(){
         
-        $xml=new XMLReader();
-        $bool=$xml->open("login_record.xml");
-        if($bool){
-            $xml->read();
-            
-            $nodo=$xml->expand();
-            $k=0;
-            $valores=array();
-            for($i=0; $i<sizeof($nodo->childNodes); $i++){
-                if($nodo->childNodes[$i]->nodeName!="#text"){
-                    $nodosHijo=$nodo->childNodes[$i];
-                    for($j=0; $j<sizeof($nodosHijo->childNodes); $j++){
-                        if($nodosHijo->childNodes[$j]->nodeName!="#text"){
-                            $nodoAnalizar=$nodosHijo->childNodes[$j];
-                            $valor= $nodoAnalizar->nodeValue;
-                            $valores[$k]=$valor;
-                            $k++;
-                        }
+        $doc=new DOMDocument();
+        $doc->load("login_record.xml");
+        $elementos=$doc->getElementsByTagName("login_attempt");
+        for($i=0; $i<sizeof($elementos); $i++){
+            $lhe=new LoginHistoryElement(null, null, null, null);
+            $listaElemConcreto=$elementos[$i]->childNodes;
+            foreach($listaElemConcreto as $nodo){
+                
+                if($nodo->nodeName!="#text"){
+                    switch($nodo->nodeName){
+                        case "username":
+                            $lhe->setUsuario($nodo->nodeValue);
+                        break;
+                        case "ip_address":
+                            $lhe->setIpAddr($nodo->nodeValue);
+                        break;
+                        case "date":
+                            $lhe->setLoginDate($nodo->nodeValue);
+                        break;
+                        case "login_successful":
+                            $lhe->setSuccessful($nodo->nodeValue);
+                        break;
                     }
-                    $k=0;
-                    array_push($this->history, new LoginHistoryElement($valores[0], $valores[1], $valores[2], $valores[3]));
                 }
+                
             }
+            array_push($this->history, $lhe);
         }
     }
 
