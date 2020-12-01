@@ -50,7 +50,7 @@ nav a:hover{
 
 }
 
-.datos_identificacion_reg a, .datos_identificacion_log a, .nuevo_alojamiento a{
+.datos_identificacion_reg a, .datos_identificacion_log a, .nuevo_alojamiento a, .logs a{
     /*background-color: #104104;*/
     font-size: 20px;
     padding: 2%;
@@ -64,6 +64,9 @@ nav a:hover{
     /*border: 10px solid orange;*/
     grid-template-columns:  30%  30%  20%  20%;
     background-color: #000000;
+}
+.logs{
+    grid-column: 1;
 }
 
 .nuevo_alojamiento{

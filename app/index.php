@@ -26,6 +26,10 @@ include("controller/AlojamientoController.php");
 include("model/Usuario.php");
 include("model/Alojamiento.php");
 include("model/Galeria.php");
+
+include("model/LoginHistoryElement.php");
+include("model/LoginHistory.php");
+
 //$_SESSION['sesion_iniciada']=true;
 //$_SESSION['usr_rol']="Admin";
 //ANTES DE NADA VALIDAMOS SI HA INICIADO SESIÓN EL USUARIO, YA QUE
@@ -137,6 +141,9 @@ if(isset($_GET['vista'])){
         break;
         case "terminos":
             include("view/php/terminos.php");
+        break;
+        case "logs":
+            include("view/php/logs.php");
         break;
         default:
             include("view/php/home_interface.inc.php");

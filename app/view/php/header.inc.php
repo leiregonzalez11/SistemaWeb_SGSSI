@@ -25,6 +25,9 @@ $rol="";
                 <?php
                     if($rol=="Admin"){
                 ?>
+            <li class="logs">
+                <a href="index.php?vista=logs">REGISTROS DE SESIÓN</a>
+            </li>
             <li class="nuevo_alojamiento">
                 <a href="index.php?vista=alojamientos&id_alojamiento=nuevo">NUEVO ALOJAMIENTO</a>
             </li>
