@@ -3,7 +3,13 @@
     <login_attempt>
         <username>usuario</username>
         <ip_address>127.0.0.1</ip_address>
-        <date>20201201T12:00</date>
+        <date>1606857800</date>
         <login_successful>True</login_successful>
+    </login_attempt>
+    <login_attempt>
+        <username>usuario</username>
+        <ip_address>127.0.0.1</ip_address>
+        <date>1606857800</date>
+        <login_successful>False</login_successful>
     </login_attempt>
 </log_history>

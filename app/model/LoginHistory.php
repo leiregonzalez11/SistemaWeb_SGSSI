@@ -9,6 +9,7 @@ class LoginHistory{
 
     public function getHistorial(){
         if($this->history==null){
+            $this->history=array();
             $this->readXML();
         }
         return $this->history;
@@ -23,13 +24,27 @@ class LoginHistory{
         
         $xml=new XMLReader();
         $bool=$xml->open("login_record.xml");
-        
         if($bool){
-            echo "A<br>";
-            var_dump($xml);
-            echo "B<br>";
-        }else{
-            echo "Ops";
+            $xml->read();
+            
+            $nodo=$xml->expand();
+            $k=0;
+            $valores=array();
+            for($i=0; $i<sizeof($nodo->childNodes); $i++){
+                if($i%2!=0){
+                    $nodosHijo=$nodo->childNodes[$i];
+                    for($j=0; $j<sizeof($nodosHijo->childNodes); $j++){
+                        if($j%2!=0){
+                            $nodoAnalizar=$nodosHijo->childNodes[$j];
+                            $valor= $nodoAnalizar->nodeValue;
+                            $valores[$k]=$valor;
+                            $k++;
+                        }
+                    }
+                    $k=0;
+                    array_push($this->history, new LoginHistoryElement($valores[0], $valores[1], $valores[2], $valores[3]));
+                }
+            }
         }
     }
 

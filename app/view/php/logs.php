@@ -9,23 +9,33 @@ if (isset($_SESSION['rol_usr'])) {
             break;
         case "Admin":
 
-            $lh=new LoginHistory();
-            $lh->getHistorial();
+            $lhist=new LoginHistory();
+            $lh=$lhist->getHistorial();
             ?>
             <main>
                 <table>
                     <tr>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>C</th>
-                        <th>D</th>
+                        <th>Nombre de usuario</th>
+                        <th>Dirección IP</th>
+                        <th>Fecha de inicio de sesión</th>
+                        <th>¿Inicio de sesión correcto?</th>
                     </tr>
-                    <tr>
-                    <td>A'</td>
-                    <td>B'</td>
-                    <td>C'</td>
-                    <td>D'</td>
-                    </tr>
+                    <?php
+                    for($i=0; $i<sizeof($lh); $i++){
+                        ?>
+                        <tr>
+                        <td><?=$lh[$i]->getUsuario()?></td>
+                        <td><?=$lh[$i]->getIpAddr()?></td>
+                        <?php
+                            $fecha=date("d-m-Y H:i",$lh[$i]->getLoginDate());;
+                            
+                        ?>
+                        <td><?=$fecha?></td>
+                        <td><?=$lh[$i]->isSuccessful()=="True" ? "Sí" : "No"?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
                 </table>
             </main>
             <?php
