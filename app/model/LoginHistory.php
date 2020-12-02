@@ -77,12 +77,6 @@ class LoginHistory{
             array_push($this->history, $lhe);
         }
     }
-
-    private function writeXML(){
-
-    }
-
-
 }
 
 
