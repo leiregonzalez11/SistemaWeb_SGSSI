@@ -16,6 +16,31 @@ class LoginHistory{
     }
 
     public function agregarInicioSesion($lhe){
+        $usrn=$lhe->getUsuario();
+        $ipAddr=$lhe->getIpAddr();
+        $lgdt=$lhe->getLoginDate();
+        $suc=$lhe->isSuccessful();
+
+        //https://www.php.net/manual/es/domdocument.createelement.php
+        
+        $dom =new DOMDocument();
+
+        $dom->load("login_record.xml", LIBXML_NOBLANKS);
+        $dom->formatOutput = true;
+
+        $elemRoot=$dom->createElement("login_attempt");
+        $elemUsr=$dom->createElement("username", $usrn);
+        $elemIp=$dom->createElement("ip_address", $ipAddr);
+        $elemDate=$dom->createElement("date", $lgdt);
+        $elemSuccess=$dom->createElement("login_successful", $suc);
+        $elemRoot->appendChild($elemUsr);
+        $elemRoot->appendChild($elemIp);
+        $elemRoot->appendChild($elemDate);
+        $elemRoot->appendChild($elemSuccess);
+
+        $dom->getElementsByTagName("log_history")[0]->appendChild($elemRoot);
+        //https://www.php.net/manual/es/domdocument.save.php
+        $dom->save("login_record.xml");
         
     }
 

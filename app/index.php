@@ -70,11 +70,16 @@ if(isset($_POST['dni_reg'])){
                         $_POST['nickname'],
                         null);
     $ctrInicioSesion=new LoginSignInController();
+    $lhe=null;
     if($ctrInicioSesion->validarInicioSesion($usuario)){
         $ctrInicioSesion->efectuarInicioSesion($usuario);
+        $lhe=new LoginHistoryElement($_POST['nickname'], $_SERVER['REMOTE_ADDR'], time(), "True");//https://www.php.net/manual/es/reserved.variables.server.php
     }else{
         $_SESSION['inicio_sesion_incorrecto']="Nick o clave incorrectas";
+        $lhe=new LoginHistoryElement($_POST['nickname'], $_SERVER['REMOTE_ADDR'], time(), "False");
     }
+    $lh=new LoginHistory();
+    $lh->agregarInicioSesion($lhe);
 }
 
 
