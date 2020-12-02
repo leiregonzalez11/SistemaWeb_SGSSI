@@ -86,6 +86,7 @@ function mostrarAlojamientoAdmin($id)
             <input type="text" name="espacio" id="espacio" value="<?php if ($alojamiento != NULL) echo $alojamiento->getMetrosCuadrados(); ?>" />
             <label for="descripcion">Descripción detallada del alojamiento:</label>
             <textarea name="descripcion" id="descripcion" placeholder="Escriba aquí la descripción..."><?php if ($alojamiento != NULL) echo $alojamiento->getDescripcion(); ?></textarea>
+            <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
           </div>
         </div>
         <div id="galeria">

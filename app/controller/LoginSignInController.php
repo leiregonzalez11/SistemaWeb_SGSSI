@@ -30,6 +30,7 @@ class LoginSignInController{
             $_SESSION['sesion_iniciada']=true;
             $_SESSION['id_usr']=$pUsuario->getNick();
             $_SESSION['rol_usr']="Cliente";
+            $_SESSION['token']=md5(time());
         }
         return $resultadoRegistro;
     }
@@ -51,6 +52,7 @@ class LoginSignInController{
         $_SESSION['sesion_iniciada']=true;
         $_SESSION['id_usr']=$usuarioDefinitivo->getNick();
         $_SESSION['rol_usr']=$usuarioDefinitivo->getRol();
+        $_SESSION['token']=md5(time());
     }
 }
 ?>

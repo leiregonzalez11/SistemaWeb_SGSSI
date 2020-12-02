@@ -30,6 +30,7 @@ function mostrarDatosCuenta(){
         <input type="password" name="clave_edit" id="clv_edit" />
         <label for="clv_valedit">Repetir contraseña:</label>
         <input type="password" name="clave_valedit" id="clv_valedit" />
+        <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
 </div>
       </div>
 

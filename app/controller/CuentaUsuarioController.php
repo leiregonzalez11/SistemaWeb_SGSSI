@@ -9,9 +9,9 @@ class CuentaUsuarioController{
     }
 
     public function analizarCambios(){
-        if(isset($_POST['borrar'])){
+        if(isset($_POST['borrar']) && $_POST['token']==$_SESSION['token']){
             $this->eliminarCuentaUsuario();
-        }elseif(isset($_POST['nombre_edit'])){
+        }elseif(isset($_POST['nombre_edit'] ) && $_POST['token']==$_SESSION['token']){
             $this->editarCuentaUsuario();
         }
     }

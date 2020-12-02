@@ -40,9 +40,9 @@ class AlojamientoController
                         break;
                     case "Admin":
                         if (isset($_POST['borrar']) || isset($_POST['actualizar']) || isset($_POST['nuevo_alojamiento'])) {
-                            if (isset($_POST['borrar'])) {
+                            if (isset($_POST['borrar']) && $_POST['token']==$_SESSION['token']) {
                                 $this->borrarAlojamiento($_GET['id_alojamiento']);
-                            } else if (isset($_POST['actualizar'])) {
+                            } else if (isset($_POST['actualizar']) && $_POST['token']==$_SESSION['token']) {
                                 $this->editarAlojamiento($_GET['id_alojamiento']);
                             } else {
                                 $this->crearAlojamiento();
