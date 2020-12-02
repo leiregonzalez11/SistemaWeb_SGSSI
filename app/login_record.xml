@@ -1,15 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <log_history>
-    <login_attempt>
-        <username>usuario</username>
-        <ip_address>127.0.0.1</ip_address>
-        <date>1606857800</date>
-        <login_successful>True</login_successful>
-    </login_attempt>
-    <login_attempt>
-        <username>usuario</username>
-        <ip_address>127.0.0.1</ip_address>
-        <date>1606857800</date>
-        <login_successful>False</login_successful>
-    </login_attempt>
 </log_history>
