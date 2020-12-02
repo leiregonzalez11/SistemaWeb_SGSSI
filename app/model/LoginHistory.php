@@ -25,7 +25,7 @@ class LoginHistory{
         
         $dom =new DOMDocument();
 
-        $dom->load("login_record.xml", LIBXML_NOBLANKS);
+        $dom->load("log/login_record.xml", LIBXML_NOBLANKS);
         $dom->formatOutput = true;
 
         $elemRoot=$dom->createElement("login_attempt");
@@ -40,7 +40,7 @@ class LoginHistory{
 
         $dom->getElementsByTagName("log_history")[0]->appendChild($elemRoot);
         //https://www.php.net/manual/es/domdocument.save.php
-        $dom->save("login_record.xml");
+        $dom->save("log/login_record.xml");
         
     }
 
@@ -49,7 +49,7 @@ class LoginHistory{
     private function readXML(){
         
         $doc=new DOMDocument();
-        $doc->load("login_record.xml");
+        $doc->load("log/login_record.xml");
         $elementos=$doc->getElementsByTagName("login_attempt");
         for($i=0; $i<sizeof($elementos); $i++){
             $lhe=new LoginHistoryElement(null, null, null, null);

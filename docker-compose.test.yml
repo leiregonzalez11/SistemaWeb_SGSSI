@@ -1,34 +1,39 @@
-web:
-   image: sgssiworks/camping_apache_test
-   environment:
-     - ALLOW_OVERRIDE=true
-   ports:
-     - "80:80"
-   links:
-     - db
-   #volumes:
-    # - ./app:/var/www/html/
+#VERSIÓN CON LOS VOLÚMENES ARREGLADOS RESPECTO A PERMISOS
+  web:
+    #PROD image: sgssiworks/camping_sgssi
+    image: web
+    environment:
+      - ALLOW_OVERRIDE=true
+    ports:
+      - "80:80"
+    links:
+      - db
+    volumes:
+      - imgs:/var/www/html/view/img/web_app:rw
+      - xml_log:/var/www/html/log:rw
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/1-init.sql
+      #El volcado del .sql al inicio es una idea obtenida de https://gist.github.com/onjin/2dd3cc52ef79069de1faa2dfd456c945
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: database
+    ports:
+      - "8889:3306"
 
-db:
-  image: mariadb
-  restart: always
-  volumes:
-    - ./mysql:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_USER: admin
-    MYSQL_PASSWORD: test
-    MYSQL_DATABASE: database
-  ports:
-    - "8889:3306"
-
-phpmyadmin:
-  image: phpmyadmin/phpmyadmin:latest
-  links:
-    - db
-  ports:
-    - 8890:80
-  environment:
-    MYSQL_USER: admin
-    MYSQL_PASSWORD: test
-    MYSQL_DATABASE: database
+  #Se puede descomentar el phpmyadmin para gestionar la base de datos
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - db
+    ports:
+      - 8890:80
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: database
