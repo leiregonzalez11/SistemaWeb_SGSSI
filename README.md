@@ -27,7 +27,10 @@ Para arrancar toda la infraestructura, debe ejecutar el siguiente comando:
 docker-compose up
 ```
 
-## Permisos necesarios
+## Evitar modificaciones del fichero de inicio de sesión (login_record.xml)
+Para que este fichero no se actualice, es necesario usar el comando ```git update-index --skip-worktree login_record.xml```
+
+## Permisos necesarios (probablemente no se requiera desde la última versión)
 Se creará una carpeta en el directorio de trabajo (donde se encuentre el fichero docker-compose), llamada imgs_web. Esta carpeta debe pertenecer al usuario www-data para que el servidor pueda subir imágenes y éstas persistan. Se requiere ejecutar el siguiente comando:
 ```console
 sudo chown www-data imgs_web
