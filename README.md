@@ -32,6 +32,10 @@ Se creará una carpeta en el directorio de trabajo (donde se encuentre el ficher
 ```console
 sudo chown www-data imgs_web
 ```
+También se requiere permisos en el fichero login_record.xml. Para ello, ejecutar el siguiente comando:
+```console
+sudo chown www-data login_record.xml
+```
 
 ## Visualizar el sitio web
 Acceda al sitio web entrando en el enlace [127.0.0.1](http://127.0.0.1). Debería aparecer el sitio web en ejecución. De no funcionar (muestra otro sitio web, por ejemplo), es probable que tenga un servidor Apache en ejecución. Es necesario tener dicho servicio inactivo, si no, entrará Docker en conflicto con el servidor Apache que tengamos instalado. El servicio Apache se desactiva mediante el siguiente comando en Linux:
