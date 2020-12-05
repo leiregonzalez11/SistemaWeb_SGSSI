@@ -122,11 +122,11 @@ class DBControl{
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
         $contrase=password_hash($clave, PASSWORD_BCRYPT);
-        $cons="UPDATE Usuario SET DNI='$dni', Nombre='$Nombre', Apellidos='$Apellidos', telefono='$telf', FechNac='$fecha', cuenta='AES_ENCRYPT($cuenta, $llave)',email='$email', clave='$contrase' WHERE nick='$nick'";
-        mysqli_query($enlace,$cons);
-        $nu=mysqli_affected_rows($enlace);
-        mysqli_close ($enlace);
-        return $nu;
+        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta='AES_ENCRYPT(?, $llave)',email=?, clave=? WHERE nick=?");
+        $stmt->bind_param("sssisssss",$dni, $Nombre, $Apellidos, $telf, $fecha, $cuenta, $email, $contrase, $nick);
+        $res=$stmt->execute();
+        $stmt->close();
+        return $res;
     }
 
     public function cambiarRol($nick){
@@ -138,17 +138,19 @@ class DBControl{
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
             if($res=='usuario'){
-                $cambiar="UPDATE Usuario SET rol='administrador' WHERE nick='$nick'";
-                mysqli_query($enlace,$cambiar);
+                $stmt=$enlace->prepare("UPDATE Usuario SET rol='administrador' WHERE nick=?");
+                $stmt->bind_param("s",$nick);
+                $res=$stmt->execute();
+                $stmt->close();
             }
             else{
-                $cambiar="UPDATE Usuario SET rol='usuario' WHERE nick='$nick'";
-                mysqli_query($enlace,$cambiar);
+                $stmt=$enlace->prepare("UPDATE Usuario SET rol='usuario' WHERE nick=?");
+                $stmt->bind_param("s",$nick);
+                $res=$stmt->execute();
+                $stmt->close();
             }
         }
-        $nu=mysqli_affected_rows($enlace);
-        mysqli_close ($enlace);
-        return $nu;
+        return $res;
     }
 
     public function eliminarUsuario($nick){
@@ -159,18 +161,14 @@ class DBControl{
         $cons="SELECT DNI FROM Usuario WHERE nick='$nick'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Usuario WHERE nick='$nick'";
-            mysqli_query($enlace,$borrar);
+            $stmt=$enlace->prepare("DELETE FROM Usuario WHERE nick=?");
+            $stmt->bind_param("s",$nick);
+            $res=$stmt->execute();
+            $stmt->close();
+
         }
-        $existe=mysqli_query($enlace,"SELECT * FROM Usuario WHERE nick='$nick'");
-        $reg=mysqli_num_rows($existe);
-        mysqli_close ($enlace);
-        if($reg==0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return $res;
+
     }
 
     public function VerAlojamiento($idA){
@@ -255,18 +253,12 @@ class DBControl{
         $cons="SELECT idAlojamiento FROM Alojamiento WHERE idAlojamiento='$idAl'";
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Alojamiento WHERE idAlojamiento='$idAl'";
-            mysqli_query($enlace,$borrar);
+            $stmt=$enlace->prepare("DELETE FROM Alojamiento WHERE idAlojamiento=?");
+            $stmt->bind_param("i",$idAl);
+            $res=$stmt->execute();
+            $stmt->close();
         }
-        $existe=mysqli_query($enlace,"SELECT * FROM Alojamiento WHERE idAlojamiento='$idAl'");
-        $reg=mysqli_num_rows($existe);
-        mysqli_close ($enlace);
-        if($reg==0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return $res;
     }
 
     public function actualizarDatosAlojamiento(Alojamiento $aloj){
@@ -280,19 +272,12 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="UPDATE Alojamiento SET descripcion='$descr', metrosCuadrados='$m2', capacidad='$cap', tipo='$tipo' WHERE idAlojamiento='$idAl'";
-        mysqli_query($enlace,$cons);
-        $nu=mysqli_affected_rows($enlace);
-        mysqli_close ($enlace);
-        if($nu==-1){
-            return false;
-        }
-        elseif($nu==0){
-            return true;
-        }
-        else{
-            return true;
-        }
+
+        $stmt=$enlace->prepare("UPDATE Alojamiento SET descripcion=?, metrosCuadrados=?, capacidad=?, tipo=? WHERE idAlojamiento=?");
+        $stmt->bind_param("sdisi",$descr, $m2, $cap, $tipo, $idAl);
+        $res=$stmt->execute();
+        $stmt->close();
+        return $res;
     }
 
     public function anadirImagen(Galeria $imag){
@@ -307,18 +292,14 @@ class DBControl{
 
         $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'");
         $reg=mysqli_num_rows($existe);
+        mysqli_close($enlace);
         if ($reg==0){
 
             $stmt=$enlace->prepare("INSERT INTO Galeria (idAlojamiento, num, foto, extension) VALUES (?,?,?,?)");
             $stmt->bind_param("ssss",$idAl, $num, $foto, $exten);
             $res=$stmt->execute();
             $stmt->close();
-            if($res==1){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return $res;
         }
         else{
             mysqli_close($enlace);
@@ -336,17 +317,10 @@ class DBControl{
         
         $res=mysqli_query($enlace,$cons);
         if(mysqli_num_rows ($res)==1){
-            $borrar="DELETE FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'";
-            mysqli_query($enlace,$borrar);
-        }
-        $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'");
-        $reg=mysqli_num_rows($existe);
-        mysqli_close ($enlace);
-        if($reg==0){
-            return true;
-        }
-        else{
-            return false;
+            $stmt=$enlace->prepare("DELETE FROM Galeria WHERE idAlojamiento=? AND num=?");
+            $stmt->bind_param("ii",$idAl, $num);
+            $res=$stmt->execute();
+            $stmt->close();
         }
     }
 
@@ -360,11 +334,12 @@ class DBControl{
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
 
-        $cons="UPDATE Galeria SET foto='$foto',extension='$exten' WHERE idAlojamiento='$idAl' AND num='$num'";
-        mysqli_query($enlace,$cons);
-        $nu=mysqli_affected_rows($enlace);
-        mysqli_close ($enlace);
-        return $nu;
+        $stmt=$enlace->prepare("UPDATE Galeria SET foto=?,extension=? WHERE idAlojamiento=? AND num=?");
+        $stmt->bind_param("ssii",$foto, $exten, $idal, $num);
+        $res=$stmt->execute();
+        $stmt->close();
+
+        return $res;
     }
     public function VerImagen($idAl, $num){
         $imagen=null;
