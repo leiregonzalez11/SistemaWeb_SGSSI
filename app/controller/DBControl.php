@@ -27,12 +27,11 @@ class DBControl{
         }
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$contr;
-        $consulta ="SELECT DNI, clave FROM Usuario WHERE nick='$nick'";
-        $resultado=mysqli_query($enlace,$consulta);
-        $num=mysqli_num_rows ($resultado);
-        mysqli_close ($enlace);
-
-        if($num==1){
+        $stmt =$enlace->prepare("SELECT DNI, clave FROM Usuario WHERE nick=?");
+        $stmt->bind_param("s", $nick);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+        if($res){
             $row=$resultado->fetch_assoc();
             $claveVerif= $row['clave'];
             if(password_verify($contr, $claveVerif)){
