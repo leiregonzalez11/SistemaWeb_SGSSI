@@ -29,9 +29,9 @@ class DBControl{
         //$contrase=$sal.$contr;
         $stmt =$enlace->prepare("SELECT DNI, clave FROM Usuario WHERE nick=?");
         $stmt->bind_param("s", $nick);
-        $res=$stmt->execute();
+        $stmt->execute();
         $resultado=$stmt->get_result();
-        if($res){
+        if(mysqli_num_rows($resultado)==1){
             $row=$resultado->fetch_assoc();
             $claveVerif= $row['clave'];
             if(password_verify($contr, $claveVerif)){
@@ -65,12 +65,16 @@ class DBControl{
         //$contrase=$sal.$clave;
         $contrase=password_hash($clave, PASSWORD_BCRYPT);
     
-        if (mysqli_num_rows (mysqli_query($enlace,"SELECT DNI FROM Usuario WHERE DNI='$dni' OR nick='$nick'"))==0){
+        $stmt =$enlace->prepare("SELECT DNI FROM Usuario WHERE DNI=? OR nick=?");
+        $stmt->bind_param("ss", $dni, $nick);
+        $stmt->execute();
+        $resultado=$stmt->get_result();
+
+        if (mysqli_num_rows ($resultado)==0){
             $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, AES_ENCRYPT(?,'$llave'),?)");
             $stmt->bind_param("ssssisssss",$dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $contrase, $cuenta, $rol);
             $res=$stmt->execute();
             $stmt->close();
-
             if($res){
                return true;
             }
@@ -89,16 +93,19 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$llave') as 'cuenta', rol FROM Usuario WHERE nick='$usuarioNick'";
-        $res=mysqli_query($enlace,$cons);
-        if($res!=false){
-            if($res->num_rows==1){
-                if($row=$res->fetch_assoc()){
+        
+        $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$llave') as 'cuenta', rol FROM Usuario WHERE nick=?");
+        $stmt->bind_param("s", $nick);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+
+        if($res){
+            if($resultado->num_rows==1){
+                if($row=$resultado->fetch_assoc()){
                     $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);                    
                 }
             }
         }
-        mysqli_close ($enlace);
         return $usuario;
     }
 
@@ -133,10 +140,15 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT rol FROM Usuario WHERE nick='$nick'";
-        $res=mysqli_query($enlace,$cons);
-        if(mysqli_num_rows ($res)==1){
-            if($res=='usuario'){
+
+        $stmt =$enlace->prepare("SELECT rol FROM Usuario WHERE nick=?");
+        $stmt->bind_param("s", $nick);
+        $stmt->execute();
+        $resultado=$stmt->get_result();
+        
+        if(mysqli_num_rows ($resultado)==1){
+            $resultado->fetch_assoc();
+            if($resultado=='usuario'){
                 $stmt=$enlace->prepare("UPDATE Usuario SET rol='administrador' WHERE nick=?");
                 $stmt->bind_param("s",$nick);
                 $res=$stmt->execute();
@@ -157,9 +169,13 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT DNI FROM Usuario WHERE nick='$nick'";
-        $res=mysqli_query($enlace,$cons);
-        if(mysqli_num_rows ($res)==1){
+
+        $stmt =$enlace->prepare("SELECT DNI FROM Usuario WHERE nick=?");
+        $stmt->bind_param("s", $nick);
+        $stmt->execute();
+        $resultado=$stmt->get_result();
+
+        if(mysqli_num_rows ($resultado)==1){
             $stmt=$enlace->prepare("DELETE FROM Usuario WHERE nick=?");
             $stmt->bind_param("s",$nick);
             $res=$stmt->execute();
@@ -176,11 +192,15 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento='$idA'";
-        $res=mysqli_query($enlace,$cons);
-        if($res!=false){
-            if($res->num_rows==1){
-                if($row=$res->fetch_assoc()){
+
+        $stmt =$enlace->prepare("SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento=?");
+        $stmt->bind_param("s", $nickidA);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+        
+        if($res){
+            if($resultado->num_rows==1){
+                if($row=$resultado->fetch_assoc()){
                     $aloj=new Alojamiento($row["idAlojamiento"],$row["descripcion"], $row["metrosCuadrados"], $row["capacidad"], $row["tipo"]);
                 }
             }
@@ -196,12 +216,16 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT idAlojamiento, descripcion, metrosCuadrados, capacidad FROM Alojamiento WHERE tipo ='$tipo'";
-        $res=mysqli_query($enlace,$cons);
-        if($res!=false){
-            if ($res->num_rows > 0) {
+
+        $stmt =$enlace->prepare("SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE tipo=?");
+        $stmt->bind_param("s", $tipo);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+
+        if($res){
+            if ($resultado->num_rows > 0) {
                 // output data of each row
-                while($row = $res->fetch_assoc()) {
+                while($row = $resultado->fetch_assoc()) {
                     $aloj = new Alojamiento($row["idAlojamiento"],$row["descripcion"], $row["metrosCuadrados"], $row["capacidad"], $tipo);
                     array_push($alojamientos, $aloj);
                 }
@@ -365,11 +389,15 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT * FROM Galeria WHERE idAlojamiento='$idAl'";
-        $res=mysqli_query($enlace,$cons);
-        if($res!=false){
-            if($res->num_rows > 0){
-                while($row = $res->fetch_assoc()){
+
+        $stmt =$enlace->prepare("SELECT * FROM Galeria WHERE idAlojamiento=?");
+        $stmt->bind_param("s", $tipo);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+
+        if($res){
+            if($resultado->num_rows > 0){
+                while($row = $resultado->fetch_assoc()){
                     $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["extension"]);
                     array_push($imagenes,$imagen);
                 }
