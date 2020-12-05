@@ -18,7 +18,7 @@
                 
             }
             ?>
-            <form action="" method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <!--Email-->
                 <label for="nickname">Nickname:</label>
                 <input type="text" name="nickname" id="nickname_inicio" placeholder="Ejemplo: lamari33" />

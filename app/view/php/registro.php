@@ -1,13 +1,13 @@
 <?php
 include 'view/php/conexion.php';
-$nickname = $_POST["nickname_reg"];
-$nombre = $_POST["nombre_reg"];
-$apellidos = $_POST["apellidos_reg"];
-$dni = $_POST["dni_reg"];
-$email = $_POST["mail_reg"];
-$fechaNac = $_POST["fechaNac_reg"];
-$telefono = $_POST["phone_reg"];
-$clave = $_POST["clave_reg"];
+$nickname = test_input($_POST["nickname_reg"]);
+$nombre = test_input($_POST["nombre_reg"]);
+$apellidos = test_input($_POST["apellidos_reg"]);
+$dni = test_input($_POST["dni_reg"]);
+$email = test_input($_POST["mail_reg"]);
+$fechaNac = test_input($_POST["fechaNac_reg"]);
+$telefono = test_input($_POST["phone_reg"]);
+$clave = test_input($_POST["clave_reg"]);
 
 $insertar = "INSERT INTO Usuario (DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick) VALUES ('$dni','$nombre','$apellidos','$telefono','$fechaNac','$email','$clave','$nickname')";
 
