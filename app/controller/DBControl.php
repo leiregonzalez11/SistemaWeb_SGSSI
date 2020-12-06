@@ -273,9 +273,14 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT idAlojamiento FROM Alojamiento WHERE idAlojamiento='$idAl'";
-        $res=mysqli_query($enlace,$cons);
-        if(mysqli_num_rows ($res)==1){
+
+        $stmt=$enlace->prepare("SELECT foto FROM Galeria WHERE idAlojamiento=?");
+        $stmt->bind_param("i", $idAl);
+        $stmt->execute();
+        $resultado=$stmt->get_result();
+        $stmt->close();
+
+        if(mysqli_num_rows ($resultado)==1){
             $stmt=$enlace->prepare("DELETE FROM Alojamiento WHERE idAlojamiento=?");
             $stmt->bind_param("i",$idAl);
             $res=$stmt->execute();
@@ -313,10 +318,14 @@ class DBControl{
         $foto=$imag->getFoto();
         $exten=$imag->getExtension();
 
-        $existe=mysqli_query($enlace,"SELECT * FROM Galeria WHERE idAlojamiento='$idAl'AND num='$num'");
-        $reg=mysqli_num_rows($existe);
+        $stmt=$enlace->prepare("SELECT foto FROM Galeria WHERE idAlojamiento=? AND num=?");
+        $stmt->bind_param("ii", $idAl, $num);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+        $stmt->close();
+        
         mysqli_close($enlace);
-        if ($reg==0){
+        if ($resultado->num_rows==0){
 
             $stmt=$enlace->prepare("INSERT INTO Galeria (idAlojamiento, num, foto, extension) VALUES (?,?,?,?)");
             $stmt->bind_param("ssss",$idAl, $num, $foto, $exten);
@@ -336,10 +345,14 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT foto FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
+
+        $stmt=$enlace->prepare("SELECT foto FROM Galeria WHERE idAlojamiento=? AND num=?");
+        $stmt->bind_param("ii", $idAl, $num);
+        $stmt->execute();
+        $resultado=$stmt->get_result();
+        $stmt->close();
         
-        $res=mysqli_query($enlace,$cons);
-        if(mysqli_num_rows ($res)==1){
+        if(mysqli_num_rows ($resultado)==1){
             $stmt=$enlace->prepare("DELETE FROM Galeria WHERE idAlojamiento=? AND num=?");
             $stmt->bind_param("ii",$idAl, $num);
             $res=$stmt->execute();
@@ -358,7 +371,7 @@ class DBControl{
         $exten=$imag->getExtension();
 
         $stmt=$enlace->prepare("UPDATE Galeria SET foto=?,extension=? WHERE idAlojamiento=? AND num=?");
-        $stmt->bind_param("ssii",$foto, $exten, $idal, $num);
+        $stmt->bind_param("ssii",$foto, $exten, $idAl, $num);
         $res=$stmt->execute();
         $stmt->close();
 
@@ -371,11 +384,15 @@ class DBControl{
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
-        $cons="SELECT idAlojamiento, num, foto, extension FROM Galeria WHERE idAlojamiento='$idAl' AND num='$num'";
-        $res=mysqli_query($enlace,$cons);
-        if($res!=false){
-            if($res->num_rows==1){
-                if ($row=$res->fetch_assoc()){
+
+        $stmt =$enlace->prepare("SELECT idAlojamiento, num, foto, extension FROM Galeria WHERE idAlojamiento=? AND num=?");
+        $stmt->bind_param("ii", $idAl, $num);
+        $res=$stmt->execute();
+        $resultado=$stmt->get_result();
+
+        if($res){
+            if($resultado->num_rows==1){
+                if ($row=$resultado->fetch_assoc()){
                         $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["extension"]);
                 }
             }
@@ -391,7 +408,7 @@ class DBControl{
         }
 
         $stmt =$enlace->prepare("SELECT * FROM Galeria WHERE idAlojamiento=?");
-        $stmt->bind_param("s", $tipo);
+        $stmt->bind_param("i", $tipo);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 
