@@ -38,15 +38,15 @@ include("model/LoginHistory.php");
 
 
 if(isset($_POST['dni_reg'])){
-    $usuario=new Usuario($_POST['dni_reg'],
-                         $_POST['nombre_reg'],
-                        $_POST['apellidos_reg'],
-                        $_POST['phone_reg'],
-                        $_POST['fechaNac_reg'],
-                        $_POST['mail_reg'],
-                        $_POST['clave_reg'],
+    $usuario=new Usuario(test_input($_POST['dni_reg']),
+                         test_input($_POST['nombre_reg']),
+                         test_input($_POST['apellidos_reg']),
+                         test_input($_POST['phone_reg']),
+                         test_input($_POST['fechaNac_reg']),
+                         test_input($_POST['mail_reg']),
+                         test_input($_POST['clave_reg']),
                         'Cliente',
-                        $_POST['nickname_reg'],
+                        test_input($_POST['nickname_reg']),
                         '12345678');
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
@@ -64,10 +64,10 @@ if(isset($_POST['dni_reg'])){
                         null,
                         null,
                         null,
-                        $_POST['mail'],
-                        $_POST['clave'],
+                        test_input($_POST['mail']),
+                        test_input($_POST['clave']),
                         null,
-                        $_POST['nickname'],
+                        test_input($_POST['nickname']),
                         null);
     $ctrInicioSesion=new LoginSignInController();
     $lhe=null;
@@ -82,7 +82,13 @@ if(isset($_POST['dni_reg'])){
     $lh->agregarInicioSesion($lhe);
 }
 
-
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    $data = strip_tags($data);
+    return $data;
+  }
 
 $sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada']==true);
 

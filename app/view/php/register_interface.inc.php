@@ -14,7 +14,7 @@
                 unset($_SESSION['registro_incorrecto']);
             }
             ?>
-            <form id="formulario_registro" name="registro_usuarios" action="index.php" method="POST" class="form-register">
+            <form id="formulario_registro" name="registro_usuarios" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="form-register">
                 <!--Nickname-->
                 <label for="nickname_reg">Nickname:</label>
                 <input type="text" id="nickname_reg" name="nickname_reg" placeholder="Ejemplo: lamari33" pattern=[A-Z\sa-z]{3,20}>

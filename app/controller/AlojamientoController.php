@@ -73,22 +73,41 @@ class AlojamientoController
         if($resultadoConsulta!=-1){
             $_SESSION['alojamientoCreado']="Se ha creado correctamente el alojamiento: Puedes comprobar sus datos <a href='index.php?vista=alojamientos&id_alojamiento=$resultadoConsulta'>aquí</a>";
             for($i=0;$i<4;$i++){
+                
                 $fichero=$_FILES['foto_'.($i+1)];
+
                 if($fichero['name']!=""){
+                    //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
+                    $ficherocargado="true";
+                    $tamañofichero = $_FILES['foto_'.($i+1)][size]
+                    if ($tamañofichero>8000000){}
+                        $msg=$msg."El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo<BR>";
+                        $ficherocargado="false";
+                    }
+                    $tipofichero = $_FILES['foto_'.($i+1)][type]
+                    if (!($tipofichero =="image/pjpeg" OR $tipofichero =="image/png")){
+                        $msg=$msg." Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos<BR>";
+                        $ficherocargado="false";}
+                    }
+
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
+                    
                     $nombreImg = $_FILES['foto_'.($i+1)]['name'];
                     $ext = pathinfo($nombreImg, PATHINFO_EXTENSION);
                     $dir_subida = '/var/www/html/view/img/web_app/';
                     $nombreCompletoFichero=$dir_subida.$resultadoConsulta."_".($i+1).".".$ext;
-                    //Por https://www.php.net/manual/es/features.file-upload.post-method.php
-                    $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
-                    if($subida){
-                        $txtFoto="";
-                        if(isset($_POST['foto_desc_'.($i+1)])){
-                            $txtFoto=$_POST['foto_desc_'.($i+1)];
+                    
+                    if ($ficherocargado){
+                        //Por https://www.php.net/manual/es/features.file-upload.post-method.php
+                        $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
+                        if($subida){
+                            $txtFoto="";
+                            if(isset($_POST['foto_desc_'.($i+1)])){
+                                $txtFoto=$_POST['foto_desc_'.($i+1)];
+                            }
+                            $galeria= new Galeria($resultadoConsulta, $i+1, $txtFoto, $ext);
+                            $DB->anadirImagen($galeria);
                         }
-                        $galeria= new Galeria($resultadoConsulta, $i+1, $txtFoto, $ext);
-                        $DB->anadirImagen($galeria);
                     }
                 }
             }
@@ -98,10 +117,10 @@ class AlojamientoController
 
     public function editarAlojamiento($id)
     {
-        $tipoAlojamiento=$_POST['tipo'];
-        $capacidad=$_POST['capacidad'];
-        $metrosCuadrados=$_POST['espacio'];
-        $descripcion=$_POST['descripcion'];
+        $tipoAlojamiento=test_input($_POST['tipo']);
+        $capacidad=test_input($_POST['capacidad']);
+        $metrosCuadrados=test_input($_POST['espacio']);
+        $descripcion=test_input($_POST['descripcion']);
 
         $alojamiento = new Alojamiento($id, $descripcion, $metrosCuadrados, $capacidad, $tipoAlojamiento);
         //var_dump($alojamiento);
@@ -112,20 +131,35 @@ class AlojamientoController
             for($i=0;$i<4;$i++){
                 $fichero=$_FILES['foto_'.($i+1)];
                 if($fichero['name']!=""){
+                    //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
+                    $ficherocargado="true";
+                    $tamañofichero = $_FILES['foto_'.($i+1)][size]
+                    if ($tamañofichero>8000000){}
+                        $msg=$msg."El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo<BR>";
+                        $ficherocargado="false";
+                    }
+                    $tipofichero = $_FILES['foto_'.($i+1)][type]
+                    if (!($tipofichero =="image/pjpeg" OR $tipofichero =="image/png")){
+                        $msg=$msg." Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos<BR>";
+                        $ficherocargado="false";}
+                    }
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
                     $nombreImg = $_FILES['foto_'.($i+1)]['name'];
                     $ext = pathinfo($nombreImg, PATHINFO_EXTENSION);
                     $dir_subida = '/var/www/html/view/img/web_app/';
                     $nombreCompletoFichero=$dir_subida.$id."_".($i+1).".".$ext;
                     //Por https://www.php.net/manual/es/features.file-upload.post-method.php
-                    $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
-                    if($subida){
-                        $txtFoto="";
-                        if(isset($_POST['foto_desc_'.($i+1)])){
-                            $txtFoto=$_POST['foto_desc_'.($i+1)];
+                    if ($ficherocargado){
+                        //Por https://www.php.net/manual/es/features.file-upload.post-method.php
+                        $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
+                        if($subida){
+                            $txtFoto="";
+                            if(isset($_POST['foto_desc_'.($i+1)])){
+                                $txtFoto=$_POST['foto_desc_'.($i+1)];
+                            }
+                            $galeria= new Galeria($id, $i+1, $txtFoto, $ext);
+                            $DB->anadirImagen($galeria);
                         }
-                        $galeria= new Galeria($id, $i+1, $txtFoto, $ext);
-                        $DB->anadirImagen($galeria);
                     }
                 }
             }
@@ -167,5 +201,12 @@ class AlojamientoController
         if($eliminacion){
             echo "<script>window.location.replace('index.php');</script>";
         }
+    }
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        $data = strip_tags($data);
+        return $data;
     }
 }

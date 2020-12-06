@@ -18,7 +18,7 @@ class CuentaUsuarioController{
 
     public function editarCuentaUsuario(){
         $nick=$_SESSION['id_usr'];
-        $usuario = new Usuario($_POST['dni_edit'], $_POST['nombre_edit'], $_POST['apellidos_edit'], $_POST['telefono_edit'], $_POST['fechaNac_edit'], $_POST['mail_edit'], $_POST['clave_edit'], null, $nick, null);
+        $usuario = new Usuario(test_input($_POST['dni_edit']), test_input($_POST['nombre_edit']), test_input($_POST['apellidos_edit']), test_input($_POST['telefono_edit']), test_input($_POST['fechaNac_edit']), test_input($_POST['mail_edit']), test_input($_POST['clave_edit']), null, $nick, null);
 
         $DB=new DBControl();
         $DB->actualizarDatos($usuario);
@@ -31,6 +31,13 @@ class CuentaUsuarioController{
         if($res){
             echo "<script>window.location.replace('index.php?accion=logout');</script>";
         }
+    }
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        $data = strip_tags($data);
+        return $data;
     }
 }
 
