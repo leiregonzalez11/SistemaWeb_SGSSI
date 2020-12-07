@@ -100,7 +100,7 @@ class DBControl{
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 
-        if($res){
+        if($resultado!=FALSE){
             if($resultado->num_rows==1){
                 if($row=$resultado->fetch_assoc()){
                     $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);                    
