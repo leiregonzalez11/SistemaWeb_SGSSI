@@ -2,8 +2,8 @@
 
 class DBControl{
 
-    private $user="root";
-    private $pwd="root";
+    private $user="sgssiworks";
+    private $pwd="ADGgHWlReYMDImd8";
     private $dbName="database";
     private $hostname="db";
     private $key='8A68AKSGGBHBSDEW465892456IWR38YR732';
