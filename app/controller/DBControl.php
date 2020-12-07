@@ -96,11 +96,11 @@ class DBControl{
         }
         
         $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$llave') as 'cuenta', rol FROM Usuario WHERE nick=?");
-        $stmt->bind_param("s", $nick);
+        $stmt->bind_param("s", $usuarioNick);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 
-        if($resultado!=FALSE){
+        if($resultado!=false){
             if($resultado->num_rows==1){
                 if($row=$resultado->fetch_assoc()){
                     $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);                    
@@ -199,7 +199,7 @@ class DBControl{
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
         
-        if($res){
+        if($resultado!=false){
             if($resultado->num_rows==1){
                 if($row=$resultado->fetch_assoc()){
                     $aloj=new Alojamiento($row["idAlojamiento"],$row["descripcion"], $row["metrosCuadrados"], $row["capacidad"], $row["tipo"]);
@@ -223,7 +223,7 @@ class DBControl{
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 
-        if($res){
+        if($resultado!=false){
             if ($resultado->num_rows > 0) {
                 // output data of each row
                 while($row = $resultado->fetch_assoc()) {
@@ -391,7 +391,7 @@ class DBControl{
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 
-        if($res){
+        if($resultado!=false){
             if($resultado->num_rows==1){
                 if ($row=$resultado->fetch_assoc()){
                         $imagen = new Galeria($row["idAlojamiento"], $row["num"], $row["foto"], $row["extension"]);
