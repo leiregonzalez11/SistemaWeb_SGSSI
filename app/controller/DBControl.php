@@ -275,7 +275,7 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
 
-        $stmt=$enlace->prepare("SELECT foto FROM Galeria WHERE idAlojamiento=?");
+        $stmt=$enlace->prepare("SELECT idAlojamiento FROM Alojamiento WHERE idAlojamiento=?");
         $stmt->bind_param("i", $idAl);
         $stmt->execute();
         $resultado=$stmt->get_result();
