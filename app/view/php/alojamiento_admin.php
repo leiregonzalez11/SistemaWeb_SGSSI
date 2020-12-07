@@ -129,7 +129,6 @@ function mostrarAlojamientoAdmin($id)
         <?php
         }
 
-
         if ($alojamiento != null && $lnImgs != 0) {
         ?>
           <div id="galeria_borrar">

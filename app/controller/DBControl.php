@@ -194,8 +194,8 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
 
-        $stmt =$enlace->prepare("SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento=?");
-        $stmt->bind_param("s", $nickidA);
+        $stmt =$enlace->prepare("SELECT idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE idAlojamiento=?");
+        $stmt->bind_param("s", $idA);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
         
@@ -218,7 +218,7 @@ class DBControl{
             die("Fallo de conexion:" . mysqli_connect_error());
         }
 
-        $stmt =$enlace->prepare("SELECT descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE tipo=?");
+        $stmt =$enlace->prepare("SELECT idAlojamiento, descripcion, metrosCuadrados, capacidad, tipo FROM Alojamiento WHERE tipo=?");
         $stmt->bind_param("s", $tipo);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
@@ -325,13 +325,13 @@ class DBControl{
         $resultado=$stmt->get_result();
         $stmt->close();
         
-        mysqli_close($enlace);
         if ($resultado->num_rows==0){
 
             $stmt=$enlace->prepare("INSERT INTO Galeria (idAlojamiento, num, foto, extension) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssss",$idAl, $num, $foto, $exten);
+            $stmt->bind_param("iiss",$idAl, $num, $foto, $exten);
             $res=$stmt->execute();
             $stmt->close();
+            mysqli_close($enlace);
             return $res;
         }
         else{
@@ -359,6 +359,7 @@ class DBControl{
             $res=$stmt->execute();
             $stmt->close();
         }
+        mysqli_close($enlace);
     }
 
     public function actualizarImagen(Galeria $imag){
@@ -375,7 +376,7 @@ class DBControl{
         $stmt->bind_param("ssii",$foto, $exten, $idAl, $num);
         $res=$stmt->execute();
         $stmt->close();
-
+        mysqli_close($enlace);
         return $res;
     }
     public function VerImagen($idAl, $num){
@@ -409,7 +410,7 @@ class DBControl{
         }
 
         $stmt =$enlace->prepare("SELECT * FROM Galeria WHERE idAlojamiento=?");
-        $stmt->bind_param("i", $tipo);
+        $stmt->bind_param("i", $idAl);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 

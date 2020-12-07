@@ -78,18 +78,18 @@ class AlojamientoController
 
                 if($fichero['name']!=""){
                     //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
-                    $ficherocargado="true";
-                    $tamanofichero = $_FILES['foto_'.($i+1)][size];
+                    $ficherocargado=true;
+                    $tamanofichero = $_FILES['foto_'.($i+1)]['size'];
                     
                     if ($tamanofichero>8000000){
                         $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo";
-                        $ficherocargado="false";
+                        $ficherocargado=false;
                     }
                     
-                    $tipofichero = $_FILES['foto_'.($i+1)][type];
+                    $tipofichero = $_FILES['foto_'.($i+1)]['type'];
                     if (!($tipofichero =="image/pjpeg" || $tipofichero =="image/png")){
                         $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
-                        $ficherocargado="false";
+                        $ficherocargado=false;
                     }
 
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
@@ -108,6 +108,7 @@ class AlojamientoController
                                 $txtFoto=$_POST['foto_desc_'.($i+1)];
                             }
                             $galeria= new Galeria($resultadoConsulta, $i+1, $txtFoto, $ext);
+                            var_dump($galeria);
                             $DB->anadirImagen($galeria);
                         }
                     }
@@ -130,19 +131,20 @@ class AlojamientoController
         if($resultadoConsulta==true){
             $_SESSION['alojamientoEditado']="Se han guardado los cambios correctamente";
             for($i=0;$i<4;$i++){
+                
                 $fichero=$_FILES['foto_'.($i+1)];
                 if($fichero['name']!=""){
                     //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
-                    $ficherocargado="true";
-                    $tamanofichero = $_FILES['foto_'.($i+1)][size];
+                    $ficherocargado=true;
+                    $tamanofichero = $_FILES['foto_'.($i+1)]['size'];
                     if ($tamanofichero>8000000){
                         $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo";
-                        $ficherocargado="false";
+                        $ficherocargado=false;
                     }
-                    $tipofichero = $_FILES['foto_'.($i+1)][type];
-                    if (!($tipofichero =="image/pjpeg" OR $tipofichero =="image/png")){
+                    $tipofichero = $_FILES['foto_'.($i+1)]['type'];
+                    if (!($tipofichero =="image/pjpeg" || $tipofichero =="image/png") || $tipofichero =="image/jpeg"){
                         $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
-                        $ficherocargado="false";
+                        $ficherocargado=false;
                     }
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
                     $nombreImg = $_FILES['foto_'.($i+1)]['name'];
@@ -203,11 +205,13 @@ class AlojamientoController
             echo "<script>window.location.replace('index.php');</script>";
         }
     }
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        $data = strip_tags($data);
-        return $data;
-    }
+    
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    $data = strip_tags($data);
+    return $data;
 }
