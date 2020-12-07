@@ -87,6 +87,7 @@ class DBControl{
         }
     }
     public function verDatos($usuarioNick){
+        
         $usuario=null;
         $llave=$this->key;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));

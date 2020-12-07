@@ -49,6 +49,7 @@ class LoginSignInController{
     public function efectuarInicioSesion($pUsuario){
         $DB=new DBControl();
         $usuarioDefinitivo=$DB->verDatos($pUsuario->getNick());
+        
         $_SESSION['sesion_iniciada']=true;
         $_SESSION['id_usr']=$usuarioDefinitivo->getNick();
         $_SESSION['rol_usr']=$usuarioDefinitivo->getRol();

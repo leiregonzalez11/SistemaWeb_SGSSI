@@ -65,6 +65,14 @@ function mostrarAlojamientoAdmin($id)
         echo "<p id='accion_alojamiento_correcta'>".$_SESSION['alojamientoEditado']."</p>";
         unset($_SESSION['alojamientoEditado']);
       }
+      if (isset($_SESSION['tam_excesivo'])) {
+        echo "<p id='accion_alojamiento_correcta'>".$_SESSION['tam_excesivo']."</p>";
+        unset($_SESSION['tam_excesivo']);
+      }
+      if (isset($_SESSION['formato_no_admitido'])) {
+        echo "<p id='accion_alojamiento_correcta'>".$_SESSION['formato_no_admitido']."</p>";
+        unset($_SESSION['formato_no_admitido']);
+      }
       ?>
     <div id="principal">
       

@@ -29,6 +29,7 @@ include("model/Galeria.php");
 
 include("model/LoginHistoryElement.php");
 include("model/LoginHistory.php");
+include("model/Validador.php");
 
 //$_SESSION['sesion_iniciada']=true;
 //$_SESSION['usr_rol']="Admin";
@@ -38,15 +39,16 @@ include("model/LoginHistory.php");
 
 
 if(isset($_POST['dni_reg'])){
-    $usuario=new Usuario(test_input($_POST['dni_reg']),
-                         test_input($_POST['nombre_reg']),
-                         test_input($_POST['apellidos_reg']),
-                         test_input($_POST['phone_reg']),
-                         test_input($_POST['fechaNac_reg']),
-                         test_input($_POST['mail_reg']),
-                         test_input($_POST['clave_reg']),
+    $val = new Validador();
+    $usuario=new Usuario($val->test_input($_POST['dni_reg']),
+                         $val->test_input($_POST['nombre_reg']),
+                         $val->test_input($_POST['apellidos_reg']),
+                         $val->test_input($_POST['phone_reg']),
+                         $val->test_input($_POST['fechaNac_reg']),
+                         $val->test_input($_POST['mail_reg']),
+                         $val->test_input($_POST['clave_reg']),
                         'Cliente',
-                        test_input($_POST['nickname_reg']),
+                        $val->test_input($_POST['nickname_reg']),
                         '12345678');
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
@@ -59,16 +61,18 @@ if(isset($_POST['dni_reg'])){
     }
 
 }else if(isset($_POST['iniciar_sesion'])){
+    $val = new Validador();
     $usuario=new Usuario(null,
                         null,
                         null,
                         null,
                         null,
-                        test_input($_POST['mail']),
-                        test_input($_POST['clave']),
+                        $val->test_input($_POST['mail']),
+                        $val->test_input($_POST['clave']),
                         null,
-                        test_input($_POST['nickname']),
+                        $val->test_input($_POST['nickname']),
                         null);
+    
     $ctrInicioSesion=new LoginSignInController();
     $lhe=null;
     if($ctrInicioSesion->validarInicioSesion($usuario)){
@@ -82,13 +86,7 @@ if(isset($_POST['dni_reg'])){
     $lh->agregarInicioSesion($lhe);
 }
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    $data = strip_tags($data);
-    return $data;
-  }
+
 
 $sesionIniciada=(isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada']==true);
 

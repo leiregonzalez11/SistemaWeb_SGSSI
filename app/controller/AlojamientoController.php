@@ -62,10 +62,10 @@ class AlojamientoController
 
     public function crearAlojamiento()
     {
-        $tipoAlojamiento=$_POST['tipo'];
-        $capacidad=$_POST['capacidad'];
-        $metrosCuadrados=$_POST['espacio'];
-        $descripcion=$_POST['descripcion'];
+        $tipoAlojamiento=test_input($_POST['tipo']);
+        $capacidad=test_input($_POST['capacidad']);
+        $metrosCuadrados=test_input($_POST['espacio']);
+        $descripcion=test_input($_POST['descripcion']);
 
         $alojamiento = new Alojamiento(null, $descripcion, $metrosCuadrados, $capacidad, $tipoAlojamiento);
         $DB = new DBControl();
@@ -79,15 +79,17 @@ class AlojamientoController
                 if($fichero['name']!=""){
                     //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
                     $ficherocargado="true";
-                    $tamañofichero = $_FILES['foto_'.($i+1)][size]
-                    if ($tamañofichero>8000000){}
-                        $msg=$msg."El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo<BR>";
+                    $tamanofichero = $_FILES['foto_'.($i+1)][size];
+                    
+                    if ($tamanofichero>8000000){
+                        $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo";
                         $ficherocargado="false";
                     }
-                    $tipofichero = $_FILES['foto_'.($i+1)][type]
-                    if (!($tipofichero =="image/pjpeg" OR $tipofichero =="image/png")){
-                        $msg=$msg." Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos<BR>";
-                        $ficherocargado="false";}
+                    
+                    $tipofichero = $_FILES['foto_'.($i+1)][type];
+                    if (!($tipofichero =="image/pjpeg" || $tipofichero =="image/png")){
+                        $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
+                        $ficherocargado="false";
                     }
 
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
@@ -115,8 +117,7 @@ class AlojamientoController
         
     }
 
-    public function editarAlojamiento($id)
-    {
+    public function editarAlojamiento($id){
         $tipoAlojamiento=test_input($_POST['tipo']);
         $capacidad=test_input($_POST['capacidad']);
         $metrosCuadrados=test_input($_POST['espacio']);
@@ -133,15 +134,15 @@ class AlojamientoController
                 if($fichero['name']!=""){
                     //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
                     $ficherocargado="true";
-                    $tamañofichero = $_FILES['foto_'.($i+1)][size]
-                    if ($tamañofichero>8000000){}
-                        $msg=$msg."El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo<BR>";
+                    $tamanofichero = $_FILES['foto_'.($i+1)][size];
+                    if ($tamanofichero>8000000){
+                        $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo";
                         $ficherocargado="false";
                     }
-                    $tipofichero = $_FILES['foto_'.($i+1)][type]
+                    $tipofichero = $_FILES['foto_'.($i+1)][type];
                     if (!($tipofichero =="image/pjpeg" OR $tipofichero =="image/png")){
-                        $msg=$msg." Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos<BR>";
-                        $ficherocargado="false";}
+                        $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
+                        $ficherocargado="false";
                     }
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
                     $nombreImg = $_FILES['foto_'.($i+1)]['name'];
@@ -155,7 +156,7 @@ class AlojamientoController
                         if($subida){
                             $txtFoto="";
                             if(isset($_POST['foto_desc_'.($i+1)])){
-                                $txtFoto=$_POST['foto_desc_'.($i+1)];
+                                $txtFoto=test_input($_POST['foto_desc_'.($i+1)]);
                             }
                             $galeria= new Galeria($id, $i+1, $txtFoto, $ext);
                             $DB->anadirImagen($galeria);
