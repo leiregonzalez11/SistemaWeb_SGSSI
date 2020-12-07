@@ -78,19 +78,8 @@ class AlojamientoController
 
                 if($fichero['name']!=""){
                     //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
-                    $ficherocargado=true;
+                    $ficheroApto=true;
                     $tamanofichero = $_FILES['foto_'.($i+1)]['size'];
-                    
-                    if ($tamanofichero>8000000){
-                        $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo";
-                        $ficherocargado=false;
-                    }
-                    
-                    $tipofichero = $_FILES['foto_'.($i+1)]['type'];
-                    if (!($tipofichero =="image/pjpeg" || $tipofichero =="image/png")){
-                        $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
-                        $ficherocargado=false;
-                    }
 
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
                     
@@ -99,7 +88,19 @@ class AlojamientoController
                     $dir_subida = '/var/www/html/view/img/web_app/';
                     $nombreCompletoFichero=$dir_subida.$resultadoConsulta."_".($i+1).".".$ext;
                     
-                    if ($ficherocargado){
+                    if ($tamanofichero>8000000){
+                        $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reducirlo antes de subirlo";
+                        $ficheroApto=false;
+                    }
+                    
+                    if (!($ext =="jpeg" || $ext =="png" || $ext =="jpg" || $ext=="gif")){
+                        $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
+                        $ficheroApto=false;
+                    }
+
+                    
+                    
+                    if ($ficheroApto){
                         //Por https://www.php.net/manual/es/features.file-upload.post-method.php
                         $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
                         if($subida){
@@ -108,7 +109,6 @@ class AlojamientoController
                                 $txtFoto=$_POST['foto_desc_'.($i+1)];
                             }
                             $galeria= new Galeria($resultadoConsulta, $i+1, $txtFoto, $ext);
-                            var_dump($galeria);
                             $DB->anadirImagen($galeria);
                         }
                     }
@@ -135,24 +135,27 @@ class AlojamientoController
                 $fichero=$_FILES['foto_'.($i+1)];
                 if($fichero['name']!=""){
                     //Por https://norfipc.com/inf/como-subir-fotos-imagenes-servidor-web.php
-                    $ficherocargado=true;
+                    $ficheroApto=true;
                     $tamanofichero = $_FILES['foto_'.($i+1)]['size'];
-                    if ($tamanofichero>8000000){
-                        $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reduzcirlo antes de subirlo";
-                        $ficherocargado=false;
-                    }
-                    $tipofichero = $_FILES['foto_'.($i+1)]['type'];
-                    if (!($tipofichero =="image/pjpeg" || $tipofichero =="image/png") || $tipofichero =="image/jpeg"){
-                        $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG o PNG. Otros archivos no son permitidos";
-                        $ficherocargado=false;
-                    }
+
                     //Por https://stackoverflow.com/questions/10368217/how-to-get-the-file-extension-in-php
                     $nombreImg = $_FILES['foto_'.($i+1)]['name'];
                     $ext = pathinfo($nombreImg, PATHINFO_EXTENSION);
                     $dir_subida = '/var/www/html/view/img/web_app/';
                     $nombreCompletoFichero=$dir_subida.$id."_".($i+1).".".$ext;
+
+                    if ($tamanofichero>1000000){
+                        $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reducirlo antes de subirlo";
+                        $ficheroApto=false;
+                    }
+                    $tipofichero = $_FILES['foto_'.($i+1)]['type'];
+                    if (!($ext =="jpeg" || $ext =="png" || $ext =="jpg" || $ext=="gif") ){
+                        $_SESSION['formato_no_admitido']="Tu archivo tiene que ser JPG, PNG o GIF. Otros archivos no son permitidos";
+                        $ficheroApto=false;
+                    }
+                    
                     //Por https://www.php.net/manual/es/features.file-upload.post-method.php
-                    if ($ficherocargado){
+                    if ($ficheroApto){
                         //Por https://www.php.net/manual/es/features.file-upload.post-method.php
                         $subida=move_uploaded_file($_FILES['foto_'.($i+1)]['tmp_name'], $nombreCompletoFichero);
                         if($subida){
@@ -162,6 +165,8 @@ class AlojamientoController
                             }
                             $galeria= new Galeria($id, $i+1, $txtFoto, $ext);
                             $DB->anadirImagen($galeria);
+                        }else{
+                            var_dump($_FILES['foto_'.($i+1)]);
                         }
                     }
                 }

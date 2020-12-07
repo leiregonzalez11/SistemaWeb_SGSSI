@@ -1,0 +1,5 @@
+#https://stackoverflow.com/questions/2184513/change-the-maximum-upload-file-size
+#https://stackoverflow.com/questions/22106873/adding-comments-to-htaccess
+
+php_value upload_max_filesize 40M
+php_value post_max_size 42M
