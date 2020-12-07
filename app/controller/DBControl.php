@@ -248,20 +248,21 @@ class DBControl{
         $tipo=$aloj->getTipo();
 
         $idA=mysqli_insert_id($enlace);
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
-        $reg=mysqli_num_rows($existe);
         //mysqli_close ($enlace);
 
         $stmt=$enlace->prepare("INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) VALUES (?,?,?,?)");
         $stmt->bind_param("sdis",$descr, $m2, $cap, $tipo);
         $stmt->execute();
         $stmt->close();
-        $idA=mysqli_insert_id($enlace);
-        $existe=mysqli_query($enlace,"SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='$idA');");
-        $reg=mysqli_num_rows($existe);
+        
+        $stmt=$enlace->prepare("SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='?');");
+        $stmt->bind_param("i",$idA);
+        $reg=$stmt->execute();
+        $stmt->close();
+
         mysqli_close ($enlace);
 
-        if($reg==1){
+        if($reg){
             return $idA;
         }
         else{
