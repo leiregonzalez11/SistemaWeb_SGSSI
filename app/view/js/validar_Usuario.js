@@ -52,12 +52,30 @@ function validar(){
         alert("La clave tiene que tener entre 6 y 15 caracteres");
         //return false;
     }
+    else if (!validarContrasena()){
+      alert("La clave debe tener al menos una mayúscula, una minúscula, un dígito y un caracter especial (!,@,#,$,%,^,&,*,?,_,~,-)");
+        //return false;
+    }
+
     else{
       window.alert ("Registro Completado Correctamente");
       document.registro_usuarios.submit();
       //return true;
     }
  
+}
+
+function validarContrasena(){
+	var e = document.getElementById("clave_reg");
+	var data = e.value;
+	var exp=/^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ](?=.*[!,@,#,$,%,^,&,*,?,_,~,-])/
+	if(!exp.test(data)){
+	  e.className='fallo';
+	  return false;
+	}else{
+	  e.className='input';
+	  return true;
+	}
 }
 
 function dniCorrecto(){
@@ -131,7 +149,6 @@ function dniCorrecto(){
     }else{
       e.className='input';
       return true;
-    }
-  }
-  
+    } 
+  } 
 
