@@ -144,7 +144,7 @@ class AlojamientoController
                     $dir_subida = '/var/www/html/view/img/web_app/';
                     $nombreCompletoFichero=$dir_subida.$id."_".($i+1).".".$ext;
 
-                    if ($tamanofichero>1000000){
+                    if ($tamanofichero>8000000){
                         $_SESSION['tam_excesivo']="El archivo es mayor que 8MB, debes reducirlo antes de subirlo";
                         $ficheroApto=false;
                     }
