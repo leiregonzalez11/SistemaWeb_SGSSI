@@ -17,8 +17,8 @@ function modificar(){
     else if (clave2 != clave2val){
         alert ("Las contraseñas no coinciden");
     }
-    else if (clave2.length<6 || clave2.length>15){
-        alert("La clave tiene que tener entre 6 y 15 caracteres");
+    else if (clave2.length<8 || clave2.length>15){
+        alert("La clave tiene que tener entre 8 y 15 caracteres");
             //return false;
     }
     else if (!validarContrasenaModif()){
@@ -56,7 +56,7 @@ function modificar(){
 }
 
 function validarContrasenaModif(){
-	var e = document.getElementById("clave_reg");
+	var e = document.editar_info.clave_edit;
 	var data = e.value;
 	var exp=/^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ](?=.*[!,@,#,$,%,^,&,*,?,_,~,-])/
 	if(!exp.test(data)){
