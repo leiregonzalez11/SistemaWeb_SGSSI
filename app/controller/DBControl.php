@@ -362,6 +362,7 @@ class DBControl{
             $stmt->close();
         }
         mysqli_close($enlace);
+        return $res;
     }
 
     public function actualizarImagen(Galeria $imag){
