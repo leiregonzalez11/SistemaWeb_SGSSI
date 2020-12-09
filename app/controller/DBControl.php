@@ -176,7 +176,7 @@ class DBControl{
         $stmt->execute();
         $resultado=$stmt->get_result();
 
-        if(mysqli_num_rows ($resultado)==1){
+        if($resultado->num_rows==1){
             $stmt=$enlace->prepare("DELETE FROM Usuario WHERE nick=?");
             $stmt->bind_param("s",$nick);
             $res=$stmt->execute();
@@ -247,14 +247,13 @@ class DBControl{
         $cap=$aloj->getCapacidad();
         $tipo=$aloj->getTipo();
 
-        $idA=mysqli_insert_id($enlace);
-        //mysqli_close ($enlace);
-
         $stmt=$enlace->prepare("INSERT INTO Alojamiento (descripcion, metrosCuadrados, capacidad, tipo) VALUES (?,?,?,?)");
         $stmt->bind_param("sdis",$descr, $m2, $cap, $tipo);
         $stmt->execute();
         $stmt->close();
         
+        $idA=mysqli_insert_id($enlace);
+
         $stmt=$enlace->prepare("SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='?');");
         $stmt->bind_param("i",$idA);
         $reg=$stmt->execute();
