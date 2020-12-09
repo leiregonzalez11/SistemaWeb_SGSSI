@@ -175,6 +175,7 @@ class DBControl{
         $stmt->bind_param("s", $nick);
         $stmt->execute();
         $resultado=$stmt->get_result();
+        $stmt->close();
 
         if($resultado->num_rows==1){
             $stmt=$enlace->prepare("DELETE FROM Usuario WHERE nick=?");
@@ -198,7 +199,7 @@ class DBControl{
         $stmt->bind_param("s", $idA);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
-        
+        $stmt->close();
         if($resultado!=false){
             if($resultado->num_rows==1){
                 if($row=$resultado->fetch_assoc()){
@@ -222,6 +223,7 @@ class DBControl{
         $stmt->bind_param("s", $tipo);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
+        $stmt->close();
 
         if($resultado!=false){
             if ($resultado->num_rows > 0) {
@@ -391,6 +393,7 @@ class DBControl{
         $stmt->bind_param("ii", $idAl, $num);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
+        $stmt->close();
 
         if($resultado!=false){
             if($resultado->num_rows==1){
@@ -413,6 +416,7 @@ class DBControl{
         $stmt->bind_param("i", $idAl);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
+        $stmt->close();
 
         if($res){
             if($resultado->num_rows > 0){
