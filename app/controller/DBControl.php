@@ -129,7 +129,7 @@ class DBControl{
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
         $contrase=password_hash($clave, PASSWORD_BCRYPT);
-        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta='AES_ENCRYPT(?, $llave)',email=?, clave=? WHERE nick=?");
+        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta=AES_ENCRYPT(?, '$llave'),email=?, clave=? WHERE nick=?");
         $stmt->bind_param("sssisssss",$dni, $Nombre, $Apellidos, $telf, $fecha, $cuenta, $email, $contrase, $nick);
         $res=$stmt->execute();
         $stmt->close();
@@ -256,7 +256,7 @@ class DBControl{
         
         $idA=mysqli_insert_id($enlace);
 
-        $stmt=$enlace->prepare("SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento='?');");
+        $stmt=$enlace->prepare("SELECT EXISTS (SELECT * FROM Alojamiento WHERE idAlojamiento=?)");
         $stmt->bind_param("i",$idA);
         $reg=$stmt->execute();
         $stmt->close();
