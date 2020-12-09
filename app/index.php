@@ -50,7 +50,7 @@ if(isset($_POST['dni_reg'])){
                          $val->test_input($_POST['clave_reg']),
                         'Cliente',
                         $val->test_input($_POST['nickname_reg']),
-                        '12345678');
+                        $val->test_input($_POST['cuenta_reg']));
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $resultRegistro=$ctrRegistro->efectuarRegistro($usuario);

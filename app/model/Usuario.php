@@ -14,6 +14,7 @@ class Usuario{
     private $email;
     private $clave;
     private $rol;
+    private $cuenta;
 
     /**
      * Función constructora
@@ -114,11 +115,11 @@ class Usuario{
         $this->nick=$nick;
     }
     public function getCuenta(){
-        return $this->nick;
+        return $this->cuenta;
     }
 
-    public function setCuenta($nick){
-        $this->nick=$nick;
+    public function setCuenta($cuenta){
+        $this->cuenta=$cuenta;
     }
 }
 

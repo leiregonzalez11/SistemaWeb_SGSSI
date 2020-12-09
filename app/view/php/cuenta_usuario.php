@@ -20,6 +20,8 @@ function mostrarDatosCuenta(){
         <input type="text" name="apellidos_edit" id="apellidos_edit" value="<?=$usr->getApellidos()?>"/>
         <label for="dni_edit">DNI:</label>
         <input type="text" name="dni_edit" id="dni_edit" value="<?=$usr->getDNI()?>"/>
+        <label for="cuenta_edit">Cuenta Bancaria:</label>
+        <input type="text" name="cuenta_edit" id="cuenta_edit" value="<?=$usr->getCuenta()?>"/>
         <label for="telefono_edit">Teléfono:</label>
         <input type="text" name="telefono_edit" id="telefono_edit" value="<?=$usr->getTelefono()?>"/>
         <label for="fechaNac_edit">Fecha de nacimiento:</label>
