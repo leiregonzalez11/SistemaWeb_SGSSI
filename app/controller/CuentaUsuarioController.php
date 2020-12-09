@@ -18,7 +18,7 @@ class CuentaUsuarioController{
 
     public function editarCuentaUsuario(){
         $nick=$_SESSION['id_usr'];
-        $usuario = new Usuario(test_input($_POST['dni_edit']), test_input($_POST['nombre_edit']), test_input($_POST['apellidos_edit']), test_input($_POST['telefono_edit']), test_input($_POST['fechaNac_edit']), test_input($_POST['mail_edit']), test_input($_POST['clave_edit']), null, $nick, null);
+        $usuario = new Usuario(test_input($_POST['dni_edit']), test_input($_POST['nombre_edit']), test_input($_POST['apellidos_edit']), test_input($_POST['telefono_edit']), test_input($_POST['fechaNac_edit']), test_input($_POST['mail_edit']), test_input($_POST['clave_edit']), null, $nick, test_input($_POST['cuenta_edit']));
 
         $DB=new DBControl();
         $DB->actualizarDatos($usuario);
