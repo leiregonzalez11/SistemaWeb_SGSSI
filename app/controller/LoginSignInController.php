@@ -29,7 +29,7 @@ class LoginSignInController{
         if($resultadoRegistro==true){
             $_SESSION['sesion_iniciada']=true;
             $_SESSION['id_usr']=$pUsuario->getNick();
-            $_SESSION['rol_usr']="Cliente";
+            $_SESSION['rol_usr']=$pUsuario->getRol();
             $_SESSION['token']=md5(time());
         }
         return $resultadoRegistro;

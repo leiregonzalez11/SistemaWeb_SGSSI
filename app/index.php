@@ -37,25 +37,41 @@ include("model/Validador.php");
 //ANTES DE NADA VALIDAMOS SI HA INICIADO SESIÓN EL USUARIO, YA QUE
 //EL RESTO DEL SITIO WEB DEPENDE DE ELLO
 
-
+$DB = new DBControl();
+$numUsrs=$DB->getNumeroUsuarios();
+if($numUsrs==0){
+    $_SESSION['nueva_instalacion']=true;
+}
 
 if(isset($_POST['dni_reg'])){
     $val = new Validador();
+    
     $usuario=new Usuario($val->test_input($_POST['dni_reg']),
-                         $val->test_input($_POST['nombre_reg']),
-                         $val->test_input($_POST['apellidos_reg']),
-                         $val->test_input($_POST['phone_reg']),
-                         $val->test_input($_POST['fechaNac_reg']),
-                         $val->test_input($_POST['mail_reg']),
-                         $val->test_input($_POST['clave_reg']),
+                        $val->test_input($_POST['nombre_reg']),
+                        $val->test_input($_POST['apellidos_reg']),
+                        $val->test_input($_POST['phone_reg']),
+                        $val->test_input($_POST['fechaNac_reg']),
+                        $val->test_input($_POST['mail_reg']),
+                        $val->test_input($_POST['clave_reg']),
                         'Cliente',
                         $val->test_input($_POST['nickname_reg']),
                         $val->test_input($_POST['cuenta_reg']));
+    
+    if(isset($_SESSION['nueva_instalacion'])){
+        $usuario->setRol("Admin");
+        unset($_SESSION['nueva_instalacion']);
+    }
+    
+    
     $ctrRegistro=new LoginSignInController();
     if($ctrRegistro->validarRegistro($usuario)){
         $resultRegistro=$ctrRegistro->efectuarRegistro($usuario);
         if(!$resultRegistro){
             $_SESSION['registro_incorrecto']="No se ha podido registrar el usuario. Puede que ya tenga otro usuario con el mismo DNI. Inténtelo de nuevo más tarde.";    
+        }else{
+            $lhe=new LoginHistoryElement($_POST['nickname_reg'], $_SERVER['REMOTE_ADDR'], time(), "True");
+            $lh=new LoginHistory();
+            $lh->agregarInicioSesion($lhe);
         }
     }else{
         $_SESSION['registro_incorrecto']="No se ha podido registrar el usuario. Tal vez el nick ya exista. Pruebe con otro nick e inténtelo de nuevo.";

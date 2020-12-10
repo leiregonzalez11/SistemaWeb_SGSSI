@@ -110,6 +110,23 @@ class DBControl{
         return $usuario;
     }
 
+
+    public function getNumeroUsuarios(){
+        $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
+        if(!$enlace){
+            die("Fallo de conexion:" . mysqli_connect_error());
+        }
+
+        $stmt =$enlace->prepare("SELECT rol FROM Usuario");
+        $stmt->execute();
+        $resultado=$stmt->get_result();
+        $stmt->close();
+        $res=$resultado->num_rows;
+        mysqli_close ($enlace);
+
+        return $res;
+    }
+
     public function actualizarDatos(Usuario $usu){
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){

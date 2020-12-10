@@ -50,7 +50,8 @@ window.onload=function(){
     }
 
     var errorRegistro=document.getElementById("error_registro");
-    if(errorRegistro!=null && errorRegistro!=undefined){
+    var nuevainstalacion=document.getElementById("nueva_instalacion");
+    if((errorRegistro!=null && errorRegistro!=undefined)||(nuevainstalacion!=null && nuevainstalacion!=undefined)){
         winSignIn.classList.remove("oculto");
     }
 }

@@ -13,6 +13,9 @@
                 echo "<p id='error_registro'>" . $_SESSION['registro_incorrecto'] . "</p>";
                 unset($_SESSION['registro_incorrecto']);
             }
+            if(isset($_SESSION['nueva_instalacion'])){
+                echo "<p id='nueva_instalacion'>Por favor, rellene los siguientes datos para crear la cuenta de administrador.</p>";
+            }
             ?>
             <form id="formulario_registro" name="registro_usuarios" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="form-register">
                 <!--Nickname-->

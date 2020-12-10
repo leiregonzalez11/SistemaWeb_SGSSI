@@ -102,3 +102,9 @@ button{
     color: #F00;
     font-size: 24px;
 }
+
+#nueva_instalacion {
+    text-align: center;
+    color: #00F;
+    font-size: 24px;
+}
