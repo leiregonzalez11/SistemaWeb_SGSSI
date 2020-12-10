@@ -29,10 +29,10 @@
                 <input type="text" id="apellidos_reg" name="apellidos_reg" placeholder="Ejemplo: Gonzalez Martinez" pattern=[A-Z\sa-z]{3,20}>
                 <!--DNI-->
                 <label for="dni_reg">DNI*:</label>
-                <input type="text" id="dni_reg" name="dni_reg" placeholder="Ejemplo: 12345678K" />
+                <input type="text" id="dni_reg" name="dni_reg" placeholder="Ejemplo: 12345678Z" />
                 <!--Cuenta Bancaria-->
                 <label for="cuenta_reg">Cuenta Bancaria:</label>
-                <input type="text" id="cuenta_reg" name="cuenta_reg" />
+                <input type="text" id="cuenta_reg" name="cuenta_reg" placeholder="Ejemplo: BE68539007547034"/>
                 <!--Fecha Nacimiento-->
                 <label for="fechaNac_reg">Fecha Nacimiento*:</label>
                 <input type="date" id="fechaNac_reg" name="fechaNac_reg" placeholder="dd-mm-aaaa" />

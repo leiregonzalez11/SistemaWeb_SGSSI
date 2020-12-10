@@ -62,6 +62,8 @@ function validar(){
     else if (!validarContrasena()){
       alert("La clave debe tener al menos una mayúscula, una minúscula, un dígito y un caracter especial (!,@,#,$,%,^,&,*,?,_,~,-)");
         //return false;
+    }else if(cuentabanc!="" && !IBAN.isValid(cuentabanc)){
+      alert("La cuenta bancaria especificada es incorrecta. Debe seguir el formato IBAN y no contener ningún espacio");
     }
 
     else{

@@ -9,6 +9,7 @@ function modificar(){
     clave2val = document.editar_info.clave_valedit.value;
     telefono2 = document.editar_info.telefono_edit.value;
     fechaNac2 = document.editar_info.fechaNac_edit.value;
+    cuentabanc = document.editar_info.cuenta_edit.value;
 
     if (dni2 == "" && nombre2 == "" && apellidos2 == "" && email2 == "" && clave2 =="" && clave2val =="" && 
         telefono2 =="" &&fechaNac2==""){
@@ -48,6 +49,8 @@ function modificar(){
     else if (!validarFechaMenorActualModif(fechaNac2)){
         alert("Fecha no válida");
         //return false;
+    }else if (cuentabanc!="" && !IBAN.isValid(cuentabanc)){
+      alert("La cuenta bancaria especificada es incorrecta. Debe seguir el formato IBAN y no contener ningún espacio")
     }
     else{
         window.alert ("Cambios realizados correctamente");
