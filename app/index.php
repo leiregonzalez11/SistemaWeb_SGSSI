@@ -30,7 +30,8 @@ include("model/Galeria.php");
 
 include("model/LoginHistoryElement.php");
 include("model/LoginHistory.php");
-include("model/Validador.php");
+include("model/InputCleaner.php");
+include("model/ValidadorFormulariosBackend.php");
 
 //$_SESSION['sesion_iniciada']=true;
 //$_SESSION['usr_rol']="Admin";
@@ -44,7 +45,7 @@ if($numUsrs==0){
 }
 
 if(isset($_POST['dni_reg'])){
-    $val = new Validador();
+    $val = new InputCleaner();
     
     $usuario=new Usuario($val->test_input($_POST['dni_reg']),
                         $val->test_input($_POST['nombre_reg']),
@@ -78,7 +79,7 @@ if(isset($_POST['dni_reg'])){
     }
 
 }else if(isset($_POST['iniciar_sesion'])){
-    $val = new Validador();
+    $val = new InputCleaner();
     $usuario=new Usuario(null,
                         null,
                         null,

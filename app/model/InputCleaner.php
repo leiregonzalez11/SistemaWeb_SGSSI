@@ -1,6 +1,9 @@
 <?php
 
-class Validador{
+/**
+ * Clase que limpia la entrada de datos previa inserción en base de datos o realización de operaciones con éstos.
+ */
+class InputCleaner{
 
     public function __construct(){
         
