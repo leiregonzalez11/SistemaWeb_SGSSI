@@ -22,6 +22,8 @@ class CuentaUsuarioController{
 
         $DB=new DBControl();
         $DB->actualizarDatos($usuario);
+
+        $_SESSION['clave']=test_input($_POST['clave_edit']);
     }
 
     public function eliminarCuentaUsuario(){

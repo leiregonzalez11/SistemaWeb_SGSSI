@@ -6,7 +6,7 @@ class DBControl{
     private $pwd="ADGgHWlReYMDImd8";
     private $dbName="database";
     private $hostname="db";
-    private $key='8A68AKSGGBHBSDEW465892456IWR38YR732';
+    //private $key='8A68AKSGGBHBSDEW465892456IWR38YR732';
 
 
     /**
@@ -60,10 +60,10 @@ class DBControl{
         $nick=$usu->getNick();
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
-        $llave=$this->key;
+        //$llave=$this->key;
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
-        $contrase=password_hash($clave, PASSWORD_BCRYPT);
+        $contrase=password_hash($clave, PASSWORD_DEFAULT);
     
         $stmt =$enlace->prepare("SELECT DNI FROM Usuario WHERE DNI=? OR nick=?");
         $stmt->bind_param("ss", $dni, $nick);
@@ -71,7 +71,7 @@ class DBControl{
         $resultado=$stmt->get_result();
 
         if (mysqli_num_rows ($resultado)==0){
-            $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, AES_ENCRYPT(?,'$llave'),?)");
+            $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, AES_ENCRYPT(?,'$clave'),?)");
             $stmt->bind_param("ssssisssss",$dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $contrase, $cuenta, $rol);
             $res=$stmt->execute();
             $stmt->close();
@@ -86,16 +86,19 @@ class DBControl{
             return false;
         }
     }
-    public function verDatos($usuarioNick){
-        
+    public function verDatos($usuarioNick, $claveUsuario = null){
         $usuario=null;
-        $llave=$this->key;
+        //$llave=$this->key;
         $enlace=mysqli_connect(($this->hostname),($this->user),($this->pwd),($this->dbName));
         if(!$enlace){
             die("Fallo de conexion:" . mysqli_connect_error());
         }
         
-        $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$llave') as 'cuenta', rol FROM Usuario WHERE nick=?");
+        if($claveUsuario!=null){
+            $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$claveUsuario') as 'cuenta', rol FROM Usuario WHERE nick=?");
+        }else{
+            $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, rol FROM Usuario WHERE nick=?");
+        }
         $stmt->bind_param("s", $usuarioNick);
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
@@ -103,10 +106,16 @@ class DBControl{
         if($resultado!=false){
             if($resultado->num_rows==1){
                 if($row=$resultado->fetch_assoc()){
-                    $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);                    
+                    if($claveUsuario!=null){
+                        $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], $row["clave"], $row["rol"], $row["nick"], $row["cuenta"]);
+                    }else{
+                        $usuario=new Usuario($row["DNI"], $row["Nombre"], $row["Apellidos"],$row["telefono"],$row["FechNac"], $row["email"], null, $row["rol"], $row["nick"], null);
+                    }
+                                        
                 }
             }
         }
+        
         return $usuario;
     }
 
@@ -142,11 +151,11 @@ class DBControl{
         $clave=$usu->getClave();
         $cuenta=$usu->getCuenta();
 
-        $llave=$this->key;
+        //$llave=$this->key;
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
-        $contrase=password_hash($clave, PASSWORD_BCRYPT);
-        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta=AES_ENCRYPT(?, '$llave'),email=?, clave=? WHERE nick=?");
+        $contrase=password_hash($clave, PASSWORD_DEFAULT);
+        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta=AES_ENCRYPT(?, '$clave'),email=?, clave=? WHERE nick=?");
         $stmt->bind_param("sssisssss",$dni, $Nombre, $Apellidos, $telf, $fecha, $cuenta, $email, $contrase, $nick);
         $res=$stmt->execute();
         $stmt->close();

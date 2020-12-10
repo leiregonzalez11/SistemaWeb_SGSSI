@@ -31,6 +31,7 @@ class LoginSignInController{
             $_SESSION['id_usr']=$pUsuario->getNick();
             $_SESSION['rol_usr']=$pUsuario->getRol();
             $_SESSION['token']=md5(time());
+            $_SESSION['clave']=$pUsuario->getClave();
         }
         return $resultadoRegistro;
     }
@@ -48,12 +49,13 @@ class LoginSignInController{
 
     public function efectuarInicioSesion($pUsuario){
         $DB=new DBControl();
-        $usuarioDefinitivo=$DB->verDatos($pUsuario->getNick());
+        $usuarioDefinitivo=$DB->verDatos($pUsuario->getNick(), $pUsuario->getClave());
         
         $_SESSION['sesion_iniciada']=true;
         $_SESSION['id_usr']=$usuarioDefinitivo->getNick();
         $_SESSION['rol_usr']=$usuarioDefinitivo->getRol();
         $_SESSION['token']=md5(time());
+        $_SESSION['clave']=$pUsuario->getClave();
     }
 }
 ?>

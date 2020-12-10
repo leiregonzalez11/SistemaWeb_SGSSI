@@ -5,7 +5,8 @@ function mostrarDatosCuenta(){
   }else{
   $nick = $_SESSION['id_usr'];
   $DB=new DBControl();
-  $usr=$DB->verDatos($nick);
+  $usr=$DB->verDatos($nick, $_SESSION['clave']);
+  
 ?>
 
 <main>
