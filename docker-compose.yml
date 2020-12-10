@@ -9,8 +9,9 @@ web:
      - db
    volumes:
      #PROD - ./imgs_web:/var/www/html/view/img/web_app
-     - ./app:/var/www/html/
-
+     - ./app:/var/www/html/ #DEV
+     #PROD- imgs:/var/www/html/view/img/web_app:rw
+     #PROD- xml_log:/var/www/html/log:rw
 db:
   image: mariadb
   restart: always
