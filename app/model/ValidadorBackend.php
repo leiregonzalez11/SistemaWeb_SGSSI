@@ -11,7 +11,12 @@ class ValidadorBackend{
         
     }
 
-    public function validar(){
+    /**
+     * Valida usuarios
+     * @param Usuario $usuario El usuario
+     */
+    public function validar($usuario){
+        
 
     }
 
