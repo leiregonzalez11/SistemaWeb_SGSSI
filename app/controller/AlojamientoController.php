@@ -49,7 +49,7 @@ class AlojamientoController
                             }
                         }
                         include("view/php/alojamiento_admin.php");
-                        mostrarAlojamientoAdmin($_GET['id_alojamiento']);
+                        mostrarAlojamientoAdmin(test_input($_GET['id_alojamiento']));
                         break;
                 }
             } else {
