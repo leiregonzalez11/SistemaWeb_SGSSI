@@ -14,7 +14,8 @@ class LoginSignInController{
         $resultado=true;
         $DB = new DBControl();
         $usr=$DB->verDatos($pUsuario->getNick());
-        if($usr!=null){
+        $validador = new ValidadorBackend();
+        if($usr!=null && $validador->validar($usr)){
             $resultado=false;
         }
         return $resultado;

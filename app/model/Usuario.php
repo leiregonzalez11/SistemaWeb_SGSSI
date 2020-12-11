@@ -15,6 +15,7 @@ class Usuario{
     private $clave;
     private $rol;
     private $cuenta;
+    private $nick;
 
     /**
      * Función constructora
