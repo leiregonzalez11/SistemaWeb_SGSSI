@@ -10,14 +10,17 @@ class LoginSignInController{
      * Precondición: Se transfieren datos de registro y se validan en backend
      * Post: Devuelve True si los datos son adecuados. False en caso contrario
      */
-    public function validarRegistro($pUsuario){
+    public function validarRegistro($pUsuario, $claveVerif){
         $resultado=true;
         $DB = new DBControl();
         $usr=$DB->verDatos($pUsuario->getNick());
         $validador = new ValidadorBackend();
-        if($usr!=null && $validador->validar($usr)){
+        
+        if($usr!=null || !$validador->validar($pUsuario, $claveVerif)){
+            
             $resultado=false;
         }
+        
         return $resultado;
     }
 

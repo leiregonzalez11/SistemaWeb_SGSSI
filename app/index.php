@@ -1,5 +1,8 @@
 <?php
-ini_set("display_errors", "on"); //Muestra errores del parser PHP -BORRAR EN PRODUCCIÓN
+//ini_set("display_errors", "on"); //Muestra errores del parser PHP -BORRAR EN PRODUCCIÓN
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 session_start();
 
@@ -67,7 +70,7 @@ if(isset($_POST['dni_reg'])){
     
     
     $ctrRegistro=new LoginSignInController();
-    if($ctrRegistro->validarRegistro($usuario)){
+    if($ctrRegistro->validarRegistro($usuario, $_POST['clave_val'])){
         $resultRegistro=$ctrRegistro->efectuarRegistro($usuario);
         if(!$resultRegistro){
             $_SESSION['registro_incorrecto']="No se ha podido registrar el usuario. Puede que ya tenga otro usuario con el mismo DNI. Inténtelo de nuevo más tarde.";    

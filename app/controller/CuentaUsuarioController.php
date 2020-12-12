@@ -20,10 +20,15 @@ class CuentaUsuarioController{
         $nick=$_SESSION['id_usr'];
         $usuario = new Usuario(test_input($_POST['dni_edit']), test_input($_POST['nombre_edit']), test_input($_POST['apellidos_edit']), test_input($_POST['telefono_edit']), test_input($_POST['fechaNac_edit']), test_input($_POST['mail_edit']), test_input($_POST['clave_edit']), null, $nick, test_input($_POST['cuenta_edit']));
 
-        $DB=new DBControl();
-        $DB->actualizarDatos($usuario);
+        $validador=new ValidadorBackend();
 
-        $_SESSION['clave']=test_input($_POST['clave_edit']);
+        if($validador->validar($usuario, $_POST['clave_valedit'])){
+            $DB=new DBControl();
+
+            $DB->actualizarDatos($usuario);
+
+            $_SESSION['clave']=test_input($_POST['clave_edit']);
+        }
     }
 
     public function eliminarCuentaUsuario(){
