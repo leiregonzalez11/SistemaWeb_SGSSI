@@ -71,8 +71,8 @@ class DBControl{
         $resultado=$stmt->get_result();
 
         if (mysqli_num_rows ($resultado)==0){
-            $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, AES_ENCRYPT(?,'$clave'),?)");
-            $stmt->bind_param("ssssisssss",$dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $contrase, $cuenta, $rol);
+            $stmt=$enlace->prepare("INSERT INTO Usuario (DNI, nick, Nombre, Apellidos, telefono, FechNac, email, clave, cuenta, rol) VALUES (?,?,?,?,?,?,?,?, AES_ENCRYPT(?,UNHEX(SHA2(?,512))),?)");
+            $stmt->bind_param("ssssissssss",$dni, $nick, $Nombre, $Apellidos, $telf, $fecha, $email, $contrase, $cuenta, $clave, $rol);
             $res=$stmt->execute();
             $stmt->close();
             if($res){
@@ -95,11 +95,15 @@ class DBControl{
         }
         
         if($claveUsuario!=null){
-            $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta, '$claveUsuario') as 'cuenta', rol FROM Usuario WHERE nick=?");
+            $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, AES_DECRYPT(cuenta,UNHEX(SHA2(?,512))) as 'cuenta', rol FROM Usuario WHERE nick=?");
         }else{
             $stmt =$enlace->prepare("SELECT DNI, Nombre, Apellidos, telefono, FechNac, email, clave, nick, rol FROM Usuario WHERE nick=?");
         }
+        if($claveUsuario!=null){
+            $stmt->bind_param("ss",$claveUsuario, $usuarioNick);
+        }else{
         $stmt->bind_param("s", $usuarioNick);
+        }
         $res=$stmt->execute();
         $resultado=$stmt->get_result();
 
@@ -155,8 +159,8 @@ class DBControl{
         //$sal=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,rand(10,30));
         //$contrase=$sal.$clave;
         $contrase=password_hash($clave, PASSWORD_DEFAULT);
-        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta=AES_ENCRYPT(?, '$clave'),email=?, clave=? WHERE nick=?");
-        $stmt->bind_param("sssisssss",$dni, $Nombre, $Apellidos, $telf, $fecha, $cuenta, $email, $contrase, $nick);
+        $stmt=$enlace->prepare("UPDATE Usuario SET DNI=?, Nombre=?, Apellidos=?, telefono=?, FechNac=?, cuenta=AES_ENCRYPT(?,UNHEX(SHA2(?,512))),email=?, clave=? WHERE nick=?");
+        $stmt->bind_param("sssissssss",$dni, $Nombre, $Apellidos, $telf, $fecha, $cuenta, $clave, $email, $contrase, $nick);
         $res=$stmt->execute();
         $stmt->close();
         return $res;
