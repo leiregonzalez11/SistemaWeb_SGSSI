@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Nota de derechos de autor:
+ * Las consultas realizadas con el fin de evitar inyección SQL (prepare, bind_param, etc), así como algoritmos para
+ * extraer datos de la base de datos (while($row = $resultado->fetch_assoc()) y de ejecución de código (execute())
+ * han sido basados en código de los siguientes sitios web:
+ * 
+ * W3Schools
+ * DADO QUE EL PROYECTO ES MATERIAL ACADÉMICO, SE RESPETA EL USO DEL CÓDIGO SEGÚN TÉRMINOS Y CONDICIONES DEL SITIO WEB 
+ * (https://www.w3schools.com/about/about_copyright.asp)
+ * 
+ *  - https://www.w3schools.com/php/php_mysql_prepared_statements.asp
+ * 
+ * Stack Overflow
+ *  - Pregunta: https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php
+ *  - Autor: https://stackoverflow.com/users/508666/peehaa
+ * Modificado por Unai H. para ajustarse a los requisitos funcionales de la aplicación
+ */
+
 class DBControl{
 
     private $user="sgssiworks";

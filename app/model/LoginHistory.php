@@ -21,7 +21,11 @@ class LoginHistory{
         $lgdt=$lhe->getLoginDate();
         $suc=$lhe->isSuccessful();
 
-        //https://www.php.net/manual/es/domdocument.createelement.php
+        /* 
+         * Código tomado de https://www.php.net/manual/es/domdocument.createelement.php
+         * para creación de elementos XML y guardarlos en ficheros
+         * 
+         */
         
         $dom =new DOMDocument();
 
@@ -39,13 +43,20 @@ class LoginHistory{
         $elemRoot->appendChild($elemSuccess);
 
         $dom->getElementsByTagName("log_history")[0]->appendChild($elemRoot);
-        //https://www.php.net/manual/es/domdocument.save.php
+
+        /**
+         * Código tomado de https://www.php.net/manual/es/domdocument.save.php
+         * para guardar datos en un fichero XML
+         */
         $dom->save("log/login_record.xml");
         
     }
 
-    //https://www.php.net/manual/es/intro.xmlreader.php
-    //https://www.php.net/manual/es/domdocument.getelementsbytagname.php
+    /**
+     * Código tomado de https://www.php.net/manual/es/intro.xmlreader.php
+     * y de https://www.php.net/manual/es/domdocument.getelementsbytagname.php
+     * para leer datos del fichero XML 
+     */
     private function readXML(){
         
         $doc=new DOMDocument();

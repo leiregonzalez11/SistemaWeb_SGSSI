@@ -51,6 +51,8 @@ class ValidadorBackend
     private function validarCuenta($cuenta)
     {
         if (trim($cuenta) != "") {
+            //Se ha empleado una biblioteca bajo licencia GNU/GPL para la validación del IBÁN.
+            //Véase lib/php-iban para más información.
             $iban = new IBAN();
             return $iban->Verify($cuenta);
         }
@@ -59,8 +61,11 @@ class ValidadorBackend
 
     private function validarDNI($dni)
     {
-        //https://www.adaweb.es/validar-dni-con-php/
-        //Modificaciones realizadas para ajustarse a una función booleana
+        /**
+         * Código tomado de https://www.adaweb.es/validar-dni-con-php/ para
+         * realizar las validaciones de DNI.
+         * Modificado por Christian B. para ajustarse a una función booleana
+         */
         $letra = substr($dni, -1);
         $numeros = substr($dni, 0, -1);
         $valido = false;
@@ -93,8 +98,14 @@ class ValidadorBackend
 
     private function validarFechaNacimiento($fechaNac)
     {
-        //https://www.php.net/manual/en/datetime.diff.php
-
+        /**
+         * El siguiente código está basado en el siguiente sitio web:
+         *  - https://www.php.net/manual/en/datetime.diff.php
+         *  - Autor: The PHP Group
+         *  - Autor: acrion at gmail dot com
+         * y ha sido adaptado para basarse en una función booleana.
+         * 
+         */
         $fechaHoy = time();
         
         //$fechaInput = mktime($fechaNac);
@@ -129,6 +140,6 @@ class ValidadorBackend
 
     private function validarClave($clave)
     {
-        return strlen($clave) >= 8 && strlen($clave) <= 15;
+        return strlen($clave) >= 8 && strlen($clave) <= 15 && preg_match('/^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ](?=.*[!,@,#,$,%,^,&,*,?,_,~,-])/', $clave);
     }
 }
