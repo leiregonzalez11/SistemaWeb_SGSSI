@@ -1,5 +1,5 @@
 # Camping SGSSI
-Proyecto desarrollado por: Leire González López, Unai Hernández Gómez y Christian Berrocal Martínez
+Proyecto desarrollado por: Leire González López, Unai Hernández Gómez y Christian Berrocal Martínez.
 Las imágenes y vídeos empleados en el proyecto se han extraído de fuentes libres de derechos de autor o en su defecto, limitado por licencia Creative Commons. En concreto, los sitios web en los que se han extraído las imágenes son [Unsplash](https://unsplash.com/) y [Pixabay](https://pixabay.com/es/).
 Un porcentaje mínimo del código del proyecto (por ejemplo, carrusel en vista detallada de alojamientos) ha sido extraído de otras fuentes externas, respetando siempre su uso según términos y condiciones de la web de la que se obtiene dicho código y citando la fuente tomada en el código.
 
